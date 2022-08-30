@@ -187,10 +187,6 @@ http://www.gnu.org/licenses/.
                                                             <i>Dati del cedente/prestatore</i>
                                                        </h3>
                                                        <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore/DatiAnagrafici">
-                                                            <h4>
-                                                                 Anagrafische Daten -
-                                                                 <i>Dati anagrafici</i>
-                                                            </h4>
                                                             <table id="t1">
                                                                  <xsl:for-each select="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore/DatiAnagrafici">
                                                                       <xsl:if test="Anagrafica/Denominazione or Anagrafica/Nome">
@@ -604,10 +600,6 @@ http://www.gnu.org/licenses/.
                                                             <i>Dati del rappresentante fiscale del cedente / prestatore</i>
                                                        </h3>
                                                        <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/RappresentanteFiscale/DatiAnagrafici">
-                                                            <h4>
-                                                                 Anagrafische Daten -
-                                                                 <i>Dati anagrafici</i>
-                                                            </h4>
                                                             <table id="t1">
                                                                  <xsl:for-each select="a:FatturaElettronica/FatturaElettronicaHeader/RappresentanteFiscale/DatiAnagrafici">
                                                                       <xsl:if test="IdFiscaleIVA">
@@ -688,10 +680,6 @@ http://www.gnu.org/licenses/.
                                                             <i>Dati del cessionario / committente</i>
                                                        </h3>
                                                        <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici">
-                                                            <h4>
-                                                                 Anagrafische Daten -
-                                                                 <i>Dati anagrafici</i>
-                                                            </h4>
                                                             <table id="t1">
                                                                  <xsl:for-each select="a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici">
                                                                       <xsl:if test="Anagrafica/Denominazione or Anagrafica/Titolo or Anagrafica/Nome or Anagrafica/Cognome">
