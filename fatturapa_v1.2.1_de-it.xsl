@@ -20,7 +20,7 @@ along with this program (see LICENSE file). If not, see
 http://www.gnu.org/licenses/.
 
 -->
-<xsl:stylesheet version="1.1" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2">
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2">
      <xsl:output method="html" />
 
      <xsl:variable name="VersionFT">
@@ -67,45 +67,44 @@ http://www.gnu.org/licenses/.
           <xsl:variable name="month" select="substring($DateTime,6,2)" />
           <xsl:variable name="day" select="substring($DateTime,9,2)" />
 
-          <xsl:value-of select="' ('" />
-          <xsl:value-of select="$day" />
-          <xsl:value-of select="' '" />
-          <xsl:choose>
-               <xsl:when test="$month = '1' or $month = '01'">Jan./Gen.</xsl:when>
-               <xsl:when test="$month = '2' or $month = '02'">Feb.</xsl:when>
-               <xsl:when test="$month = '3' or $month = '03'">Mar.</xsl:when>
-               <xsl:when test="$month = '4' or $month = '04'">Apr.</xsl:when>
-               <xsl:when test="$month = '5' or $month = '05'">Mai/Mag.</xsl:when>
-               <xsl:when test="$month = '6' or $month = '06'">Jun./Giu.</xsl:when>
-               <xsl:when test="$month = '7' or $month = '07'">Jul./Lug.</xsl:when>
-               <xsl:when test="$month = '8' or $month = '08'">Aug./Ago.</xsl:when>
-               <xsl:when test="$month = '9' or $month = '09'">Sep./Set.</xsl:when>
-               <xsl:when test="$month = '10'">Okt./Ott.</xsl:when>
-               <xsl:when test="$month = '11'">Nov.</xsl:when>
-               <xsl:when test="$month = '12'">Dez./Dic.</xsl:when>
-               <xsl:otherwise>
-                    <font color="red">
-                         Unbekannter Monat -
-                         <i>Mese non riconosciuto</i>
-                    </font>
-               </xsl:otherwise>
-          </xsl:choose>
-          <xsl:value-of select="' '" />
-          <xsl:value-of select="$year" />
+          <xsl:variable name="month_text">
+               <xsl:choose>
+                    <xsl:when test="$month = '1' or $month = '01'"><xsl:value-of select="'Jan./Gen.'" /></xsl:when>
+                    <xsl:when test="$month = '2' or $month = '02'"><xsl:value-of select="'Feb.'" /></xsl:when>
+                    <xsl:when test="$month = '3' or $month = '03'"><xsl:value-of select="'Mar.'" /></xsl:when>
+                    <xsl:when test="$month = '4' or $month = '04'"><xsl:value-of select="'Apr.'" /></xsl:when>
+                    <xsl:when test="$month = '5' or $month = '05'"><xsl:value-of select="'Mai/Mag.'" /></xsl:when>
+                    <xsl:when test="$month = '6' or $month = '06'"><xsl:value-of select="'Jun./Giu.'" /></xsl:when>
+                    <xsl:when test="$month = '7' or $month = '07'"><xsl:value-of select="'Jul./Lug.'" /></xsl:when>
+                    <xsl:when test="$month = '8' or $month = '08'"><xsl:value-of select="'Aug./Ago.'" /></xsl:when>
+                    <xsl:when test="$month = '9' or $month = '09'"><xsl:value-of select="'Sep./Set.'" /></xsl:when>
+                    <xsl:when test="$month = '10'"><xsl:value-of select="'Okt./Ott.'" /></xsl:when>
+                    <xsl:when test="$month = '11'"><xsl:value-of select="'Nov.'" /></xsl:when>
+                    <xsl:when test="$month = '12'"><xsl:value-of select="'Dez./Dic.'" /></xsl:when>
+                    <xsl:otherwise>
+                         <xsl:value-of select="'unbekannter Monat-mese non riconosciuto'" />
+                    </xsl:otherwise>
+               </xsl:choose>
+          </xsl:variable>
+
           <xsl:variable name="time" select="substring($DateTime,12)" />
-          <xsl:if test="$time != ''">
-               <xsl:variable name="hh" select="substring($time,1,2)" />
-               <xsl:variable name="mm" select="substring($time,4,2)" />
-               <xsl:variable name="ss" select="substring($time,7,2)" />
-               <xsl:value-of select="' '" />
-               <xsl:value-of select="$hh" />
-               <xsl:value-of select="':'" />
-               <xsl:value-of select="$mm" />
-               <xsl:value-of select="':'" />
-               <xsl:value-of select="$ss" />
-          </xsl:if>
-          <xsl:value-of select="')'" />
+          <xsl:variable name="time_text">
+               <xsl:if test="$time != ''">
+                         <xsl:variable name="hh" select="substring($time,1,2)" />
+                         <xsl:variable name="mm" select="substring($time,4,2)" />
+                         <xsl:variable name="ss" select="substring($time,7,2)" />
+                         <xsl:value-of select="' '" />
+                         <xsl:value-of select="$hh" />
+                         <xsl:value-of select="':'" />
+                         <xsl:value-of select="$mm" />
+                         <xsl:value-of select="':'" />
+                         <xsl:value-of select="$ss" />
+               </xsl:if>
+          </xsl:variable>
+
+          <xsl:value-of select="concat($day, '. ', $month_text, ' ', $year, ' ', $time_text)" />
      </xsl:template>
+
      <xsl:template match="/">
           <html>
                <head>
@@ -218,11 +217,6 @@ http://www.gnu.org/licenses/.
                          <!--INIZIO DATI HEADER-->
                          <xsl:if test="a:FatturaElettronica">
                               <div id="fattura-elettronica">
-                                   <h1>
-                                        Italienische elektronische Rechnung
-                                        <br />
-                                        <i>FATTURA ELETTRONICA</i>
-                                   </h1>
                                    <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader">
                                         <div class="page">
                                              <div class="version">
@@ -293,11 +287,10 @@ http://www.gnu.org/licenses/.
                                                                                           <xsl:if test="DataIscrizioneAlbo">
                                                                                                 
                                                                                                <span>
-                                                                                                    <xsl:value-of select="DataIscrizioneAlbo" />
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="DataIscrizioneAlbo" />
+                                                                                                    </xsl:call-template>
                                                                                                </span>
-                                                                                               <xsl:call-template name="FormatDate">
-                                                                                                    <xsl:with-param name="DateTime" select="DataIscrizioneAlbo" />
-                                                                                               </xsl:call-template>
                                                                                           </xsl:if>
                                                                                      </td>
                                                                                 </tr>
@@ -1180,130 +1173,109 @@ http://www.gnu.org/licenses/.
                                              <xsl:if test="DatiGenerali">
                                                   <!--INIZIO DATI GENERALI-->
                                                   <div id="dati-generali">
-
                                                        <xsl:if test="DatiGenerali/DatiGeneraliDocumento">
-
                                                             <!--INIZIO DATI GENERALI DOCUMENTO-->
                                                             <div id="dati-generali-documento">
                                                                  <h3>
-                                                                      Generelle Rechnungssdaten -
-                                                                      <i>Dati generali del documento</i>
+                                                                      <xsl:variable name="TD">
+                                                                           <xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/TipoDocumento" />
+                                                                      </xsl:variable>
+                                                                      <xsl:choose>
+                                                                           <xsl:when test="$TD='TD01'">
+                                                                                Rechnung
+                                                                                <i>fattura</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD02'">
+                                                                                Accontorechnung
+                                                                                <i>acconto/anticipo su fattura</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD03'">
+                                                                                Accontohonorar
+                                                                                <i>acconto/anticipo su parcella</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD04'">
+                                                                                Gutschrift
+                                                                                <i>nota di credito</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD05'">
+                                                                                Lastschrift
+                                                                                <i>nota di debito</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD06'">
+                                                                                Honorarnote
+                                                                                <i>parcella</i>
+                                                                           </xsl:when>
+                                                                           <!-- Version 1.2.1 -->
+                                                                           <xsl:when test="$TD='TD16'">
+                                                                                Integration der internenen reverse charge Rechnungen
+                                                                                <br />
+                                                                                <i>Integrazione fattura reverse charge interno</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD17'">
+                                                                                Integration/Selbsfakturierung für den Einkauf von Dienstleistungen aus dem Ausland
+                                                                                <br />
+                                                                                <i>Integrazione/autofattura per acquisto servizi dall'estero</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD18'">
+                                                                                Integration für den Kauf von innergemeinschaftlichen Waren
+                                                                                <br />
+                                                                                <i>Integrazione per acquisto di beni intracomunitari</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD19'">
+                                                                                Integration/Selbstfakturierung für den Kauf von Waren ex Art. 17, Abs. 2 DPR 633/72
+                                                                                <br />
+                                                                                <i>Integrazione/autofattura per acquisto di beni ex art.17 c.2 DPR 633/72</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD20'">
+                                                                                Selbstfakturierung Anzeige (Art.6c, Komma 8 Dekret 471/97)
+                                                                                <br />
+                                                                                <i>Autofattura denuncia (art.6c .8 d.lgs. 471/97)</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD21'">
+                                                                                Selbstfakturierung bei Überschreiten des Plafonds
+                                                                                <i>Autofattura per splafonamento</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD22'">
+                                                                                Warenentnahme aus dem Mehrwertsteuerlager
+                                                                                <br />
+                                                                                <i>Estrazione beni da Deposito IVA</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD23'">
+                                                                                Warenentnahme aus dem Mehrwertsteuerlager mit Mehrwertsteuerzahlung
+                                                                                <br />
+                                                                                <i>Estrazione beni da Deposito IVA con versamento dell'IVA</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD24'">
+                                                                                Aufgeschobene Rechnung gemäß Artikel 21, Absatz 4, Buchstabe a)
+                                                                                <br />
+                                                                                <i>Fattura differita di cui all'art. 21, comma 4, lett. a)</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD25'">
+                                                                                Aufgeschobene Rechnung gemäß Artikel 21, Absatz 4, Dritter Satz Buchstabe b)
+                                                                                <br />
+                                                                                <i>Fattura differita di cui all'art. 21, comma 4, terzo periodo lett. b)</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD26'">
+                                                                                Übertragung von abschreibungsfähigen Gütern und für interner Transaktionen (Art. 36 DPR 633/72)
+                                                                                <br />
+                                                                                <i>Cessione di beni ammortizzabili e per passaggi interni (art.36 DPR 633/72)</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD='TD27'">
+                                                                                Rechnung für Eigenverbrauch oder für kostenlose Abtretungen ohne Entschädigung
+                                                                                <br />
+                                                                                <i>Fattura per autoconsumo o per cessioni gratuite senza rivalsa</i>
+                                                                           </xsl:when>
+                                                                           <xsl:when test="$TD=''" />
+                                                                           <xsl:otherwise>
+                                                                                <fehler>
+                                                                                     !!! falsche Kennung !!!
+                                                                                     <i>!!! codice non previsto !!!</i>
+                                                                                </fehler>
+                                                                           </xsl:otherwise>
+                                                                      </xsl:choose>
                                                                  </h3>
 
                                                                  <table id="t1">
-                                                                      <xsl:if test="DatiGenerali/DatiGeneraliDocumento/TipoDocumento">
-                                                                           <tr>
-                                                                                <td width="200px">
-                                                                                     Währung : Dokumententyp
-                                                                                     <br />
-                                                                                     <i>Valuta : Tipologia doc.</i>
-                                                                                </td>
-                                                                                <td width="500px">
-                                                                                     <span>
-                                                                                          <xsl:value-of select="$Valuta" />
-                                                                                           : 
-                                                                                          <xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/TipoDocumento" />
-                                                                                     </span>
-                                                                                     <xsl:variable name="TD">
-                                                                                          <xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/TipoDocumento" />
-                                                                                     </xsl:variable>
-                                                                                     <xsl:choose>
-                                                                                          <xsl:when test="$TD='TD01'">
-                                                                                               (Rechnung)
-                                                                                               <i>(fattura)</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD02'">
-                                                                                               (Accontorechnung)
-                                                                                               <i>(acconto/anticipo su fattura)</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD03'">
-                                                                                               (Accontohonorar)
-                                                                                               <i>(acconto/anticipo su parcella)</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD04'">
-                                                                                               (Gutschrift)
-                                                                                               <i>(nota di credito)</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD05'">
-                                                                                               (Lastschrift)
-                                                                                               <i>(nota di debito)</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD06'">
-                                                                                               (Honorarnote)
-                                                                                               <i>(parcella)</i>
-                                                                                          </xsl:when>
-                                                                                          <!-- Version 1.2.1 -->
-                                                                                          <xsl:when test="$TD='TD16'">
-                                                                                               (Integration der internenen reverse charge Rechnungen)
-                                                                                               <br />
-                                                                                               <i>(Integrazione fattura reverse charge interno)</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD17'">
-                                                                                               (Integration/Selbsfakturierung für den Einkauf von Dienstleistungen aus dem Ausland)
-                                                                                               <br />
-                                                                                               <i>(Integrazione/autofattura per acquisto servizi dall'estero)</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD18'">
-                                                                                               (Integration für den Kauf von innergemeinschaftlichen Waren)
-                                                                                               <br />
-                                                                                               <i>(Integrazione per acquisto di beni intracomunitari)</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD19'">
-                                                                                               (Integration/Selbstfakturierung für den Kauf von Waren ex Art. 17, Abs. 2 DPR 633/72)
-                                                                                               <br />
-                                                                                               <i>(Integrazione/autofattura per acquisto di beni ex art.17 c.2 DPR 633/72)</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD20'">
-                                                                                               (Selbstfakturierung Anzeige (Art.6c, Komma 8 Dekret 471/97)
-                                                                                               <br />
-                                                                                               )
-                                                                                               <i>(Autofattura denuncia (art.6c .8 d.lgs. 471/97))</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD21'">
-                                                                                               (Selbstfakturierung bei Überschreiten des Plafonds)
-                                                                                               <i>(Autofattura per splafonamento)</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD22'">
-                                                                                               (Warenentnahme aus dem Mehrwertsteuerlager)
-                                                                                               <br />
-                                                                                               <i>(Estrazione beni da Deposito IVA)</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD23'">
-                                                                                               (Warenentnahme aus dem Mehrwertsteuerlager mit Mehrwertsteuerzahlung)
-                                                                                               <br />
-                                                                                               <i>(Estrazione beni da Deposito IVA con versamento dell'IVA)</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD24'">
-                                                                                               (Aufgeschobene Rechnung gemäß Artikel 21, Absatz 4, Buchstabe a))
-                                                                                               <br />
-                                                                                               <i>(Fattura differita di cui all'art. 21, comma 4, lett. a))</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD25'">
-                                                                                               (Aufgeschobene Rechnung gemäß Artikel 21, Absatz 4, Dritter Satz Buchstabe b))
-                                                                                               <br />
-                                                                                               <i>(Fattura differita di cui all'art. 21, comma 4, terzo periodo lett. b))</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD26'">
-                                                                                               (Übertragung von abschreibungsfähigen Gütern und für interner Transaktionen (Art. 36 DPR 633/72))
-                                                                                               <br />
-                                                                                               <i>(Cessione di beni ammortizzabili e per passaggi interni (art.36 DPR 633/72))</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD='TD27'">
-                                                                                               (Rechnung für Eigenverbrauch oder für kostenlose Abtretungen ohne Entschädigung)
-                                                                                               <br />
-                                                                                               <i>(Fattura per autoconsumo o per cessioni gratuite senza rivalsa)</i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$TD=''" />
-                                                                                          <xsl:otherwise>
-                                                                                               <fehler>
-                                                                                                    (!!! falsche Kennung !!!)
-                                                                                                    <i>(!!! codice non previsto !!!)</i>
-                                                                                               </fehler>
-                                                                                          </xsl:otherwise>
-                                                                                     </xsl:choose>
-                                                                                </td>
-                                                                           </tr>
-                                                                      </xsl:if>
                                                                       <xsl:if test="DatiGenerali/DatiGeneraliDocumento/Data">
                                                                            <tr>
                                                                                 <td>
@@ -1314,12 +1286,11 @@ http://www.gnu.org/licenses/.
                                                                                 <td>
                                                                                      <span>
                                                                                           <xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Numero" />
-                                                                                           - 
-                                                                                          <xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Data" />
+                                                                                          vom / del 
+                                                                                          <xsl:call-template name="FormatDate">
+                                                                                               <xsl:with-param name="DateTime" select="DatiGenerali/DatiGeneraliDocumento/Data" />
+                                                                                          </xsl:call-template>
                                                                                      </span>
-                                                                                     <xsl:call-template name="FormatDate">
-                                                                                          <xsl:with-param name="DateTime" select="DatiGenerali/DatiGeneraliDocumento/Data" />
-                                                                                     </xsl:call-template>
                                                                                 </td>
                                                                            </tr>
                                                                       </xsl:if>
@@ -1961,11 +1932,10 @@ http://www.gnu.org/licenses/.
                                                                                      </td>
                                                                                      <td>
                                                                                           <span>
-                                                                                               <xsl:value-of select="Data" />
+                                                                                               <xsl:call-template name="FormatDate">
+                                                                                                    <xsl:with-param name="DateTime" select="Data" />
+                                                                                               </xsl:call-template>
                                                                                           </span>
-                                                                                          <xsl:call-template name="FormatDate">
-                                                                                               <xsl:with-param name="DateTime" select="Data" />
-                                                                                          </xsl:call-template>
                                                                                      </td>
                                                                                 </tr>
                                                                            </xsl:if>
@@ -2080,11 +2050,10 @@ http://www.gnu.org/licenses/.
                                                                                      </td>
                                                                                      <td>
                                                                                           <span>
-                                                                                               <xsl:value-of select="Data" />
+                                                                                               <xsl:call-template name="FormatDate">
+                                                                                                    <xsl:with-param name="DateTime" select="Data" />
+                                                                                               </xsl:call-template>
                                                                                           </span>
-                                                                                          <xsl:call-template name="FormatDate">
-                                                                                               <xsl:with-param name="DateTime" select="Data" />
-                                                                                          </xsl:call-template>
                                                                                      </td>
                                                                                 </tr>
                                                                            </xsl:if>
@@ -2199,11 +2168,10 @@ http://www.gnu.org/licenses/.
                                                                                      </td>
                                                                                      <td>
                                                                                           <span>
-                                                                                               <xsl:value-of select="Data" />
+                                                                                               <xsl:call-template name="FormatDate">
+                                                                                                    <xsl:with-param name="DateTime" select="Data" />
+                                                                                               </xsl:call-template>
                                                                                           </span>
-                                                                                          <xsl:call-template name="FormatDate">
-                                                                                               <xsl:with-param name="DateTime" select="Data" />
-                                                                                          </xsl:call-template>
                                                                                      </td>
                                                                                 </tr>
                                                                            </xsl:if>
@@ -2318,11 +2286,10 @@ http://www.gnu.org/licenses/.
                                                                                      </td>
                                                                                      <td>
                                                                                           <span>
-                                                                                               <xsl:value-of select="Data" />
+                                                                                               <xsl:call-template name="FormatDate">
+                                                                                                    <xsl:with-param name="DateTime" select="Data" />
+                                                                                               </xsl:call-template>
                                                                                           </span>
-                                                                                          <xsl:call-template name="FormatDate">
-                                                                                               <xsl:with-param name="DateTime" select="Data" />
-                                                                                          </xsl:call-template>
                                                                                      </td>
                                                                                 </tr>
                                                                            </xsl:if>
@@ -2437,11 +2404,10 @@ http://www.gnu.org/licenses/.
                                                                                      </td>
                                                                                      <td>
                                                                                           <span>
-                                                                                               <xsl:value-of select="Data" />
+                                                                                               <xsl:call-template name="FormatDate">
+                                                                                                    <xsl:with-param name="DateTime" select="Data" />
+                                                                                               </xsl:call-template>
                                                                                           </span>
-                                                                                          <xsl:call-template name="FormatDate">
-                                                                                               <xsl:with-param name="DateTime" select="Data" />
-                                                                                          </xsl:call-template>
                                                                                      </td>
                                                                                 </tr>
                                                                            </xsl:if>
@@ -2564,11 +2530,10 @@ http://www.gnu.org/licenses/.
                                                                                                <i>del</i>
                                                                                                 
                                                                                                <span>
-                                                                                                    <xsl:value-of select="DataDDT" />
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="DataDDT" />
+                                                                                                    </xsl:call-template>
                                                                                                </span>
-                                                                                               <xsl:call-template name="FormatDate">
-                                                                                                    <xsl:with-param name="DateTime" select="DataDDT" />
-                                                                                               </xsl:call-template>
                                                                                           </xsl:if>
                                                                                           <xsl:if test="RiferimentoNumeroLinea">
                                                                                                <br />
@@ -2723,7 +2688,7 @@ http://www.gnu.org/licenses/.
                                                                            </xsl:for-each>
                                                                       </xsl:if>
 
-                                                                      <xsl:if test="DatiGenerali/DatiTrasporto/MezzoTrasporto or DatiGenerali/DatiTrasporto/CausaleTrasporto or DatiGenerali/DatiTrasporto/NumeroColli or DatiGenerali/DatiTrasporto/Descrizione or DatiGenerali/DatiTrasporto/UnitaMisuraPeso or DatiGenerali/DatiTrasporto/PesoLordo or DatiGenerali/DatiTrasporto/PesoNetto or DatiGenerali/DatiTrasporto/DataOraRitiro or DatiGenerali/DatiTrasporto/DataInizioTrasporto or DatiGenerali/DatiTrasporto/TipoResa or DatiGenerali/DatiTrasporto/IndirizzoResa">
+                                                                      <xsl:if test="DatiGenerali/DatiTrasporto/MezzoTrasporto or DatiGenerali/DatiTrasporto/CausaleTrasporto or DatiGenerali/DatiTrasporto/NumeroColli or DatiGenerali/DatiTrasporto/Descrizione or DatiGenerali/DatiTrasporto/UnitaMisuraPeso or DatiGenerali/DatiTrasporto/PesoLordo or DatiGenerali/DatiTrasporto/PesoNetto or DatiGenerali/DatiTrasporto/DataOraRitiro or DatiGenerali/DatiTrasporto/DataInizioTrasporto or DatiGenerali/DatiTrasporto/TipoResa or DatiGenerali/DatiTrasporto/IndirizzoResa or DatiGenerali/DatiTrasporto/DataOraConsegna">
                                                                            <tr>
                                                                                 <td colspan="3">
                                                                                      <div id="sub-heading">
@@ -2834,17 +2799,16 @@ http://www.gnu.org/licenses/.
                                                                                 <xsl:if test="DataOraRitiro">
                                                                                      <tr>
                                                                                           <td>
-                                                                                               Datum und Zeit der Abgabe
+                                                                                               Datum und Zeit der Abholung
                                                                                                <br />
                                                                                                <i>Data e ora ritiro merce</i>
                                                                                           </td>
                                                                                           <td>
                                                                                                <span>
-                                                                                                    <xsl:value-of select="DataOraRitiro" />
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="DataOraRitiro" />
+                                                                                                    </xsl:call-template>
                                                                                                </span>
-                                                                                               <xsl:call-template name="FormatDate">
-                                                                                                    <xsl:with-param name="DateTime" select="DataOraRitiro" />
-                                                                                               </xsl:call-template>
                                                                                           </td>
                                                                                      </tr>
                                                                                 </xsl:if>
@@ -2857,11 +2821,10 @@ http://www.gnu.org/licenses/.
                                                                                           </td>
                                                                                           <td>
                                                                                                <span>
-                                                                                                    <xsl:value-of select="DataInizioTrasporto" />
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="DataInizioTrasporto" />
+                                                                                                    </xsl:call-template>
                                                                                                </span>
-                                                                                               <xsl:call-template name="FormatDate">
-                                                                                                    <xsl:with-param name="DateTime" select="DataInizioTrasporto" />
-                                                                                               </xsl:call-template>
                                                                                           </td>
                                                                                      </tr>
                                                                                 </xsl:if>
@@ -2969,13 +2932,15 @@ http://www.gnu.org/licenses/.
                                                                                 <xsl:if test="DataOraConsegna">
                                                                                      <tr>
                                                                                           <td>
-                                                                                               Land der Abgabe
+                                                                                               Datum und Uhrzeit der Lieferung
                                                                                                <br />
-                                                                                               <i>Nazione di resa</i>
+                                                                                               <i>Data e ora della consegna</i>
                                                                                           </td>
                                                                                           <td>
                                                                                                <span>
-                                                                                                    <xsl:value-of select="DataOraConsegna" />
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="DataOraConsegna" />
+                                                                                                    </xsl:call-template>
                                                                                                </span>
                                                                                           </td>
                                                                                      </tr>
@@ -3018,11 +2983,10 @@ http://www.gnu.org/licenses/.
                                                                                 </td>
                                                                                 <td width="500px">
                                                                                      <span>
-                                                                                          <xsl:value-of select="DatiGenerali/FatturaPrincipale/DataFatturaPrincipale" />
+                                                                                          <xsl:call-template name="FormatDate">
+                                                                                               <xsl:with-param name="DateTime" select="DatiGenerali/FatturaPrincipale/DataFatturaPrincipale" />
+                                                                                          </xsl:call-template>
                                                                                      </span>
-                                                                                     <xsl:call-template name="FormatDate">
-                                                                                          <xsl:with-param name="DateTime" select="DatiGenerali/FatturaPrincipale/DataFatturaPrincipale" />
-                                                                                     </xsl:call-template>
                                                                                 </td>
                                                                            </tr>
                                                                       </xsl:if>
@@ -3183,11 +3147,10 @@ http://www.gnu.org/licenses/.
                                                                                                     <br />
                                                                                                     <!-- 2.2.1.16.4: Datumswert <i>Valore data </i>  -->
                                                                                                     <span>
-                                                                                                         <xsl:value-of select="RiferimentoData" />
+                                                                                                         <xsl:call-template name="FormatDate">
+                                                                                                              <xsl:with-param name="DateTime" select="RiferimentoData" />
+                                                                                                         </xsl:call-template>
                                                                                                     </span>
-                                                                                                    <xsl:call-template name="FormatDate">
-                                                                                                         <xsl:with-param name="DateTime" select="RiferimentoData" />
-                                                                                                    </xsl:call-template>
                                                                                                </xsl:if>
                                                                                           </xsl:for-each>
                                                                                      </xsl:if>
@@ -3198,25 +3161,23 @@ http://www.gnu.org/licenses/.
                                                                                                <i>inizio periodo di riferimento</i>
                                                                                                :
                                                                                                <span>
-                                                                                                    <xsl:value-of select="DataInizioPeriodo" />
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="DataInizioPeriodo" />
+                                                                                                    </xsl:call-template>
+                                                                                                    <xsl:if test="DataFinePeriodo">
+                                                                                                         <br />
+                                                                                                    </xsl:if>
                                                                                                </span>
-                                                                                               <xsl:call-template name="FormatDate">
-                                                                                                    <xsl:with-param name="DateTime" select="DataInizioPeriodo" />
-                                                                                               </xsl:call-template>
-                                                                                               <xsl:if test="DataFinePeriodo">
-                                                                                                    <br />
-                                                                                               </xsl:if>
                                                                                           </xsl:if>
                                                                                           <xsl:if test="DataFinePeriodo">
                                                                                                Datum Ende des Leistungszeitraumes
                                                                                                <i>Data fine periodo di riferimento</i>
                                                                                                :
                                                                                                <span>
-                                                                                                    <xsl:value-of select="DataFinePeriodo" />
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="DataFinePeriodo" />
+                                                                                                    </xsl:call-template>
                                                                                                </span>
-                                                                                               <xsl:call-template name="FormatDate">
-                                                                                                    <xsl:with-param name="DateTime" select="DataFinePeriodo" />
-                                                                                               </xsl:call-template>
                                                                                           </xsl:if>
                                                                                      </xsl:if>
                                                                                      <xsl:if test="ScontoMaggiorazione/Tipo">
@@ -3629,11 +3590,10 @@ http://www.gnu.org/licenses/.
                                                                            </td>
                                                                            <td width="500px">
                                                                                 <span>
-                                                                                     <xsl:value-of select="Data" />
+                                                                                     <xsl:call-template name="FormatDate">
+                                                                                          <xsl:with-param name="DateTime" select="Data" />
+                                                                                     </xsl:call-template>
                                                                                 </span>
-                                                                                <xsl:call-template name="FormatDate">
-                                                                                     <xsl:with-param name="DateTime" select="Data" />
-                                                                                </xsl:call-template>
                                                                            </td>
                                                                       </tr>
                                                                  </xsl:if>
@@ -3841,11 +3801,10 @@ http://www.gnu.org/licenses/.
                                                                                      </td>
                                                                                      <td>
                                                                                           <span>
-                                                                                               <xsl:value-of select="DataRiferimentoTerminiPagamento" />
+                                                                                               <xsl:call-template name="FormatDate">
+                                                                                                    <xsl:with-param name="DateTime" select="DataRiferimentoTerminiPagamento" />
+                                                                                               </xsl:call-template>
                                                                                           </span>
-                                                                                          <xsl:call-template name="FormatDate">
-                                                                                               <xsl:with-param name="DateTime" select="DataRiferimentoTerminiPagamento" />
-                                                                                          </xsl:call-template>
                                                                                      </td>
                                                                                 </tr>
                                                                            </xsl:if>
@@ -3872,11 +3831,10 @@ http://www.gnu.org/licenses/.
                                                                                      </td>
                                                                                      <td>
                                                                                           <span>
-                                                                                               <xsl:value-of select="DataScadenzaPagamento" />
+                                                                                               <xsl:call-template name="FormatDate">
+                                                                                                    <xsl:with-param name="DateTime" select="DataScadenzaPagamento" />
+                                                                                               </xsl:call-template>
                                                                                           </span>
-                                                                                          <xsl:call-template name="FormatDate">
-                                                                                               <xsl:with-param name="DateTime" select="DataScadenzaPagamento" />
-                                                                                          </xsl:call-template>
                                                                                      </td>
                                                                                 </tr>
                                                                            </xsl:if>
@@ -4059,11 +4017,10 @@ http://www.gnu.org/licenses/.
                                                                                      </td>
                                                                                      <td>
                                                                                           <span>
-                                                                                               <xsl:value-of select="DataLimitePagamentoAnticipato" />
+                                                                                               <xsl:call-template name="FormatDate">
+                                                                                                    <xsl:with-param name="DateTime" select="DataLimitePagamentoAnticipato" />
+                                                                                               </xsl:call-template>
                                                                                           </span>
-                                                                                          <xsl:call-template name="FormatDate">
-                                                                                               <xsl:with-param name="DateTime" select="DataLimitePagamentoAnticipato" />
-                                                                                          </xsl:call-template>
                                                                                      </td>
                                                                                 </tr>
                                                                            </xsl:if>
@@ -4090,11 +4047,10 @@ http://www.gnu.org/licenses/.
                                                                                      </td>
                                                                                      <td>
                                                                                           <span>
-                                                                                               <xsl:value-of select="DataDecorrenzaPenale" />
+                                                                                               <xsl:call-template name="FormatDate">
+                                                                                                    <xsl:with-param name="DateTime" select="DataDecorrenzaPenale" />
+                                                                                               </xsl:call-template>
                                                                                           </span>
-                                                                                          <xsl:call-template name="FormatDate">
-                                                                                               <xsl:with-param name="DateTime" select="DataDecorrenzaPenale" />
-                                                                                          </xsl:call-template>
                                                                                      </td>
                                                                                 </tr>
                                                                            </xsl:if>
