@@ -3718,17 +3718,14 @@ http://www.gnu.org/licenses/.
                                                                                           <xsl:when test="$CP='TP01'">
                                                                                                Ratenzahlung 
                                                                                                <i>pagamento a rate </i>
-                                                                                               <xsl:value-of select="CondizioniPagamento" />
                                                                                           </xsl:when>
                                                                                           <xsl:when test="$CP='TP02'">
                                                                                                Einmalzahlung 
                                                                                                <i>pagamento completo </i>
-                                                                                               <xsl:value-of select="CondizioniPagamento" />
                                                                                           </xsl:when>
                                                                                           <xsl:when test="$CP='TP03'">
                                                                                                Vorauszahlung 
                                                                                                <i>anticipo </i>
-                                                                                               <xsl:value-of select="CondizioniPagamento" />
                                                                                           </xsl:when>
                                                                                           <xsl:when test="$CP=''" />
                                                                                           <xsl:otherwise>
