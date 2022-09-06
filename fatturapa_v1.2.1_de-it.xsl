@@ -253,6 +253,11 @@ http://www.gnu.org/licenses/.
                               clear: both;
                          }
 
+                         #dati-dettaglio-linee {
+                              margin-top: 12px;
+                              margin-bottom: 12px;
+                         }
+
 			     </style>
                </head>
                <body>
@@ -2044,11 +2049,11 @@ http://www.gnu.org/licenses/.
                                                                                      <xsl:if test="RiferimentoAmministrazione">
                                                                                           <br />
                                                                                           <!-- 2.2.1.15: RiferimentoAmministrazione -->
+                                                                                          Hinweis Verwaltung / Buchhaltung
+                                                                                          <i>Riferimento amministrazione </i>
                                                                                           <span>
                                                                                                <xsl:value-of select="RiferimentoAmministrazione" />
                                                                                           </span>
-                                                                                          Hinweis Verwaltung / Buchhaltung
-                                                                                          <i>RiferimentoAmministrazione</i>
                                                                                      </xsl:if>
                                                                                      <xsl:if test="AltriDatiGestionali">
                                                                                           <xsl:for-each select="AltriDatiGestionali">
@@ -2083,31 +2088,24 @@ http://www.gnu.org/licenses/.
                                                                                                </xsl:if>
                                                                                           </xsl:for-each>
                                                                                      </xsl:if>
-                                                                                     <xsl:if test="DataInizioPeriodo">
+                                                                                     <xsl:if test="DataInizioPeriodo or DataFinePeriodo">
                                                                                           <br />
-                                                                                          <xsl:if test="DataInizioPeriodo">
-                                                                                               Datum Beginn des Leistungszeitraumes
-                                                                                               <i>inizio periodo di riferimento</i>
-                                                                                               :
-                                                                                               <span>
-                                                                                                    <xsl:call-template name="FormatDate">
-                                                                                                         <xsl:with-param name="DateTime" select="DataInizioPeriodo" />
-                                                                                                    </xsl:call-template>
-                                                                                                    <xsl:if test="DataFinePeriodo">
-                                                                                                         <br />
-                                                                                                    </xsl:if>
-                                                                                               </span>
-                                                                                          </xsl:if>
-                                                                                          <xsl:if test="DataFinePeriodo">
-                                                                                               Datum Ende des Leistungszeitraumes
-                                                                                               <i>Data fine periodo di riferimento</i>
-                                                                                               :
-                                                                                               <span>
-                                                                                                    <xsl:call-template name="FormatDate">
-                                                                                                         <xsl:with-param name="DateTime" select="DataFinePeriodo" />
-                                                                                                    </xsl:call-template>
-                                                                                               </span>
-                                                                                          </xsl:if>
+                                                                                          Leistungszeitraum
+                                                                                          <i>periodo di riferimento:</i>
+                                                                                          <br />
+                                                                                          <span>
+                                                                                               <xsl:if test="DataInizioPeriodo">
+                                                                                                         <xsl:call-template name="FormatDate">
+                                                                                                              <xsl:with-param name="DateTime" select="DataInizioPeriodo" />
+                                                                                                         </xsl:call-template>
+                                                                                               </xsl:if>
+                                                                                               -
+                                                                                               <xsl:if test="DataFinePeriodo">
+                                                                                                         <xsl:call-template name="FormatDate">
+                                                                                                              <xsl:with-param name="DateTime" select="DataFinePeriodo" />
+                                                                                                         </xsl:call-template>
+                                                                                               </xsl:if>
+                                                                                          </span>
                                                                                      </xsl:if>
                                                                                 </td>
                                                                                 <td align="right">
