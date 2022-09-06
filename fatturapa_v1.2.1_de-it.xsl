@@ -3706,24 +3706,24 @@ http://www.gnu.org/licenses/.
                                                                                 <i>Condizioni di pagamento</i>
                                                                            </td>
                                                                            <td width="500px">
-                                                                                <span>
-                                                                                     <xsl:value-of select="CondizioniPagamento" />
-                                                                                </span>
                                                                                 <xsl:variable name="CP">
                                                                                      <xsl:value-of select="CondizioniPagamento" />
                                                                                 </xsl:variable>
                                                                                 <xsl:choose>
                                                                                      <xsl:when test="$CP='TP01'">
-                                                                                          (Ratenzahlung)
-                                                                                          <i>(pagamento a rate)</i>
+                                                                                          Ratenzahlung 
+                                                                                          <i>pagamento a rate </i>
+                                                                                          (<xsl:value-of select="CondizioniPagamento" />)
                                                                                      </xsl:when>
                                                                                      <xsl:when test="$CP='TP02'">
-                                                                                          (Einmalzahlung)
-                                                                                          <i>(pagamento completo)</i>
+                                                                                          Einmalzahlung 
+                                                                                          <i>pagamento completo </i>
+                                                                                          (<xsl:value-of select="CondizioniPagamento" />)
                                                                                      </xsl:when>
                                                                                      <xsl:when test="$CP='TP03'">
-                                                                                          (Vorauszahlung)
-                                                                                          <i>(anticipo)</i>
+                                                                                          Vorauszahlung 
+                                                                                          <i>anticipo</i>
+                                                                                          (<xsl:value-of select="CondizioniPagamento" />)
                                                                                      </xsl:when>
                                                                                      <xsl:when test="$CP=''" />
                                                                                      <xsl:otherwise>
@@ -3776,82 +3776,115 @@ http://www.gnu.org/licenses/.
                                                                                           <i>Modalità di pagamento</i>
                                                                                      </td>
                                                                                      <td width="500px">
-                                                                                          <span>
-                                                                                               <xsl:value-of select="ModalitaPagamento" />
-                                                                                          </span>
                                                                                           <xsl:variable name="MP">
                                                                                                <xsl:value-of select="ModalitaPagamento" />
                                                                                           </xsl:variable>
                                                                                           <xsl:choose>
                                                                                                <xsl:when test="$MP='MP01'">
-                                                                                                    (bar)
-                                                                                                    <i>(contanti)</i>
+                                                                                                    bar
+                                                                                                    <i>contanti </i>
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$MP='MP02'">
-                                                                                                    (Scheck)
-                                                                                                    <i>(assegno)</i>
+                                                                                                    Scheck
+                                                                                                    <i>assegno </i>
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$MP='MP03'">
-                                                                                                    (Zirkularscheck)
-                                                                                                    <i>(assegno circolare)</i>
+                                                                                                    Zirkularscheck
+                                                                                                    <i>assegno circolare </i>
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$MP='MP04'">
-                                                                                                    (über Schatzamt)
-                                                                                                    <i>(contanti presso Tesoreria)</i>
+                                                                                                    über Schatzamt
+                                                                                                    <i>contanti presso Tesoreria </i>
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$MP='MP05'">
-                                                                                                    (Überweisung)
-                                                                                                    <i>(bonifico)</i>
+                                                                                                    Überweisung
+                                                                                                    <i>bonifico </i>
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$MP='MP06'">
-                                                                                                    (Wechsel)
-                                                                                                    <i>(vaglia cambiario)</i>
+                                                                                                    Wechsel
+                                                                                                    <i>vaglia cambiario </i>
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$MP='MP07'">
-                                                                                                    (Bankmitteilung)
-                                                                                                    <i>(bollettino bancario)</i>
+                                                                                                    Bankmitteilung
+                                                                                                    <i>bollettino bancario </i>
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$MP='MP08'">
-                                                                                                    (Zahlkarte)
-                                                                                                    <i>(carta di pagamento)</i>
+                                                                                                    Zahlkarte
+                                                                                                    <i>carta di pagamento </i>
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$MP='MP09'"> (RID)</xsl:when>
                                                                                                <xsl:when test="$MP='MP10'">
-                                                                                                    (RID normal)
-                                                                                                    <i>(RID utenze)</i>
+                                                                                                    RID normal
+                                                                                                    <i>RID utenze </i>
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$MP='MP11'">
-                                                                                                    (RID Schnell)
-                                                                                                    <i>(RID veloce)</i>
+                                                                                                    RID Schnell
+                                                                                                    <i>RID veloce </i>
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
                                                                                                </xsl:when>
-                                                                                               <xsl:when test="$MP='MP12'"> (RIBA)</xsl:when>
-                                                                                               <xsl:when test="$MP='MP13'"> (MAV)</xsl:when>
-                                                                                               <xsl:when test="$MP='MP14'"> (quietanza erario)</xsl:when>
-                                                                                               <xsl:when test="$MP='MP15'"> (giroconto su conti di con</xsl:when>
+                                                                                               <xsl:when test="$MP='MP12'"> 
+                                                                                                    RIBA 
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
+                                                                                               </xsl:when>
+                                                                                               <xsl:when test="$MP='MP13'"> 
+                                                                                                    MAV 
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
+                                                                                               </xsl:when>
+                                                                                               <xsl:when test="$MP='MP14'"> 
+                                                                                                    quietanza erario 
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
+                                                                                               </xsl:when>
+                                                                                               <xsl:when test="$MP='MP15'"> 
+                                                                                                    giroconto su conti di contabilità speciale 
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
+                                                                                               </xsl:when>
                                                                                                <xsl:when test="$MP='MP16'">
-                                                                                                    (Bankdauerauftrag)
-                                                                                                    <i>(domiciliazione bancaria)</i>
+                                                                                                    Bankdauerauftrag
+                                                                                                    <i>domiciliazione bancaria </i>
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$MP='MP17'">
-                                                                                                    (Postdauerauftrag)
-                                                                                                    <i>(domiciliazione postale)</i>
+                                                                                                    Postdauerauftrag
+                                                                                                    <i>domiciliazione postale </i>
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$MP='MP18'">
-                                                                                                    (Postüberweisung)
-                                                                                                    <i>(bollettino di c/c postale)</i>
+                                                                                                    Postüberweisung
+                                                                                                    <i>bollettino di c/c postale </i>
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
                                                                                                </xsl:when>
-                                                                                               <xsl:when test="$MP='MP19'"> (SEPA Direct Debit)</xsl:when>
-                                                                                               <xsl:when test="$MP='MP20'"> (SEPA Direct Debit CORE)</xsl:when>
-                                                                                               <xsl:when test="$MP='MP21'"> (SEPA Direct Debit B2B)</xsl:when>
+                                                                                               <xsl:when test="$MP='MP19'"> 
+                                                                                                    SEPA Direct Debit 
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
+                                                                                               </xsl:when>
+                                                                                               <xsl:when test="$MP='MP20'"> 
+                                                                                                    SEPA Direct Debit CORE 
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
+                                                                                               </xsl:when>
+                                                                                               <xsl:when test="$MP='MP21'"> 
+                                                                                                    SEPA Direct Debit B2B 
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
+                                                                                               </xsl:when>
                                                                                                <!-- Version 1.2 -->
                                                                                                <xsl:when test="$MP='MP22'">
-                                                                                                    (Einbehalt auf bereits bezahlte Summe)
-                                                                                                    <i>(Trattenuta su somme già riscosse)</i>
+                                                                                                    Einbehalt auf bereits bezahlte Summe
+                                                                                                    <i>Trattenuta su somme già riscosse </i>
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
                                                                                                </xsl:when>
                                                                                                <!-- Version 1.2.1 -->
                                                                                                <xsl:when test="$MP='MP23'">
-                                                                                                    (pagoPA)
-                                                                                                    <i>(pagoPA)</i>
+                                                                                                    pagoPA
+                                                                                                    <i>pagoPA </i>
+                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$MP=''" />
                                                                                                <xsl:otherwise>
@@ -3883,7 +3916,7 @@ http://www.gnu.org/licenses/.
                                                                            <xsl:if test="GiorniTerminiPagamento">
                                                                                 <tr>
                                                                                      <td>
-                                                                                          Zahlungsziel (Tagen)
+                                                                                          Zahlungsziel (Tage)
                                                                                           <br />
                                                                                           <i>Term. pagamento (giorni)</i>
                                                                                      </td>
