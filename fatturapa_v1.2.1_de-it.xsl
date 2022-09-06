@@ -25,8 +25,8 @@ http://www.gnu.org/licenses/.
 
      <xsl:variable name="VersionFT">
           <p>
-               Stylesheet fatturapa_v1.2.1_de-it.xsl v20201125 ft -
-               <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a>
+               Stylesheet FatturaPA see contributors at
+               https://github.com/provbz/fatturapa-xsl-southtyrol / https://github.com/cm-schl/fatturapa-xsl-southtyrol
           </p>
      </xsl:variable>
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="." />
@@ -185,7 +185,9 @@ http://www.gnu.org/licenses/.
                          #dati-sal, 
                          #dati-ddt, 
                          #dati-trasporto, 
-                         #fattura-principale { 
+                         #fattura-principale,
+                         #dati-pagamento-condizioni,
+                         #controlli-contabilita-pa { 
                               float: left; 
                               width: 48%; 
                               clear: right; 
@@ -1183,12 +1185,7 @@ http://www.gnu.org/licenses/.
                                                   </xsl:if>
                                                   <!--FINE DATI SOGGETTO EMITTENTE-->
                                              </div>
-                                             <div class="footer">
-                                                  <xsl:copy-of select="$VersionFT" />
-                                                  FatturaPA Version/
-                                                  <i>versione </i>
-                                                  <xsl:value-of select="a:FatturaElettronica/@versione" />
-                                             </div>
+                                             <div class="footer"></div>
                                         </div>
                                    </xsl:if>
                                    <!--FINE DATI HEADER-->
@@ -3694,482 +3691,538 @@ http://www.gnu.org/licenses/.
                                              </xsl:if>
                                              <!--FINE DATI RIEPILOGO ALIQUOTE E NATURE-->
 
-                                             <!--INIZIO DATI PAGAMENTO-->
-                                             <xsl:if test="DatiPagamento">
-                                                  <div id="dati-pagamento-condizioni" class="roundedCorners">
-                                                       <h3>
-                                                            Daten zur Bezahlung -
-                                                            <i>Dati relativi al pagamento</i>
-                                                       </h3>
-                                                       <xsl:for-each select="DatiPagamento">
-                                                            <xsl:if test="CondizioniPagamento">
-                                                                 <table id="t1">
-                                                                      <tr>
-                                                                           <td width="200px">
-                                                                                Zahlungsbedingungen
-                                                                                <br />
-                                                                                <i>Condizioni di pagamento</i>
-                                                                           </td>
-                                                                           <td width="500px">
-                                                                                <xsl:variable name="CP">
-                                                                                     <xsl:value-of select="CondizioniPagamento" />
-                                                                                </xsl:variable>
-                                                                                <span>
-                                                                                     <xsl:choose>
-                                                                                          <xsl:when test="$CP='TP01'">
-                                                                                               Ratenzahlung 
-                                                                                               <i>pagamento a rate </i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$CP='TP02'">
-                                                                                               Einmalzahlung 
-                                                                                               <i>pagamento completo </i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$CP='TP03'">
-                                                                                               Vorauszahlung 
-                                                                                               <i>anticipo </i>
-                                                                                          </xsl:when>
-                                                                                          <xsl:when test="$CP=''" />
-                                                                                          <xsl:otherwise>
-                                                                                               <fehler>
-                                                                                                    (!!! falsche Kennung !!!)
-                                                                                                    <i>(!!! codice non previsto !!!)</i>
-                                                                                               </fehler>
-                                                                                          </xsl:otherwise>
-                                                                                     </xsl:choose>
-                                                                                </span>
-                                                                                (<xsl:value-of select="CondizioniPagamento" />)
-                                                                           </td>
-                                                                      </tr>
-                                                                 </table>
-                                                            </xsl:if>
-
-                                                            <xsl:if test="DettaglioPagamento">
-                                                                 <xsl:variable name="TOTALRATEN" select="count(DettaglioPagamento)" />
-                                                                 <xsl:for-each select="DettaglioPagamento">
-                                                                      <xsl:if test="$TOTALRATEN&gt;1">
-                                                                           <div id="sub-heading">
-                                                                                Rate Nr.
-                                                                                <i>Rata N°</i>
-                                                                                : 
-                                                                                <xsl:value-of select="position()" />
-                                                                                 
-                                                                                <xsl:call-template name="FormatDate">
-                                                                                     <xsl:with-param name="DateTime" select="DataScadenzaPagamento" />
-                                                                                </xsl:call-template>
-                                                                           </div>
-                                                                      </xsl:if>
+                                             <div id="flex-container">
+                                                  <!--INIZIO DATI PAGAMENTO-->
+                                                  <xsl:if test="DatiPagamento">
+                                                       <div id="dati-pagamento-condizioni" class="roundedCorners">
+                                                            <h3>
+                                                                 Daten zur Bezahlung -
+                                                                 <i>Dati relativi al pagamento</i>
+                                                            </h3>
+                                                            <xsl:for-each select="DatiPagamento">
+                                                                 <xsl:if test="CondizioniPagamento">
                                                                       <table id="t1">
-                                                                           <xsl:if test="Beneficiario">
-                                                                                <tr>
-                                                                                     <td width="200px">
-                                                                                          Zahlungsempfänger
-                                                                                          <br />
-                                                                                          <i>Beneficiario pagamento</i>
-                                                                                     </td>
-                                                                                     <td width="500px">
-                                                                                          <span>
-                                                                                               <xsl:value-of select="Beneficiario" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="ModalitaPagamento">
-                                                                                <tr>
-                                                                                     <td width="200px">
-                                                                                          Zahlungsmodalität
-                                                                                          <br />
-                                                                                          <i>Modalità di pagamento</i>
-                                                                                     </td>
-                                                                                     <td width="500px">
-                                                                                          <xsl:variable name="MP">
-                                                                                               <xsl:value-of select="ModalitaPagamento" />
-                                                                                          </xsl:variable>
-                                                                                          <span>
-                                                                                               <xsl:choose>
-                                                                                                    <xsl:when test="$MP='MP01'">
-                                                                                                         bar
-                                                                                                         <i>contanti </i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP02'">
-                                                                                                         Scheck
-                                                                                                         <i>assegno </i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP03'">
-                                                                                                         Zirkularscheck
-                                                                                                         <i>assegno circolare </i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP04'">
-                                                                                                         über Schatzamt
-                                                                                                         <i>contanti presso Tesoreria </i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP05'">
-                                                                                                         Überweisung
-                                                                                                         <i>bonifico </i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP06'">
-                                                                                                         Wechsel
-                                                                                                         <i>vaglia cambiario </i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP07'">
-                                                                                                         Bankmitteilung
-                                                                                                         <i>bollettino bancario </i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP08'">
-                                                                                                         Zahlkarte
-                                                                                                         <i>carta di pagamento </i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP09'"> (RID)</xsl:when>
-                                                                                                    <xsl:when test="$MP='MP10'">
-                                                                                                         RID normal
-                                                                                                         <i>RID utenze </i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP11'">
-                                                                                                         RID Schnell
-                                                                                                         <i>RID veloce </i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP12'"> 
-                                                                                                         RIBA 
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP13'"> 
-                                                                                                         MAV 
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP14'"> 
-                                                                                                         quietanza erario 
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP15'"> 
-                                                                                                         giroconto su conti di contabilità speciale 
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP16'">
-                                                                                                         Bankdauerauftrag
-                                                                                                         <i>domiciliazione bancaria </i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP17'">
-                                                                                                         Postdauerauftrag
-                                                                                                         <i>domiciliazione postale </i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP18'">
-                                                                                                         Postüberweisung
-                                                                                                         <i>bollettino di c/c postale </i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP19'"> 
-                                                                                                         SEPA Direct Debit 
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP20'"> 
-                                                                                                         SEPA Direct Debit CORE 
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP='MP21'"> 
-                                                                                                         SEPA Direct Debit B2B 
-                                                                                                    </xsl:when>
-                                                                                                    <!-- Version 1.2 -->
-                                                                                                    <xsl:when test="$MP='MP22'">
-                                                                                                         Einbehalt auf bereits bezahlte Summe
-                                                                                                         <i>Trattenuta su somme già riscosse </i>
-                                                                                                    </xsl:when>
-                                                                                                    <!-- Version 1.2.1 -->
-                                                                                                    <xsl:when test="$MP='MP23'">
-                                                                                                         pagoPA
-                                                                                                         <i>pagoPA </i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$MP=''" />
-                                                                                                    <xsl:otherwise>
-                                                                                                         <fehler>
-                                                                                                              (!!! falsche Kennung !!!)
-                                                                                                              <i>(!!! codice non previsto !!!)</i>
-                                                                                                         </fehler>
-                                                                                                    </xsl:otherwise>
-                                                                                               </xsl:choose>
-                                                                                          </span>
-                                                                                          (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="DataRiferimentoTerminiPagamento">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Beginn Zahlungsfrist
-                                                                                          <br />
-                                                                                          <i>Dec. termine pagamento</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:call-template name="FormatDate">
-                                                                                                    <xsl:with-param name="DateTime" select="DataRiferimentoTerminiPagamento" />
-                                                                                               </xsl:call-template>
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="GiorniTerminiPagamento">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Zahlungsziel (Tage)
-                                                                                          <br />
-                                                                                          <i>Term. pagamento (giorni)</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="GiorniTerminiPagamento" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="DataScadenzaPagamento">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Datum Zahlungsziel
-                                                                                          <br />
-                                                                                          <i>Data scadenza pagamento</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:call-template name="FormatDate">
-                                                                                                    <xsl:with-param name="DateTime" select="DataScadenzaPagamento" />
-                                                                                               </xsl:call-template>
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="ImportoPagamento">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Betrag
-                                                                                          <br />
-                                                                                          <i>Importo</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="$Valuta" />
-                                                                                                
-                                                                                               <xsl:value-of select="format-number(ImportoPagamento, '###.##0,00', 'euro')" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodUfficioPostale">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Kennung Postamt
-                                                                                          <br />
-                                                                                          <i>Codice Ufficio Postale</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodUfficioPostale" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="TitoloQuietanzante">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Titel des Quittierenden
-                                                                                          <br />
-                                                                                          <i>Titolo del quietanzante</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="TitoloQuietanzante" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="NomeQuietanzante">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Name des Quittierenden
-                                                                                          <br />
-                                                                                          <i>Nome del quietanzante</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="NomeQuietanzante" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CognomeQuietanzante">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Nachname des Quittierenden
-                                                                                          <br />
-                                                                                          <i>Cognome del quietanzante</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CognomeQuietanzante" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CFQuietanzante">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          StNr. des Quittierenden
-                                                                                          <br />
-                                                                                          <i>CF del quietanzante</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CFQuietanzante" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="IstitutoFinanziario">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Finanzinstitut
-                                                                                          <br />
-                                                                                          <i>Istituto finanziario</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="IstitutoFinanziario" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="IBAN">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          IBAN
-                                                                                          <br />
-                                                                                          <i>Codice IBAN</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="IBAN" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="ABI">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          ABI
-                                                                                          <br />
-                                                                                          <i>Codice ABI</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="ABI" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CAB">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          CAB
-                                                                                          <br />
-                                                                                          <i>Codice CAB</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CAB" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="BIC">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          BIC
-                                                                                          <br />
-                                                                                          <i>Codice BIC</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="BIC" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="ScontoPagamentoAnticipato">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Skonto für Zahlung vor Zahlungsziel
-                                                                                          <br />
-                                                                                          <i>Sconto per pagamento anticipato</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="ScontoPagamentoAnticipato" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="DataLimitePagamentoAnticipato">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          letzter Termin für Zahlung vor Zahlungsziel
-                                                                                          <br />
-                                                                                          <i>Data limite per il pagamento anticipato</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:call-template name="FormatDate">
-                                                                                                    <xsl:with-param name="DateTime" select="DataLimitePagamentoAnticipato" />
-                                                                                               </xsl:call-template>
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="PenalitaPagamentiRitardati">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Pönale für verspätete Zahlung
-                                                                                          <br />
-                                                                                          <i>Penale per ritardato pagamento</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="PenalitaPagamentiRitardati" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="DataDecorrenzaPenale">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Beginndatum für Anwendung der Pönale
-                                                                                          <br />
-                                                                                          <i>Data di decorrenza della penale</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:call-template name="FormatDate">
-                                                                                                    <xsl:with-param name="DateTime" select="DataDecorrenzaPenale" />
-                                                                                               </xsl:call-template>
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodicePagamento">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Zahlungs-Kennung
-                                                                                          <br />
-                                                                                          <i>Codice pagamento</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodicePagamento" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
+                                                                           <tr>
+                                                                                <td width="200px">
+                                                                                     Zahlungsbedingungen
+                                                                                     <br />
+                                                                                     <i>Condizioni di pagamento</i>
+                                                                                </td>
+                                                                                <td width="500px">
+                                                                                     <xsl:variable name="CP">
+                                                                                          <xsl:value-of select="CondizioniPagamento" />
+                                                                                     </xsl:variable>
+                                                                                     <span>
+                                                                                          <xsl:choose>
+                                                                                               <xsl:when test="$CP='TP01'">
+                                                                                                    Ratenzahlung 
+                                                                                                    <i>pagamento a rate </i>
+                                                                                               </xsl:when>
+                                                                                               <xsl:when test="$CP='TP02'">
+                                                                                                    Einmalzahlung 
+                                                                                                    <i>pagamento completo </i>
+                                                                                               </xsl:when>
+                                                                                               <xsl:when test="$CP='TP03'">
+                                                                                                    Vorauszahlung 
+                                                                                                    <i>anticipo </i>
+                                                                                               </xsl:when>
+                                                                                               <xsl:when test="$CP=''" />
+                                                                                               <xsl:otherwise>
+                                                                                                    <fehler>
+                                                                                                         (!!! falsche Kennung !!!)
+                                                                                                         <i>(!!! codice non previsto !!!)</i>
+                                                                                                    </fehler>
+                                                                                               </xsl:otherwise>
+                                                                                          </xsl:choose>
+                                                                                     </span>
+                                                                                     (<xsl:value-of select="CondizioniPagamento" />)
+                                                                                </td>
+                                                                           </tr>
                                                                       </table>
-                                                                 </xsl:for-each>
-                                                            </xsl:if>
-                                                       </xsl:for-each>
+                                                                 </xsl:if>
+
+                                                                 <xsl:if test="DettaglioPagamento">
+                                                                      <xsl:variable name="TOTALRATEN" select="count(DettaglioPagamento)" />
+                                                                      <xsl:for-each select="DettaglioPagamento">
+                                                                           <xsl:if test="$TOTALRATEN&gt;1">
+                                                                                <div id="sub-heading">
+                                                                                     Rate Nr.
+                                                                                     <i>Rata N°</i>
+                                                                                     : 
+                                                                                     <xsl:value-of select="position()" />
+                                                                                      
+                                                                                     <xsl:call-template name="FormatDate">
+                                                                                          <xsl:with-param name="DateTime" select="DataScadenzaPagamento" />
+                                                                                     </xsl:call-template>
+                                                                                </div>
+                                                                           </xsl:if>
+                                                                           <table id="t1">
+                                                                                <xsl:if test="Beneficiario">
+                                                                                     <tr>
+                                                                                          <td width="200px">
+                                                                                               Zahlungsempfänger
+                                                                                               <br />
+                                                                                               <i>Beneficiario pagamento</i>
+                                                                                          </td>
+                                                                                          <td width="500px">
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="Beneficiario" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="ModalitaPagamento">
+                                                                                     <tr>
+                                                                                          <td width="200px">
+                                                                                               Zahlungsmodalität
+                                                                                               <br />
+                                                                                               <i>Modalità di pagamento</i>
+                                                                                          </td>
+                                                                                          <td width="500px">
+                                                                                               <xsl:variable name="MP">
+                                                                                                    <xsl:value-of select="ModalitaPagamento" />
+                                                                                               </xsl:variable>
+                                                                                               <span>
+                                                                                                    <xsl:choose>
+                                                                                                         <xsl:when test="$MP='MP01'">
+                                                                                                              bar
+                                                                                                              <i>contanti </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP02'">
+                                                                                                              Scheck
+                                                                                                              <i>assegno </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP03'">
+                                                                                                              Zirkularscheck
+                                                                                                              <i>assegno circolare </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP04'">
+                                                                                                              über Schatzamt
+                                                                                                              <i>contanti presso Tesoreria </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP05'">
+                                                                                                              Überweisung
+                                                                                                              <i>bonifico </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP06'">
+                                                                                                              Wechsel
+                                                                                                              <i>vaglia cambiario </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP07'">
+                                                                                                              Bankmitteilung
+                                                                                                              <i>bollettino bancario </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP08'">
+                                                                                                              Zahlkarte
+                                                                                                              <i>carta di pagamento </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP09'"> (RID)</xsl:when>
+                                                                                                         <xsl:when test="$MP='MP10'">
+                                                                                                              RID normal
+                                                                                                              <i>RID utenze </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP11'">
+                                                                                                              RID Schnell
+                                                                                                              <i>RID veloce </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP12'"> 
+                                                                                                              RIBA 
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP13'"> 
+                                                                                                              MAV 
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP14'"> 
+                                                                                                              quietanza erario 
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP15'"> 
+                                                                                                              giroconto su conti di contabilità speciale 
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP16'">
+                                                                                                              Bankdauerauftrag
+                                                                                                              <i>domiciliazione bancaria </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP17'">
+                                                                                                              Postdauerauftrag
+                                                                                                              <i>domiciliazione postale </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP18'">
+                                                                                                              Postüberweisung
+                                                                                                              <i>bollettino di c/c postale </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP19'"> 
+                                                                                                              SEPA Direct Debit 
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP20'"> 
+                                                                                                              SEPA Direct Debit CORE 
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP='MP21'"> 
+                                                                                                              SEPA Direct Debit B2B 
+                                                                                                         </xsl:when>
+                                                                                                         <!-- Version 1.2 -->
+                                                                                                         <xsl:when test="$MP='MP22'">
+                                                                                                              Einbehalt auf bereits bezahlte Summe
+                                                                                                              <i>Trattenuta su somme già riscosse </i>
+                                                                                                         </xsl:when>
+                                                                                                         <!-- Version 1.2.1 -->
+                                                                                                         <xsl:when test="$MP='MP23'">
+                                                                                                              pagoPA
+                                                                                                              <i>pagoPA </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$MP=''" />
+                                                                                                         <xsl:otherwise>
+                                                                                                              <fehler>
+                                                                                                                   (!!! falsche Kennung !!!)
+                                                                                                                   <i>(!!! codice non previsto !!!)</i>
+                                                                                                              </fehler>
+                                                                                                         </xsl:otherwise>
+                                                                                                    </xsl:choose>
+                                                                                               </span>
+                                                                                               (<xsl:value-of select="ModalitaPagamento" />)
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="DataRiferimentoTerminiPagamento">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Beginn Zahlungsfrist
+                                                                                               <br />
+                                                                                               <i>Dec. termine pagamento</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="DataRiferimentoTerminiPagamento" />
+                                                                                                    </xsl:call-template>
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="GiorniTerminiPagamento">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Zahlungsziel (Tage)
+                                                                                               <br />
+                                                                                               <i>Term. pagamento (giorni)</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="GiorniTerminiPagamento" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="DataScadenzaPagamento">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Datum Zahlungsziel
+                                                                                               <br />
+                                                                                               <i>Data scadenza pagamento</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="DataScadenzaPagamento" />
+                                                                                                    </xsl:call-template>
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="ImportoPagamento">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Betrag
+                                                                                               <br />
+                                                                                               <i>Importo</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="$Valuta" />
+                                                                                                     
+                                                                                                    <xsl:value-of select="format-number(ImportoPagamento, '###.##0,00', 'euro')" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodUfficioPostale">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Kennung Postamt
+                                                                                               <br />
+                                                                                               <i>Codice Ufficio Postale</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodUfficioPostale" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="TitoloQuietanzante">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Titel des Quittierenden
+                                                                                               <br />
+                                                                                               <i>Titolo del quietanzante</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="TitoloQuietanzante" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="NomeQuietanzante">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Name des Quittierenden
+                                                                                               <br />
+                                                                                               <i>Nome del quietanzante</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="NomeQuietanzante" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CognomeQuietanzante">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Nachname des Quittierenden
+                                                                                               <br />
+                                                                                               <i>Cognome del quietanzante</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CognomeQuietanzante" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CFQuietanzante">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               StNr. des Quittierenden
+                                                                                               <br />
+                                                                                               <i>CF del quietanzante</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CFQuietanzante" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="IstitutoFinanziario">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Finanzinstitut
+                                                                                               <br />
+                                                                                               <i>Istituto finanziario</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="IstitutoFinanziario" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="IBAN">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               IBAN
+                                                                                               <br />
+                                                                                               <i>Codice IBAN</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="IBAN" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="ABI">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               ABI
+                                                                                               <br />
+                                                                                               <i>Codice ABI</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="ABI" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CAB">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               CAB
+                                                                                               <br />
+                                                                                               <i>Codice CAB</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CAB" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="BIC">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               BIC
+                                                                                               <br />
+                                                                                               <i>Codice BIC</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="BIC" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="ScontoPagamentoAnticipato">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Skonto für Zahlung vor Zahlungsziel
+                                                                                               <br />
+                                                                                               <i>Sconto per pagamento anticipato</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="ScontoPagamentoAnticipato" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="DataLimitePagamentoAnticipato">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               letzter Termin für Zahlung vor Zahlungsziel
+                                                                                               <br />
+                                                                                               <i>Data limite per il pagamento anticipato</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="DataLimitePagamentoAnticipato" />
+                                                                                                    </xsl:call-template>
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="PenalitaPagamentiRitardati">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Pönale für verspätete Zahlung
+                                                                                               <br />
+                                                                                               <i>Penale per ritardato pagamento</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="PenalitaPagamentiRitardati" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="DataDecorrenzaPenale">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Beginndatum für Anwendung der Pönale
+                                                                                               <br />
+                                                                                               <i>Data di decorrenza della penale</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="DataDecorrenzaPenale" />
+                                                                                                    </xsl:call-template>
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodicePagamento">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Zahlungs-Kennung
+                                                                                               <br />
+                                                                                               <i>Codice pagamento</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodicePagamento" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                           </table>
+                                                                      </xsl:for-each>
+                                                                 </xsl:if>
+                                                            </xsl:for-each>
+                                                       </div>
+                                                  </xsl:if>
+                                                  <!--FINE DATI PAGAMENTO-->
+
+                                                  <!-- INIZIO BLOCCO CONTROLLI PER CONTABILITÀ PA -->
+                                                  <div id="controlli-contabilita-pa" class="roundedCorners">
+                                                       <h3>
+                                                            Kontrollen -
+                                                            <i>Controlli</i>
+                                                       </h3>
+                                                       <table id="t1">
+                                                            <tr>
+                                                                 <td>
+                                                                      Steuernummer Rechnungsempfänger
+                                                                      <br />
+                                                                      <i>Partita IVA cessionario / committente</i>
+                                                                 </td>
+                                                                 <td>
+                                                                      <xsl:choose>   
+                                                                           <xsl:when test="/a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici/CodiceFiscale">
+                                                                                <span style="color: green">
+                                                                                     vorhanden 
+                                                                                     <i>presente </i>
+                                                                                     (<xsl:value-of select="/a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici/CodiceFiscale" />)
+                                                                                </span>
+                                                                           </xsl:when>
+                                                                           <xsl:otherwise>
+                                                                                <span style="color: red">
+                                                                                     nicht vorhanden 
+                                                                                     <i>non presente</i>
+                                                                                </span>
+                                                                           </xsl:otherwise>
+                                                                      </xsl:choose>
+                                                                 </td>
+                                                            </tr>
+                                                            <tr>
+                                                                 <td>
+                                                                      CIG Kodex
+                                                                      <br />
+                                                                      <i>Codice CIG</i>
+                                                                 </td>
+                                                                 <td>
+                                                                      <xsl:choose>   
+                                                                           <xsl:when test="DatiGenerali/DatiOrdineAcquisto/CodiceCIG or DatiGenerali/DatiContratto/CodiceCIG or DatiGenerali/DatiConvenzione/CodiceCIG or DatiGenerali/DatiRicezione/CodiceCIG or DatiGenerali/DatiFattureCollegate/CodiceCIG">
+                                                                                <span style="color: green">
+                                                                                     vorhanden 
+                                                                                     <i>presente </i>
+                                                                                </span>
+                                                                           </xsl:when>
+                                                                           <xsl:otherwise>
+                                                                                <span style="color: red">
+                                                                                     nicht vorhanden 
+                                                                                     <i>non presente</i>
+                                                                                </span>
+                                                                           </xsl:otherwise>
+                                                                      </xsl:choose>
+                                                                 </td>
+                                                            </tr>                                                       
+                                                       </table>
                                                   </div>
-                                             </xsl:if>
-                                             <!--FINE DATI PAGAMENTO-->
-
-                                             <!-- INIZIO BLOCCO INFO PER CONTABILITÀ -->
-
-                                             <!-- FINE BLOCCO INFO PER CONTABILITÀ -->
+                                                  <!-- FINE BLOCCO CONTROLLI PER CONTABILITÀ PA -->
+                                             </div>
 
                                              <!--INIZIO ALLEGATI-->
                                              <xsl:if test="Allegati">
@@ -4241,6 +4294,12 @@ http://www.gnu.org/licenses/.
                                                   </div>
                                              </xsl:if>
                                              <!--FINE ALLEGATI-->
+                                             <div class="footer">
+                                                  <xsl:copy-of select="$VersionFT" />
+                                                  FatturaPA Version/
+                                                  <i>versione </i>
+                                                  <xsl:value-of select="/a:FatturaElettronica/@versione" />
+                                             </div>
                                         </div>
                                    </xsl:for-each>
                                    <!--FINE BODY-->
