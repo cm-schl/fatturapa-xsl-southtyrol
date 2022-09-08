@@ -4173,7 +4173,7 @@ http://www.gnu.org/licenses/.
                                                        <table id="t1">
                                                             <tr>
                                                                  <td>
-                                                                      Steuernummer Rechnungsempfänger
+                                                                      MwSt.Nr. Rechnungsempfänger
                                                                       <br />
                                                                       <i>Partita IVA cessionario / committente</i>
                                                                  </td>
@@ -4183,10 +4183,8 @@ http://www.gnu.org/licenses/.
                                                                                 <span style="color: green">
                                                                                      vorhanden 
                                                                                      <i>presente </i>
-                                                                                     (
-                                                                                          <xsl:value-of select="/a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici/IdFiscaleIVA/IdPaese" />
-                                                                                          <xsl:value-of select="/a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici/IdFiscaleIVA/IdCodice" />
-                                                                                     )
+                                                                                     (<xsl:value-of select="/a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici/IdFiscaleIVA/IdPaese" />
+                                                                                     <xsl:value-of select="/a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici/IdFiscaleIVA/IdCodice" />)
                                                                                 </span>
                                                                            </xsl:when>
                                                                            <xsl:otherwise>
