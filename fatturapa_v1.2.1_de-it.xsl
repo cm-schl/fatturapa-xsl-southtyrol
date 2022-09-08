@@ -4217,7 +4217,30 @@ http://www.gnu.org/licenses/.
                                                                            </xsl:otherwise>
                                                                       </xsl:choose>
                                                                  </td>
-                                                            </tr>                                                       
+                                                            </tr>
+                                                            <tr>
+                                                                 <td>
+                                                                      CUP Kodex
+                                                                      <br />
+                                                                      <i>Codice CUP</i>
+                                                                 </td>
+                                                                 <td>
+                                                                      <xsl:choose>   
+                                                                           <xsl:when test="DatiGenerali/DatiOrdineAcquisto/CodiceCUP or DatiGenerali/DatiContratto/CodiceCUP or DatiGenerali/DatiConvenzione/CodiceCUP or DatiGenerali/DatiRicezione/CodiceCUP or DatiGenerali/DatiFattureCollegate/CodiceCUP">
+                                                                                <span style="color: green">
+                                                                                     vorhanden 
+                                                                                     <i>presente </i>
+                                                                                </span>
+                                                                           </xsl:when>
+                                                                           <xsl:otherwise>
+                                                                                <span style="color: red">
+                                                                                     nicht vorhanden 
+                                                                                     <i>non presente</i>
+                                                                                </span>
+                                                                           </xsl:otherwise>
+                                                                      </xsl:choose>
+                                                                 </td>
+                                                            </tr>                                                                                                                    
                                                        </table>
                                                   </div>
                                                   <!-- FINE BLOCCO CONTROLLI PER CONTABILITÀ PA -->
