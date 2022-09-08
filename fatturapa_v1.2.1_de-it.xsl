@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<!-- Versionsdatum: 2020-11-23 -->
-<!-- Feedback erwünscht an info@ing-tavernini.com -->
 <!--
 fatturapa_v1.2.1_de-it.xsl
 Copyright (C) 2020 Ferdinand Tavernini WOBI-IPES Bozen/Bolzano
+and contributors.
 
 The XSL-stylesheet fatturapa_v1.2.1_de-it.xsl is free software:
 you can redistribute it and/or modify it under the terms of the
@@ -25,7 +24,7 @@ http://www.gnu.org/licenses/.
 
      <xsl:variable name="VersionFT">
           <p>
-               Stylesheet FatturaPA see contributors at
+               Stylesheet FatturaPA. Contributors and license:
                https://github.com/provbz/fatturapa-xsl-southtyrol / https://github.com/cm-schl/fatturapa-xsl-southtyrol
           </p>
      </xsl:variable>

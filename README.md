@@ -1,5 +1,15 @@
 # Restyling of provbz/fatturapa-xsl-southtyrol
 
+This is a redesigned version of https://github.com/provbz/fatturapa-xsl-southtyrol that tries to use less space by rearranging the content of a italian electronic invoice (FatturaPA).  
+The stylesheet also adds a block of checks needed by some municipalities at South Tyrol.
+
+## Contributors
+- Ferdinand Tavernini
+- Paolo Dongilli
+- Stefan Hellweger
+- Christoph Mair
+- ... you can contribute and add YOUR-NAME
+
 ## Original README:
 ## XSL for FatturaPA in South-Tyrol
 This repository contains a new XSL Stylesheet for the Italian e-invoice (http://fatturapa.gov.it). It is specifically meant to be used in South Tyrol since it generates a bilingual (German + Italian) rendering of a given XML invoice with an enhanced layout with respect to the original stylesheet (https://www.fatturapa.gov.it/export/documenti/fatturapa/v1.2.1/Foglio_di_stile_fatturaPA_v1.2.1.xsl).
@@ -18,9 +28,3 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program (see [LICENSE](https://github.com/paolodongilli/fatturapa-xsl-southtyrol/blob/master/LICENSE) file).  If not, see [http://www.gnu.org/licenses/](http://www.gnu.org/licenses/).
-
-## Contributors
-- Ferdinand Tavernini
-- Paolo Dongilli
-- Stefan Hellweger
-- ... you can contribute and add YOUR-NAME
