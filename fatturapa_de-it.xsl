@@ -2334,6 +2334,11 @@ http://www.gnu.org/licenses/.
                                                                                 </td>
                                                                            </tr>
                                                                       </xsl:if>
+                                                                      <tr>
+                                                                           <td colspan="2">
+                                                                                <hr style="color:#cecece"></hr>
+                                                                           </td>
+                                                                      </tr>
                                                                  </xsl:for-each>
                                                             </table>
                                                        </div>
@@ -2452,6 +2457,11 @@ http://www.gnu.org/licenses/.
                                                                                 </td>
                                                                            </tr>
                                                                       </xsl:if>
+                                                                      <tr>
+                                                                           <td colspan="2">
+                                                                                <hr style="color:#cecece"></hr>
+                                                                           </td>
+                                                                      </tr>
                                                                  </xsl:for-each>
                                                             </table>
                                                        </div>
@@ -2570,6 +2580,11 @@ http://www.gnu.org/licenses/.
                                                                                 </td>
                                                                            </tr>
                                                                       </xsl:if>
+                                                                      <tr>
+                                                                           <td colspan="2">
+                                                                                <hr style="color:#cecece"></hr>
+                                                                           </td>
+                                                                      </tr>
                                                                  </xsl:for-each>
                                                             </table>
                                                        </div>
@@ -2688,6 +2703,11 @@ http://www.gnu.org/licenses/.
                                                                                 </td>
                                                                            </tr>
                                                                       </xsl:if>
+                                                                      <tr>
+                                                                           <td colspan="2">
+                                                                                <hr style="color:#cecece"></hr>
+                                                                           </td>
+                                                                      </tr>
                                                                  </xsl:for-each>
                                                             </table>
                                                        </div>
@@ -2806,6 +2826,11 @@ http://www.gnu.org/licenses/.
                                                                                 </td>
                                                                            </tr>
                                                                       </xsl:if>
+                                                                      <tr>
+                                                                           <td colspan="2">
+                                                                                <hr style="color:#cecece"></hr>
+                                                                           </td>
+                                                                      </tr>
                                                                  </xsl:for-each>
                                                             </table>
                                                        </div>
