@@ -1,4 +1,7 @@
-# XSL for FatturaPA in South-Tyrol
+# Restyling of provbz/fatturapa-xsl-southtyrol
+
+## Original README:
+## XSL for FatturaPA in South-Tyrol
 This repository contains a new XSL Stylesheet for the Italian e-invoice (http://fatturapa.gov.it). It is specifically meant to be used in South Tyrol since it generates a bilingual (German + Italian) rendering of a given XML invoice with an enhanced layout with respect to the original stylesheet (https://www.fatturapa.gov.it/export/documenti/fatturapa/v1.2.1/Foglio_di_stile_fatturaPA_v1.2.1.xsl).
 
 ## Copying
