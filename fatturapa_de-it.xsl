@@ -2231,6 +2231,13 @@ http://www.gnu.org/licenses/.
                                                             </h3>
                                                             <table id="t1">
                                                                  <xsl:for-each select="DatiGenerali/DatiOrdineAcquisto">
+                                                                      <xsl:if test="count(/a:FatturaElettronica/FatturaElettronicaBody/DatiGenerali/DatiOrdineAcquisto) &gt; 2">
+                                                                           <tr>
+                                                                                <td colspan="2">
+                                                                                     <hr style="color: #cecece; margin: 1px;"></hr>
+                                                                                </td>
+                                                                           </tr>
+                                                                      </xsl:if>
                                                                       <xsl:if test="RiferimentoNumeroLinea">
                                                                            <tr>
                                                                                 <td width="200px">
@@ -2334,11 +2341,6 @@ http://www.gnu.org/licenses/.
                                                                                 </td>
                                                                            </tr>
                                                                       </xsl:if>
-                                                                      <tr>
-                                                                           <td colspan="2">
-                                                                                <hr style="color:#cecece"></hr>
-                                                                           </td>
-                                                                      </tr>
                                                                  </xsl:for-each>
                                                             </table>
                                                        </div>
@@ -2354,6 +2356,13 @@ http://www.gnu.org/licenses/.
                                                             </h3>
                                                             <table id="t1">
                                                                  <xsl:for-each select="DatiGenerali/DatiContratto">
+                                                                      <xsl:if test="count(/a:FatturaElettronica/FatturaElettronicaBody/DatiGenerali/DatiContratto) &gt; 2">
+                                                                           <tr>
+                                                                                <td colspan="2">
+                                                                                     <hr style="color: #cecece; margin: 1px;"></hr>
+                                                                                </td>
+                                                                           </tr>
+                                                                      </xsl:if>
                                                                       <xsl:if test="RiferimentoNumeroLinea">
                                                                            <tr>
                                                                                 <td width="200px">
@@ -2457,11 +2466,6 @@ http://www.gnu.org/licenses/.
                                                                                 </td>
                                                                            </tr>
                                                                       </xsl:if>
-                                                                      <tr>
-                                                                           <td colspan="2">
-                                                                                <hr style="color:#cecece"></hr>
-                                                                           </td>
-                                                                      </tr>
                                                                  </xsl:for-each>
                                                             </table>
                                                        </div>
@@ -2477,6 +2481,13 @@ http://www.gnu.org/licenses/.
                                                             </h3>
                                                             <table id="t1">
                                                                  <xsl:for-each select="DatiGenerali/DatiConvenzione">
+                                                                      <xsl:if test="count(/a:FatturaElettronica/FatturaElettronicaBody/DatiGenerali/DatiConvenzione) &gt; 2">
+                                                                           <tr>
+                                                                                <td colspan="2">
+                                                                                     <hr style="color: #cecece; margin: 1px;"></hr>
+                                                                                </td>
+                                                                           </tr>
+                                                                      </xsl:if>
                                                                       <xsl:if test="RiferimentoNumeroLinea">
                                                                            <tr>
                                                                                 <td width="200px">
@@ -2580,11 +2591,6 @@ http://www.gnu.org/licenses/.
                                                                                 </td>
                                                                            </tr>
                                                                       </xsl:if>
-                                                                      <tr>
-                                                                           <td colspan="2">
-                                                                                <hr style="color:#cecece"></hr>
-                                                                           </td>
-                                                                      </tr>
                                                                  </xsl:for-each>
                                                             </table>
                                                        </div>
@@ -2600,6 +2606,13 @@ http://www.gnu.org/licenses/.
                                                             </h3>
                                                             <table id="t1">
                                                                  <xsl:for-each select="DatiGenerali/DatiRicezione">
+                                                                      <xsl:if test="count(/a:FatturaElettronica/FatturaElettronicaBody/DatiGenerali/DatiRicezione) &gt; 2">
+                                                                           <tr>
+                                                                                <td colspan="2">
+                                                                                     <hr style="color: #cecece; margin: 1px;"></hr>
+                                                                                </td>
+                                                                           </tr>
+                                                                      </xsl:if>
                                                                       <xsl:if test="RiferimentoNumeroLinea">
                                                                            <tr>
                                                                                 <td width="200px">
@@ -2703,11 +2716,6 @@ http://www.gnu.org/licenses/.
                                                                                 </td>
                                                                            </tr>
                                                                       </xsl:if>
-                                                                      <tr>
-                                                                           <td colspan="2">
-                                                                                <hr style="color:#cecece"></hr>
-                                                                           </td>
-                                                                      </tr>
                                                                  </xsl:for-each>
                                                             </table>
                                                        </div>
@@ -2723,6 +2731,13 @@ http://www.gnu.org/licenses/.
                                                             </h3>
                                                             <table id="t1">
                                                                  <xsl:for-each select="DatiGenerali/DatiFattureCollegate">
+                                                                      <xsl:if test="count(/a:FatturaElettronica/FatturaElettronicaBody/DatiGenerali/DatiFattureCollegate) &gt; 2">
+                                                                           <tr>
+                                                                                <td colspan="2">
+                                                                                     <hr style="color: #cecece; margin: 1px;"></hr>
+                                                                                </td>
+                                                                           </tr>
+                                                                      </xsl:if>
                                                                       <xsl:if test="RiferimentoNumeroLinea">
                                                                            <tr>
                                                                                 <td width="200px">
@@ -2826,11 +2841,6 @@ http://www.gnu.org/licenses/.
                                                                                 </td>
                                                                            </tr>
                                                                       </xsl:if>
-                                                                      <tr>
-                                                                           <td colspan="2">
-                                                                                <hr style="color:#cecece"></hr>
-                                                                           </td>
-                                                                      </tr>
                                                                  </xsl:for-each>
                                                             </table>
                                                        </div>
