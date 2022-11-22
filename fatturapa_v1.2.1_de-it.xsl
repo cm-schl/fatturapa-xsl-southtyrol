@@ -372,40 +372,40 @@ http://www.gnu.org/licenses/.
                                                                                           <i>Regime fiscale</i>
                                                                                      </td>
                                                                                      <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="RegimeFiscale" />
-                                                                                          </span>
                                                                                           <xsl:variable name="RF">
                                                                                                <xsl:value-of select="RegimeFiscale" />
                                                                                           </xsl:variable>
-                                                                                          <xsl:choose>
-                                                                                               <xsl:when test="$RF='RF01'"> (ordinario)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF02'"> (contribuenti minimi)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF03'"> (nuove iniziative produttive)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF04'"> (agricoltura e attività connesse e pesca)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF05'"> (vendita sali e tabacchi)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF06'"> (commercio fiammiferi)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF07'"> (editoria)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF08'"> (gestione servizi telefonia pubblica)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF09'"> (rivendita documenti di trasporto pubblico e di sosta)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF10'"> (intrattenimenti, giochi e altre attività di cui alla tariffa allegata al DPR 640/72)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF11'"> (agenzie viaggi e turismo)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF12'"> (agriturismo)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF13'"> (vendite a domicilio)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF14'"> (rivendita beni usati, oggetti d’arte, d’antiquariato o da collezione)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF15'"> (agenzie di vendite all’asta di oggetti d’arte, antiquariato o da collezione)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF16'"> (IVA per cassa P.A.)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF17'"> (IVA per cassa - art. 32-bis, D.L. 83/2012)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF19'"> (Regime forfettario)</xsl:when>
-                                                                                               <xsl:when test="$RF='RF18'"> (altro)</xsl:when>
-                                                                                               <xsl:when test="$RF=''" />
-                                                                                               <xsl:otherwise>
-                                                                                                    <fehler>
-                                                                                                         (!!! falsche Kennung !!!)
-                                                                                                         <i>(!!! codice non previsto !!!)</i>
-                                                                                                    </fehler>
-                                                                                               </xsl:otherwise>
-                                                                                          </xsl:choose>
+                                                                                          <span>
+                                                                                               <xsl:choose>
+                                                                                                    <xsl:when test="$RF='RF01'">ordinario </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF02'">contribuenti minimi </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF03'">nuove iniziative produttive </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF04'">agricoltura e attività connesse e pesca </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF05'">vendita sali e tabacchi </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF06'">commercio fiammiferi </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF07'">editoria </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF08'">gestione servizi telefonia pubblica </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF09'">rivendita documenti di trasporto pubblico e di sosta </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF10'">intrattenimenti, giochi e altre attività di cui alla tariffa allegata al DPR 640/72 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF11'">agenzie viaggi e turismo </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF12'">agriturismo </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF13'">vendite a domicilio </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF14'">rivendita beni usati, oggetti d’arte, d’antiquariato o da collezione </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF15'">agenzie di vendite all’asta di oggetti d’arte, antiquariato o da collezione </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF16'">IVA per cassa P.A. </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF17'">IVA per cassa - art. 32-bis, D.L. 83/2012 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF19'">Regime forfettario </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF18'">altro </xsl:when>
+                                                                                                    <xsl:when test="$RF=''" />
+                                                                                                    <xsl:otherwise>
+                                                                                                         <fehler>
+                                                                                                              (!!! falsche Kennung !!!)
+                                                                                                              <i>(!!! codice non previsto !!!)</i>
+                                                                                                         </fehler>
+                                                                                                    </xsl:otherwise>
+                                                                                               </xsl:choose>
+                                                                                          </span>
+                                                                                          (<xsl:value-of select="RegimeFiscale" />)
                                                                                      </td>
                                                                                 </tr>
                                                                            </xsl:if>
@@ -531,30 +531,29 @@ http://www.gnu.org/licenses/.
                                                                                                </span>
                                                                                           </xsl:if>
                                                                                           <xsl:if test="SocioUnico">
-                                                                                                
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="SocioUnico" />
-                                                                                               </span>
                                                                                                <xsl:variable name="NS">
                                                                                                     <xsl:value-of select="SocioUnico" />
                                                                                                </xsl:variable>
-                                                                                               <xsl:choose>
-                                                                                                    <xsl:when test="$NS='SU'">
-                                                                                                         (Einzelgesellschafter)
-                                                                                                         <i>(socio unico)</i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$NS='SM'">
-                                                                                                         (mehrere Gesellschafter)
-                                                                                                         <i>(più soci)</i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$NS=''" />
-                                                                                                    <xsl:otherwise>
-                                                                                                         <fehler>
-                                                                                                              (!!! falsche Kennung !!!)
-                                                                                                              <i>(!!! codice non previsto !!!)</i>
-                                                                                                         </fehler>
-                                                                                                    </xsl:otherwise>
-                                                                                               </xsl:choose>
+                                                                                               <span>
+                                                                                                    <xsl:choose>
+                                                                                                         <xsl:when test="$NS='SU'">
+                                                                                                              Einzelgesellschafter
+                                                                                                              <i>socio unico </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$NS='SM'">
+                                                                                                              mehrere Gesellschafter
+                                                                                                              <i>più soci </i>
+                                                                                                         </xsl:when>
+                                                                                                         <xsl:when test="$NS=''" />
+                                                                                                         <xsl:otherwise>
+                                                                                                              <fehler>
+                                                                                                                   (!!! falsche Kennung !!!)
+                                                                                                                   <i>(!!! codice non previsto !!!)</i>
+                                                                                                              </fehler>
+                                                                                                         </xsl:otherwise>
+                                                                                                    </xsl:choose>
+                                                                                               </span>
+                                                                                               (<xsl:value-of select="SocioUnico" />)
                                                                                           </xsl:if>
                                                                                      </td>
                                                                                 </tr>
@@ -567,29 +566,29 @@ http://www.gnu.org/licenses/.
                                                                                           <i>Stato di liquidazione</i>
                                                                                      </td>
                                                                                      <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="StatoLiquidazione" />
-                                                                                          </span>
                                                                                           <xsl:variable name="SL">
                                                                                                <xsl:value-of select="StatoLiquidazione" />
                                                                                           </xsl:variable>
-                                                                                          <xsl:choose>
-                                                                                               <xsl:when test="$SL='LS'">
-                                                                                                    (in Auflösung)
-                                                                                                    <i>(in liquidazione)</i>
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$SL='LN'">
-                                                                                                    (nicht in Auflösung)
-                                                                                                    <i>(non in liquidazione)</i>
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$SL=''" />
-                                                                                               <xsl:otherwise>
-                                                                                                    <fehler>
-                                                                                                         (!!! falsche Kennung !!!)
-                                                                                                         <i>(!!! codice non previsto !!!)</i>
-                                                                                                    </fehler>
-                                                                                               </xsl:otherwise>
-                                                                                          </xsl:choose>
+                                                                                          <span>
+                                                                                               <xsl:choose>
+                                                                                                    <xsl:when test="$SL='LS'">
+                                                                                                         in Auflösung
+                                                                                                         <i>in liquidazione </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$SL='LN'">
+                                                                                                         nicht in Auflösung
+                                                                                                         <i>non in liquidazione </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$SL=''" />
+                                                                                                    <xsl:otherwise>
+                                                                                                         <fehler>
+                                                                                                              (!!! falsche Kennung !!!)
+                                                                                                              <i>(!!! codice non previsto !!!)</i>
+                                                                                                         </fehler>
+                                                                                                    </xsl:otherwise>
+                                                                                               </xsl:choose>
+                                                                                          </span>     
+                                                                                          (<xsl:value-of select="StatoLiquidazione" />)
                                                                                      </td>
                                                                                 </tr>
                                                                            </xsl:if>
@@ -1146,29 +1145,29 @@ http://www.gnu.org/licenses/.
                                                                            <i>Soggetto emittente</i>
                                                                       </td>
                                                                       <td>
-                                                                           <span>
-                                                                                <xsl:value-of select="a:FatturaElettronica/FatturaElettronicaHeader/SoggettoEmittente" />
-                                                                           </span>
                                                                            <xsl:variable name="SC">
                                                                                 <xsl:value-of select="a:FatturaElettronica/FatturaElettronicaHeader/SoggettoEmittente" />
                                                                            </xsl:variable>
-                                                                           <xsl:choose>
-                                                                                <xsl:when test="$SC='CC'">
-                                                                                     (Rechnungssteller)
-                                                                                     <i>(cessionario/committente)</i>
-                                                                                </xsl:when>
-                                                                                <xsl:when test="$SC='TZ'">
-                                                                                     (dritter)
-                                                                                     <i>(terzo)</i>
-                                                                                </xsl:when>
-                                                                                <xsl:when test="$SC=''" />
-                                                                                <xsl:otherwise>
-                                                                                     <fehler>
-                                                                                          (!!! falsche Kennung !!!)
-                                                                                          <i>(!!! codice non previsto !!!)</i>
-                                                                                     </fehler>
-                                                                                </xsl:otherwise>
-                                                                           </xsl:choose>
+                                                                           <span>
+                                                                                <xsl:choose>
+                                                                                     <xsl:when test="$SC='CC'">
+                                                                                          Rechnungssteller
+                                                                                          <i>cessionario/committente </i>
+                                                                                     </xsl:when>
+                                                                                     <xsl:when test="$SC='TZ'">
+                                                                                          dritter
+                                                                                          <i>terzo </i>
+                                                                                     </xsl:when>
+                                                                                     <xsl:when test="$SC=''" />
+                                                                                     <xsl:otherwise>
+                                                                                          <fehler>
+                                                                                               (!!! falsche Kennung !!!)
+                                                                                               <i>(!!! codice non previsto !!!)</i>
+                                                                                          </fehler>
+                                                                                     </xsl:otherwise>
+                                                                                </xsl:choose>
+                                                                           </span>
+                                                                           (<xsl:value-of select="a:FatturaElettronica/FatturaElettronicaHeader/SoggettoEmittente" />)
                                                                       </td>
                                                                  </tr>
                                                             </table>
@@ -1219,87 +1218,87 @@ http://www.gnu.org/licenses/.
                                                                       <xsl:choose>
                                                                            <xsl:when test="$TD='TD01'">
                                                                                 Rechnung
-                                                                                <i>fattura</i>
+                                                                                <i>fattura </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD02'">
                                                                                 Accontorechnung
-                                                                                <i>acconto/anticipo su fattura</i>
+                                                                                <i>acconto/anticipo su fattura </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD03'">
                                                                                 Accontohonorar
-                                                                                <i>acconto/anticipo su parcella</i>
+                                                                                <i>acconto/anticipo su parcella </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD04'">
                                                                                 Gutschrift
-                                                                                <i>nota di credito</i>
+                                                                                <i>nota di credito </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD05'">
                                                                                 Lastschrift
-                                                                                <i>nota di debito</i>
+                                                                                <i>nota di debito </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD06'">
                                                                                 Honorarnote
-                                                                                <i>parcella</i>
+                                                                                <i>parcella </i>
                                                                            </xsl:when>
                                                                            <!-- Version 1.2.1 -->
                                                                            <xsl:when test="$TD='TD16'">
                                                                                 Integration der internenen reverse charge Rechnungen
                                                                                 <br />
-                                                                                <i>Integrazione fattura reverse charge interno</i>
+                                                                                <i>Integrazione fattura reverse charge interno </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD17'">
                                                                                 Integration/Selbsfakturierung für den Einkauf von Dienstleistungen aus dem Ausland
                                                                                 <br />
-                                                                                <i>Integrazione/autofattura per acquisto servizi dall'estero</i>
+                                                                                <i>Integrazione/autofattura per acquisto servizi dall'estero </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD18'">
                                                                                 Integration für den Kauf von innergemeinschaftlichen Waren
                                                                                 <br />
-                                                                                <i>Integrazione per acquisto di beni intracomunitari</i>
+                                                                                <i>Integrazione per acquisto di beni intracomunitari </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD19'">
                                                                                 Integration/Selbstfakturierung für den Kauf von Waren ex Art. 17, Abs. 2 DPR 633/72
                                                                                 <br />
-                                                                                <i>Integrazione/autofattura per acquisto di beni ex art.17 c.2 DPR 633/72</i>
+                                                                                <i>Integrazione/autofattura per acquisto di beni ex art.17 c.2 DPR 633/72 </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD20'">
                                                                                 Selbstfakturierung Anzeige (Art.6c, Komma 8 Dekret 471/97)
                                                                                 <br />
-                                                                                <i>Autofattura denuncia (art.6c .8 d.lgs. 471/97)</i>
+                                                                                <i>Autofattura denuncia (art.6c .8 d.lgs. 471/97) </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD21'">
                                                                                 Selbstfakturierung bei Überschreiten des Plafonds
-                                                                                <i>Autofattura per splafonamento</i>
+                                                                                <i>Autofattura per splafonamento </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD22'">
                                                                                 Warenentnahme aus dem Mehrwertsteuerlager
                                                                                 <br />
-                                                                                <i>Estrazione beni da Deposito IVA</i>
+                                                                                <i>Estrazione beni da Deposito IVA </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD23'">
                                                                                 Warenentnahme aus dem Mehrwertsteuerlager mit Mehrwertsteuerzahlung
                                                                                 <br />
-                                                                                <i>Estrazione beni da Deposito IVA con versamento dell'IVA</i>
+                                                                                <i>Estrazione beni da Deposito IVA con versamento dell'IVA </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD24'">
                                                                                 Aufgeschobene Rechnung gemäß Artikel 21, Absatz 4, Buchstabe a)
                                                                                 <br />
-                                                                                <i>Fattura differita di cui all'art. 21, comma 4, lett. a)</i>
+                                                                                <i>Fattura differita di cui all'art. 21, comma 4, lett. a) </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD25'">
                                                                                 Aufgeschobene Rechnung gemäß Artikel 21, Absatz 4, Dritter Satz Buchstabe b)
                                                                                 <br />
-                                                                                <i>Fattura differita di cui all'art. 21, comma 4, terzo periodo lett. b)</i>
+                                                                                <i>Fattura differita di cui all'art. 21, comma 4, terzo periodo lett. b) </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD26'">
                                                                                 Übertragung von abschreibungsfähigen Gütern und für interner Transaktionen (Art. 36 DPR 633/72)
                                                                                 <br />
-                                                                                <i>Cessione di beni ammortizzabili e per passaggi interni (art.36 DPR 633/72)</i>
+                                                                                <i>Cessione di beni ammortizzabili e per passaggi interni (art.36 DPR 633/72) </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD27'">
                                                                                 Rechnung für Eigenverbrauch oder für kostenlose Abtretungen ohne Entschädigung
                                                                                 <br />
-                                                                                <i>Fattura per autoconsumo o per cessioni gratuite senza rivalsa</i>
+                                                                                <i>Fattura per autoconsumo o per cessioni gratuite senza rivalsa </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD=''" />
                                                                            <xsl:otherwise>
@@ -1309,6 +1308,7 @@ http://www.gnu.org/licenses/.
                                                                                 </fehler>
                                                                            </xsl:otherwise>
                                                                       </xsl:choose>
+                                                                      (<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/TipoDocumento" />)
                                                                  </h2>
 
                                                                  <table id="t1">
@@ -1402,28 +1402,28 @@ http://www.gnu.org/licenses/.
                                                                                                     <i>Tipologia ritenuta</i>
                                                                                                </td>
                                                                                                <td width="500px">
-                                                                                                    <span>
-                                                                                                         <xsl:value-of select="TipoRitenuta" />
-                                                                                                    </span>
                                                                                                     <xsl:variable name="TR">
                                                                                                          <xsl:value-of select="TipoRitenuta" />
                                                                                                     </xsl:variable>
-                                                                                                    <xsl:choose>
-                                                                                                         <xsl:when test="$TR='RT01'"> (ritenuta persone fisiche)</xsl:when>
-                                                                                                         <xsl:when test="$TR='RT02'"> (ritenuta persone giuridiche)</xsl:when>
-                                                                                                         <!-- Version 1.2.1-->
-                                                                                                         <xsl:when test="$TR='RT03'"> (contributo INPS)</xsl:when>
-                                                                                                         <xsl:when test="$TR='RT04'"> (contributo ENASARCO)</xsl:when>
-                                                                                                         <xsl:when test="$TR='RT05'"> (contributo ENPAM)</xsl:when>
-                                                                                                         <xsl:when test="$TR='RT06'"> (altro contributo previdenziale)</xsl:when>
-                                                                                                         <xsl:when test="$TR=''" />
-                                                                                                         <xsl:otherwise>
-                                                                                                              <fehler>
-                                                                                                                   (!!! falsche Kennung !!!)
-                                                                                                                   <i>(!!! codice non previsto !!!)</i>
-                                                                                                              </fehler>
-                                                                                                         </xsl:otherwise>
-                                                                                                    </xsl:choose>
+                                                                                                    <span>
+                                                                                                         <xsl:choose>
+                                                                                                              <xsl:when test="$TR='RT01'">ritenuta persone fisiche </xsl:when>
+                                                                                                              <xsl:when test="$TR='RT02'">ritenuta persone giuridiche </xsl:when>
+                                                                                                              <!-- Version 1.2.1-->
+                                                                                                              <xsl:when test="$TR='RT03'">contributo INPS </xsl:when>
+                                                                                                              <xsl:when test="$TR='RT04'">contributo ENASARCO </xsl:when>
+                                                                                                              <xsl:when test="$TR='RT05'">contributo ENPAM </xsl:when>
+                                                                                                              <xsl:when test="$TR='RT06'">altro contributo previdenziale </xsl:when>
+                                                                                                              <xsl:when test="$TR=''" />
+                                                                                                              <xsl:otherwise>
+                                                                                                                   <fehler>
+                                                                                                                        (!!! falsche Kennung !!!)
+                                                                                                                        <i>(!!! codice non previsto !!!)</i>
+                                                                                                                   </fehler>
+                                                                                                              </xsl:otherwise>
+                                                                                                         </xsl:choose>
+                                                                                                    </span>
+                                                                                                    (<xsl:value-of select="TipoRitenuta" />)
                                                                                                </td>
                                                                                           </tr>
                                                                                      </xsl:if>
@@ -1466,16 +1466,16 @@ http://www.gnu.org/licenses/.
                                                                                                     <i>Causale di pagamento</i>
                                                                                                </td>
                                                                                                <td>
-                                                                                                    <span>
-                                                                                                         <xsl:value-of select="CausalePagamento" />
-                                                                                                    </span>
                                                                                                     <xsl:variable name="CP">
                                                                                                          <xsl:value-of select="CausalePagamento" />
                                                                                                     </xsl:variable>
-                                                                                                    <xsl:if test="$CP!=''">
-                                                                                                         (Kennung nach Modell 770S)
-                                                                                                         <i>(decodifica come da modello 770S)</i>
-                                                                                                    </xsl:if>
+                                                                                                    <span>
+                                                                                                         <xsl:if test="$CP!=''">
+                                                                                                              Kennung nach Modell 770S
+                                                                                                              <i>decodifica come da modello 770S </i>
+                                                                                                         </xsl:if>
+                                                                                                    </span>
+                                                                                                    (<xsl:value-of select="CausalePagamento" />)
                                                                                                </td>
                                                                                           </tr>
                                                                                      </xsl:if>
@@ -1547,43 +1547,43 @@ http://www.gnu.org/licenses/.
                                                                                                     <i>Cassa previdenziale</i>
                                                                                                </td>
                                                                                                <td width="500px">
-                                                                                                    <span>
-                                                                                                         <xsl:value-of select="TipoCassa" />
-                                                                                                    </span>
                                                                                                     <xsl:variable name="TC">
                                                                                                          <xsl:value-of select="TipoCassa" />
                                                                                                     </xsl:variable>
-                                                                                                    <xsl:choose>
-                                                                                                         <xsl:when test="$TC='TC01'"> (Cassa Nazionale Previdenza e Assistenza Avvocati e Procuratori legali)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC02'"> (Cassa Previdenza Dottori Commercialisti)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC03'"> (Cassa Previdenza e Assistenza Geometri)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC04'"> (Cassa Nazionale Previdenza e Assistenza Ingegneri e Architetti liberi profess.)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC05'"> (Cassa Nazionale del Notariato)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC06'"> (Cassa Nazionale Previdenza e Assistenza Ragionieri e Periti commerciali)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC07'"> (Ente Nazionale Assistenza Agenti e Rappresentanti di Commercio-ENASARCO)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC08'"> (Ente Nazionale Previdenza e Assistenza Consulenti del Lavoro-ENPACL)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC09'"> (Ente Nazionale Previdenza e Assistenza Medici-ENPAM)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC10'"> (Ente Nazionale Previdenza e Assistenza Farmacisti-ENPAF)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC11'"> (Ente Nazionale Previdenza e Assistenza Veterinari-ENPAV)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC12'"> (Ente Nazionale Previdenza e Assistenza Impiegati dell'Agricoltura-ENPAIA)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC13'"> (Fondo Previdenza Impiegati Imprese di Spedizione e Agenzie Marittime)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC14'"> (Istituto Nazionale Previdenza Giornalisti Italiani-INPGI)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC15'"> (Opera Nazionale Assistenza Orfani Sanitari Italiani-ONAOSI)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC16'"> (Cassa Autonoma Assistenza Integrativa Giornalisti Italiani-CASAGIT)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC17'"> (Ente Previdenza Periti Industriali e Periti Industriali Laureati-EPPI)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC18'"> (Ente Previdenza e Assistenza Pluricategoriale-EPAP)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC19'"> (Ente Nazionale Previdenza e Assistenza Biologi-ENPAB)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC20'"> (Ente Nazionale Previdenza e Assistenza Professione Infermieristica-ENPAPI)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC21'"> (Ente Nazionale Previdenza e Assistenza Psicologi-ENPAP)</xsl:when>
-                                                                                                         <xsl:when test="$TC='TC22'"> (INPS)</xsl:when>
-                                                                                                         <xsl:when test="$TC=''" />
-                                                                                                         <xsl:otherwise>
-                                                                                                              <fehler>
-                                                                                                                   (!!! falsche Kennung !!!)
-                                                                                                                   <i>(!!! codice non previsto !!!)</i>
-                                                                                                              </fehler>
-                                                                                                         </xsl:otherwise>
-                                                                                                    </xsl:choose>
+                                                                                                    <span>
+                                                                                                         <xsl:choose>
+                                                                                                              <xsl:when test="$TC='TC01'">Cassa Nazionale Previdenza e Assistenza Avvocati e Procuratori legali </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC02'">Cassa Previdenza Dottori Commercialisti </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC03'">Cassa Previdenza e Assistenza Geometri </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC04'">Cassa Nazionale Previdenza e Assistenza Ingegneri e Architetti liberi profess. </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC05'">Cassa Nazionale del Notariato </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC06'">Cassa Nazionale Previdenza e Assistenza Ragionieri e Periti commerciali </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC07'">Ente Nazionale Assistenza Agenti e Rappresentanti di Commercio-ENASARCO </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC08'">Ente Nazionale Previdenza e Assistenza Consulenti del Lavoro-ENPACL </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC09'">Ente Nazionale Previdenza e Assistenza Medici-ENPAM </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC10'">Ente Nazionale Previdenza e Assistenza Farmacisti-ENPAF </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC11'">Ente Nazionale Previdenza e Assistenza Veterinari-ENPAV </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC12'">Ente Nazionale Previdenza e Assistenza Impiegati dell'Agricoltura-ENPAIA </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC13'">Fondo Previdenza Impiegati Imprese di Spedizione e Agenzie Marittime </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC14'">Istituto Nazionale Previdenza Giornalisti Italiani-INPGI </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC15'">Opera Nazionale Assistenza Orfani Sanitari Italiani-ONAOSI </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC16'">Cassa Autonoma Assistenza Integrativa Giornalisti Italiani-CASAGIT </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC17'">Ente Previdenza Periti Industriali e Periti Industriali Laureati-EPPI </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC18'">Ente Previdenza e Assistenza Pluricategoriale-EPAP </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC19'">Ente Nazionale Previdenza e Assistenza Biologi-ENPAB </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC20'">Ente Nazionale Previdenza e Assistenza Professione Infermieristica-ENPAPI </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC21'">Ente Nazionale Previdenza e Assistenza Psicologi-ENPAP </xsl:when>
+                                                                                                              <xsl:when test="$TC='TC22'">INPS </xsl:when>
+                                                                                                              <xsl:when test="$TC=''" />
+                                                                                                              <xsl:otherwise>
+                                                                                                                   <fehler>
+                                                                                                                        (!!! falsche Kennung !!!)
+                                                                                                                        <i>(!!! codice non previsto !!!)</i>
+                                                                                                                   </fehler>
+                                                                                                              </xsl:otherwise>
+                                                                                                         </xsl:choose>
+                                                                                                    </span>
+                                                                                                    (<xsl:value-of select="TipoCassa" />)
                                                                                                </td>
                                                                                           </tr>
                                                                                      </xsl:if>
@@ -1671,145 +1671,145 @@ http://www.gnu.org/licenses/.
                                                                                                     <i>Tipologia di non imponibilità del contributo</i>
                                                                                                </td>
                                                                                                <td>
-                                                                                                    <span>
-                                                                                                         <xsl:value-of select="Natura" />
-                                                                                                    </span>
                                                                                                     <xsl:variable name="NT">
                                                                                                          <xsl:value-of select="Natura" />
                                                                                                     </xsl:variable>
-                                                                                                    <xsl:choose>
-                                                                                                         <!-- Version 1.2.1 -->
-                                                                                                         <xsl:when test="$NT='N1'">
-                                                                                                              (ausgenommener Geschäftsvorg. ex Art. 15)
-                                                                                                              <br />
-                                                                                                              <i>(escluse ex art. 15)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N2'">
-                                                                                                              (nicht unterworfener Geschäftsvorg. (darf nach dem 31.12.2020 nicht mehr verwendet werden))
-                                                                                                              <br />
-                                                                                                              <i>(non soggette (non più utilizabile dopo il 31.12.2020))</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N2.1'">
-                                                                                                              (nicht unterworfener Geschäftsvorg. im Sinne der Artikel von 7 bis 7-septies des DPR 633/72)
-                                                                                                              <br />
-                                                                                                              <i>(Non soggette ad IVA ai sensi degli artt. da 7 a 7- septies del DPR 633/72)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N2.2'">
-                                                                                                              (nicht unterworfener Geschäftsvorg. – andere Fälle)
-                                                                                                              <br />
-                                                                                                              <i>(non soggette – altri casi)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N3'">
-                                                                                                              (nicht Mehrwertsteuerpflichtig (darf nach dem 31.12.2020 nicht mehr verwendet werden) )
-                                                                                                              <br />
-                                                                                                              <i>(non imponibili (non più utilizabile dopo il 31.12.2020))</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N3.1'">
-                                                                                                              (nicht Mehrwertsteuerpflichtig--Export)
-                                                                                                              <br />
-                                                                                                              <i>(non imponibili – esportazioni)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N3.2'">
-                                                                                                              (nicht Mehrwertsteuerpflichtig--innergemeinschaftliche Verkäufe)
-                                                                                                              <br />
-                                                                                                              <i>(non imponibili – cessioni intracomunitarie)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N3.3'">
-                                                                                                              (nicht Mehrwertsteuerpflichtig--Verkäufe nach San Marino)
-                                                                                                              <br />
-                                                                                                              <i>(non imponibili – cessioni verso San Marino)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N3.4'">
-                                                                                                              (nicht Mehrwertsteuerpflichtig--als Exporte behandelte Transaktionen)
-                                                                                                              <br />
-                                                                                                              <i>(non imponibili – operazioni assimilate alle cessioni all’esportazione)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N3.5'">
-                                                                                                              (nicht Mehrwertsteuerpflichtig--nach einer Absichtserklärung)
-                                                                                                              <br />
-                                                                                                              <i>(non imponibili – a seguito di dichiarazioni d’intento)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N3.6'">
-                                                                                                              (nicht Mehrwertsteuerpflichtig--andere Operationen, die nicht zur Bildung des Plafonds beitragen)
-                                                                                                              <br />
-                                                                                                              <i>(non imponibili – altre operazioni che non concorrono alla formazione del plafond)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N4'">
-                                                                                                              (befreit)
-                                                                                                              <br />
-                                                                                                              <i>(esenti)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N5'">
-                                                                                                              (im Rahmen der Differenzbesteuerung)
-                                                                                                              <br />
-                                                                                                              <i>(regime del margine)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N6'">
-                                                                                                              (Umkehrung der Steuerschuldnerschaft(darf nach dem 31.12.2020 nicht mehr verwendet werden))
-                                                                                                              <br />
-                                                                                                              <i>(inversione contabile (non più utilizabile dopo il 31.12.2020))</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N6.1'">
-                                                                                                              (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Schrott und anderen recycelten Materialien)
-                                                                                                              <br />
-                                                                                                              <i>(inversione contabile – cessione di rottami e altri materiali di recupero)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N6.2'">
-                                                                                                              (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von reinem Gold und Silber)
-                                                                                                              <br />
-                                                                                                              <i>(inversione contabile – cessione di oro e argento puro)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N6.3'">
-                                                                                                              (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Unteraufträge im Bausektor)
-                                                                                                              <br />
-                                                                                                              <i>(inversione contabile – subappalto nel settore edile)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N6.4'">
-                                                                                                              (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Gebäuden)
-                                                                                                              <br />
-                                                                                                              <i>(inversione contabile – cessione di fabbricati)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N6.5'">
-                                                                                                              (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Mobiltelefonen)
-                                                                                                              <br />
-                                                                                                              <i>(inversione contabile – cessione di telefoni cellulari)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N6.6'">
-                                                                                                              (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von elektronischen Geräten)
-                                                                                                              <br />
-                                                                                                              <i>(inversione contabile – cessione di prodotti elettronici)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N6.7'">
-                                                                                                              (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Dienstleistungen des Bausektors und damit verwandte Sektoren)
-                                                                                                              <br />
-                                                                                                              <i>(inversione contabile – prestazioni comparto edile e settori connessi)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N6.8'">
-                                                                                                              (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Operationen im Energiesektor)
-                                                                                                              <br />
-                                                                                                              <i>(inversione contabile – operazioni settore energetico)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT='N6.9'">
-                                                                                                              (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - andere Fälle)
-                                                                                                              <br />
-                                                                                                              <i>(inversione contabile – altri casi)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <!-- Version 1.2 -->
-                                                                                                         <xsl:when test="$NT='N7'">
-                                                                                                              (MwSt.-Schuld in einem anderen EU-Land abgegolten)
-                                                                                                              <i>
-                                                                                                                   (IVA assolta in altro stato UE)
+                                                                                                    <span>
+                                                                                                         <xsl:choose>
+                                                                                                              <!-- Version 1.2.1 -->
+                                                                                                              <xsl:when test="$NT='N1'">
+                                                                                                                   ausgenommener Geschäftsvorg. ex Art. 15
                                                                                                                    <br />
-                                                                                                              </i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$NT=''" />
-                                                                                                         <xsl:otherwise>
-                                                                                                              <fehler>
-                                                                                                                   (!!! falsche Kennung !!!)
-                                                                                                                   <i>(!!! codice non previsto !!!)</i>
-                                                                                                              </fehler>
-                                                                                                         </xsl:otherwise>
-                                                                                                    </xsl:choose>
+                                                                                                                   <i>escluse ex art. 15 </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N2'">
+                                                                                                                   nicht unterworfener Geschäftsvorg. (darf nach dem 31.12.2020 nicht mehr verwendet werden)
+                                                                                                                   <br />
+                                                                                                                   <i>non soggette (non più utilizabile dopo il 31.12.2020) </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N2.1'">
+                                                                                                                   nicht unterworfener Geschäftsvorg. im Sinne der Artikel von 7 bis 7-septies des DPR 633/72
+                                                                                                                   <br />
+                                                                                                                   <i>Non soggette ad IVA ai sensi degli artt. da 7 a 7- septies del DPR 633/72 </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N2.2'">
+                                                                                                                   nicht unterworfener Geschäftsvorg. – andere Fälle
+                                                                                                                   <br />
+                                                                                                                   <i>non soggette – altri casi </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N3'">
+                                                                                                                   nicht Mehrwertsteuerpflichtig (darf nach dem 31.12.2020 nicht mehr verwendet werden)
+                                                                                                                   <br />
+                                                                                                                   <i>non imponibili (non più utilizabile dopo il 31.12.2020) </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N3.1'">
+                                                                                                                   nicht Mehrwertsteuerpflichtig--Export
+                                                                                                                   <br />
+                                                                                                                   <i>non imponibili – esportazioni </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N3.2'">
+                                                                                                                   nicht Mehrwertsteuerpflichtig--innergemeinschaftliche Verkäufe
+                                                                                                                   <br />
+                                                                                                                   <i>non imponibili – cessioni intracomunitarie </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N3.3'">
+                                                                                                                   nicht Mehrwertsteuerpflichtig--Verkäufe nach San Marino
+                                                                                                                   <br />
+                                                                                                                   <i>non imponibili – cessioni verso San Marino </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N3.4'">
+                                                                                                                   nicht Mehrwertsteuerpflichtig--als Exporte behandelte Transaktionen
+                                                                                                                   <br />
+                                                                                                                   <i>non imponibili – operazioni assimilate alle cessioni all’esportazione </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N3.5'">
+                                                                                                                   nicht Mehrwertsteuerpflichtig--nach einer Absichtserklärung
+                                                                                                                   <br />
+                                                                                                                   <i>non imponibili – a seguito di dichiarazioni d’intento </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N3.6'">
+                                                                                                                   nicht Mehrwertsteuerpflichtig--andere Operationen, die nicht zur Bildung des Plafonds beitragen
+                                                                                                                   <br />
+                                                                                                                   <i>non imponibili – altre operazioni che non concorrono alla formazione del plafond </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N4'">
+                                                                                                                   befreit
+                                                                                                                   <br />
+                                                                                                                   <i>esenti </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N5'">
+                                                                                                                   im Rahmen der Differenzbesteuerung
+                                                                                                                   <br />
+                                                                                                                   <i>regime del margine </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N6'">
+                                                                                                                   Umkehrung der Steuerschuldnerschaft(darf nach dem 31.12.2020 nicht mehr verwendet werden)
+                                                                                                                   <br />
+                                                                                                                   <i>inversione contabile (non più utilizabile dopo il 31.12.2020) </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N6.1'">
+                                                                                                                   Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Schrott und anderen recycelten Materialien
+                                                                                                                   <br />
+                                                                                                                   <i>inversione contabile – cessione di rottami e altri materiali di recupero </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N6.2'">
+                                                                                                                   Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von reinem Gold und Silber
+                                                                                                                   <br />
+                                                                                                                   <i>inversione contabile – cessione di oro e argento puro </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N6.3'">
+                                                                                                                   Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Unteraufträge im Bausektor
+                                                                                                                   <br />
+                                                                                                                   <i>inversione contabile – subappalto nel settore edile </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N6.4'">
+                                                                                                                   Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Gebäuden
+                                                                                                                   <br />
+                                                                                                                   <i>inversione contabile – cessione di fabbricati </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N6.5'">
+                                                                                                                   Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Mobiltelefonen
+                                                                                                                   <br />
+                                                                                                                   <i>inversione contabile – cessione di telefoni cellulari </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N6.6'">
+                                                                                                                   Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von elektronischen Geräten 
+                                                                                                                   <br />
+                                                                                                                   <i>inversione contabile – cessione di prodotti elettronici </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N6.7'">
+                                                                                                                   Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Dienstleistungen des Bausektors und damit verwandte Sektoren
+                                                                                                                   <br />
+                                                                                                                   <i>inversione contabile – prestazioni comparto edile e settori connessi </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N6.8'">
+                                                                                                                   Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Operationen im Energiesektor
+                                                                                                                   <br />
+                                                                                                                   <i>inversione contabile – operazioni settore energetico </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT='N6.9'">
+                                                                                                                   Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - andere Fälle
+                                                                                                                   <br />
+                                                                                                                   <i>inversione contabile – altri casi </i>
+                                                                                                              </xsl:when>
+                                                                                                              <!-- Version 1.2 -->
+                                                                                                              <xsl:when test="$NT='N7'">
+                                                                                                                   MwSt.-Schuld in einem anderen EU-Land abgegolten
+                                                                                                                   <br />
+                                                                                                                   <i>
+                                                                                                                        IVA assolta in altro stato UE 
+                                                                                                                   </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$NT=''" />
+                                                                                                              <xsl:otherwise>
+                                                                                                                   <fehler>
+                                                                                                                        (!!! falsche Kennung !!!)
+                                                                                                                        <i>(!!! codice non previsto !!!)</i>
+                                                                                                                   </fehler>
+                                                                                                              </xsl:otherwise>
+                                                                                                         </xsl:choose>
+                                                                                                    </span>
+                                                                                                    (<xsl:value-of select="Natura" />)
                                                                                                </td>
                                                                                           </tr>
                                                                                      </xsl:if>
@@ -1856,28 +1856,28 @@ http://www.gnu.org/licenses/.
                                                                                                               %
                                                                                                          </span>
                                                                                                     </xsl:if>
-                                                                                                    <span>
-                                                                                                         <xsl:value-of select="Tipo" />
-                                                                                                    </span>
                                                                                                     <xsl:variable name="TSM">
                                                                                                          <xsl:value-of select="Tipo" />
                                                                                                     </xsl:variable>
-                                                                                                    <xsl:choose>
-                                                                                                         <xsl:when test="$TSM='SC'">
-                                                                                                              (Skonto)
-                                                                                                              <i>(sconto)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:when test="$TSM='MG'">
-                                                                                                              (Aufpreis)
-                                                                                                              <i>(maggiorazione)</i>
-                                                                                                         </xsl:when>
-                                                                                                         <xsl:otherwise>
-                                                                                                              <fehler>
-                                                                                                                   (!!! falsche Kennung !!!)
-                                                                                                                   <i>(!!! codice non previsto !!!)</i>
-                                                                                                              </fehler>
-                                                                                                         </xsl:otherwise>
-                                                                                                    </xsl:choose>
+                                                                                                    <span>     
+                                                                                                         <xsl:choose>
+                                                                                                              <xsl:when test="$TSM='SC'">
+                                                                                                                   Skonto
+                                                                                                                   <i>sconto </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:when test="$TSM='MG'">
+                                                                                                                   Aufpreis
+                                                                                                                   <i>maggiorazione </i>
+                                                                                                              </xsl:when>
+                                                                                                              <xsl:otherwise>
+                                                                                                                   <fehler>
+                                                                                                                        (!!! falsche Kennung !!!)
+                                                                                                                        <i>(!!! codice non previsto !!!)</i>
+                                                                                                                   </fehler>
+                                                                                                              </xsl:otherwise>
+                                                                                                         </xsl:choose>
+                                                                                                    </span>
+                                                                                                    (<xsl:value-of select="Tipo" />)
                                                                                                </td>
                                                                                           </tr>
                                                                                      </xsl:if> <!--
@@ -2009,36 +2009,37 @@ http://www.gnu.org/licenses/.
                                                                                      </xsl:if> <!-- 2.2.1.2 -->
                                                                                      <xsl:if test="TipoCessionePrestazione">
                                                                                           <br />
-                                                                                          <span>
-                                                                                               <xsl:value-of select="TipoCessionePrestazione" />
-                                                                                          </span>
                                                                                           <xsl:variable name="TCP">
                                                                                                <xsl:value-of select="TipoCessionePrestazione" />
                                                                                           </xsl:variable>
-                                                                                          <xsl:choose>
-                                                                                               <xsl:when test="$TCP='SC'">
-                                                                                                    (Skonto)
-                                                                                                    <i>(sconto)</i>
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$TCP='PR'">
-                                                                                                    (Prämie)
-                                                                                                    <i>(premio)</i>
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$TCP='AB'">
-                                                                                                    (Gutschrift)
-                                                                                                    <i>(abbuono)</i>
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$TCP='AC'">
-                                                                                                    (Zusatzspesen)
-                                                                                                    <i>(spesa accessoria)</i>
-                                                                                               </xsl:when>
-                                                                                               <xsl:otherwise>
-                                                                                                    <fehler>
-                                                                                                         (!!! falsche Kennung !!!)
-                                                                                                         <i>(!!! codice non previsto !!!)</i>
-                                                                                                    </fehler>
-                                                                                               </xsl:otherwise>
-                                                                                          </xsl:choose> <!-- <span><xsl:value-of select="ScontoMaggiorazione/Percentuale" />%</span>   -->
+                                                                                          <span>
+                                                                                               <xsl:choose>
+                                                                                                    <xsl:when test="$TCP='SC'">
+                                                                                                         Skonto
+                                                                                                         <i>sconto </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$TCP='PR'">
+                                                                                                         Prämie
+                                                                                                         <i>premio </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$TCP='AB'">
+                                                                                                         Gutschrift
+                                                                                                         <i>abbuono </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$TCP='AC'">
+                                                                                                         Zusatzspesen
+                                                                                                         <i>spesa accessoria </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:otherwise>
+                                                                                                         <fehler>
+                                                                                                              (!!! falsche Kennung !!!)
+                                                                                                              <i>(!!! codice non previsto !!!)</i>
+                                                                                                         </fehler>
+                                                                                                    </xsl:otherwise>
+                                                                                               </xsl:choose>
+                                                                                          </span>
+                                                                                          (<xsl:value-of select="TipoCessionePrestazione" />)
+                                                                                          <!-- <span><xsl:value-of select="ScontoMaggiorazione/Percentuale" />%</span>   -->
                                                                                      </xsl:if>
                                                                                      <xsl:if test="RiferimentoAmministrazione">
                                                                                           <br />
@@ -3468,137 +3469,140 @@ http://www.gnu.org/licenses/.
                                                                                 <xsl:variable name="NAT1">
                                                                                      <xsl:value-of select="Natura" />
                                                                                 </xsl:variable>
-                                                                                <xsl:choose>
-                                                                                     <!-- Version 1.2.1 -->
-                                                                                     <xsl:when test="$NAT1='N1'">
-                                                                                          ausgenommener Geschäftsvorg. ex Art. 15
-                                                                                          <br />
-                                                                                          <i>escluse ex art. 15</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N2'">
-                                                                                          nicht unterworfener Geschäftsvorg. (darf nach dem 31.12.2020 nicht mehr verwendet werden)
-                                                                                          <br />
-                                                                                          <i>non soggette (non più utilizabile dopo il 31.12.2020)</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N2.1'">
-                                                                                          nicht unterworfener Geschäftsvorg. im Sinne der Artikel von 7 bis 7-septies des DPR 633/72
-                                                                                          <br />
-                                                                                          <i>Non soggette ad IVA ai sensi degli artt. da 7 a 7- septies del DPR 633/72</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N2.2'">
-                                                                                          nicht unterworfener Geschäftsvorg. – andere Fälle
-                                                                                          <br />
-                                                                                          <i>non soggette – altri casi</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N3'">
-                                                                                          nicht Mehrwertsteuerpflichtig (darf nach dem 31.12.2020 nicht mehr verwendet werden)
-                                                                                          <br />
-                                                                                          <i>non imponibili (non più utilizabile dopo il 31.12.2020)</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N3.1'">
-                                                                                          nicht Mehrwertsteuerpflichtig - Export
-                                                                                          <br />
-                                                                                          <i>non imponibili – esportazioni</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N3.2'">
-                                                                                          nicht Mehrwertsteuerpflichtig--innergemeinschaftliche Verkäufe
-                                                                                          <br />
-                                                                                          <i>non imponibili – cessioni intracomunitarie</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N3.3'">
-                                                                                          nicht Mehrwertsteuerpflichtig--Verkäufe nach San Marino
-                                                                                          <br />
-                                                                                          <i>non imponibili – cessioni verso San Marino</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N3.4'">
-                                                                                          nicht Mehrwertsteuerpflichtig--als Exporte behandelte Transaktionen
-                                                                                          <br />
-                                                                                          <i>non imponibili – operazioni assimilate alle cessioni all’esportazione</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N3.5'">
-                                                                                          nicht Mehrwertsteuerpflichtig--nach einer Absichtserklärung
-                                                                                          <br />
-                                                                                          <i>(non imponibili – a seguito di dichiarazioni d’intento)</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N3.6'">
-                                                                                          nicht Mehrwertsteuerpflichtig--andere Operationen, die nicht zur Bildung des Plafonds beitragen
-                                                                                          <br />
-                                                                                          <i>non imponibili – altre operazioni che non concorrono alla formazione del plafond</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N4'">
-                                                                                          befreit
-                                                                                          <br />
-                                                                                          <i>esenti</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N5'">
-                                                                                          im Rahmen der Differenzbesteuerung
-                                                                                          <br />
-                                                                                          <i>regime del margine</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N6'">
-                                                                                          Umkehrung derSteuerschuldnerschaft (darf nach dem 31.12.2020 nicht mehr verwendet werden)
-                                                                                          <br />
-                                                                                          <i>inversione contabile (non più utilizabile dopo il 31.12.2020)</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N6.1'">
-                                                                                          Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Schrott und anderen recycelten Materialien
-                                                                                          <br />
-                                                                                          <i>inversione contabile – cessione di rottami e altri materiali di recupero</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N6.2'">
-                                                                                          Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von reinem Gold und Silber
-                                                                                          <br />
-                                                                                          <i>inversione contabile – cessione di oro e argento puro</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N6.3'">
-                                                                                          Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Unteraufträge im Bausektor
-                                                                                          <br />
-                                                                                          <i>inversione contabile – subappalto nel settore edile</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N6.4'">
-                                                                                          Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Gebäuden
-                                                                                          <br />
-                                                                                          <i>inversione contabile – cessione di fabbricati</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N6.5'">
-                                                                                          Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Mobiltelefonen
-                                                                                          <br />
-                                                                                          <i>inversione contabile – cessione di telefoni cellulari</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N6.6'">
-                                                                                          Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von elektronischen Geräten
-                                                                                          <br />
-                                                                                          <i>inversione contabile – cessione di prodotti elettronici</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N6.7'">
-                                                                                          Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Dienstleistungen des Bausektors und damit verwandte Sektoren
-                                                                                          <br />
-                                                                                          <i>inversione contabile – prestazioni comparto edile e settori connessi</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N6.8'">
-                                                                                          Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Operationen im Energiesektor
-                                                                                          <br />
-                                                                                          <i>inversione contabile – operazioni settore energetico</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1='N6.9'">
-                                                                                          Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - andere Fälle
-                                                                                          <br />
-                                                                                          <i>inversione contabile – altri casi</i>
-                                                                                     </xsl:when>
-                                                                                     <!-- Version 1.2 -->
-                                                                                     <xsl:when test="$NAT1='N7'">
-                                                                                          MwSt.-Schuld in einem anderen EU-Land abgegolten
-                                                                                          <br />
-                                                                                          <i>IVA assolta in altro stato UE</i>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$NAT1=''" />
-                                                                                     <xsl:otherwise>
-                                                                                          <fehler>
-                                                                                               (!!! falsche Kennung !!!)
-                                                                                               <i>(!!! codice non previsto !!!)</i>
-                                                                                          </fehler>
-                                                                                     </xsl:otherwise>
-                                                                                </xsl:choose>
+                                                                                <span>
+                                                                                     <xsl:choose>
+                                                                                          <!-- Version 1.2.1 -->
+                                                                                          <xsl:when test="$NAT1='N1'">
+                                                                                               ausgenommener Geschäftsvorg. ex Art. 15
+                                                                                               <br />
+                                                                                               <i>escluse ex art. 15 </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N2'">
+                                                                                               nicht unterworfener Geschäftsvorg. (darf nach dem 31.12.2020 nicht mehr verwendet werden)
+                                                                                               <br />
+                                                                                               <i>non soggette (non più utilizabile dopo il 31.12.2020) </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N2.1'">
+                                                                                               nicht unterworfener Geschäftsvorg. im Sinne der Artikel von 7 bis 7-septies des DPR 633/72
+                                                                                               <br />
+                                                                                               <i>Non soggette ad IVA ai sensi degli artt. da 7 a 7- septies del DPR 633/72 </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N2.2'">
+                                                                                               nicht unterworfener Geschäftsvorg. – andere Fälle
+                                                                                               <br />
+                                                                                               <i>non soggette – altri casi </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N3'">
+                                                                                               nicht Mehrwertsteuerpflichtig (darf nach dem 31.12.2020 nicht mehr verwendet werden)
+                                                                                               <br />
+                                                                                               <i>non imponibili (non più utilizabile dopo il 31.12.2020) </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N3.1'">
+                                                                                               nicht Mehrwertsteuerpflichtig - Export
+                                                                                               <br />
+                                                                                               <i>non imponibili – esportazioni </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N3.2'">
+                                                                                               nicht Mehrwertsteuerpflichtig--innergemeinschaftliche Verkäufe
+                                                                                               <br />
+                                                                                               <i>non imponibili – cessioni intracomunitarie </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N3.3'">
+                                                                                               nicht Mehrwertsteuerpflichtig--Verkäufe nach San Marino
+                                                                                               <br />
+                                                                                               <i>non imponibili – cessioni verso San Marino </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N3.4'">
+                                                                                               nicht Mehrwertsteuerpflichtig--als Exporte behandelte Transaktionen
+                                                                                               <br />
+                                                                                               <i>non imponibili – operazioni assimilate alle cessioni all’esportazione </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N3.5'">
+                                                                                               nicht Mehrwertsteuerpflichtig--nach einer Absichtserklärung
+                                                                                               <br />
+                                                                                               <i>non imponibili – a seguito di dichiarazioni d’intento </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N3.6'">
+                                                                                               nicht Mehrwertsteuerpflichtig--andere Operationen, die nicht zur Bildung des Plafonds beitragen
+                                                                                               <br />
+                                                                                               <i>non imponibili – altre operazioni che non concorrono alla formazione del plafond </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N4'">
+                                                                                               befreit
+                                                                                               <br />
+                                                                                               <i>esenti </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N5'">
+                                                                                               im Rahmen der Differenzbesteuerung
+                                                                                               <br />
+                                                                                               <i>regime del margine </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N6'">
+                                                                                               Umkehrung derSteuerschuldnerschaft (darf nach dem 31.12.2020 nicht mehr verwendet werden)
+                                                                                               <br />
+                                                                                               <i>inversione contabile (non più utilizabile dopo il 31.12.2020) </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N6.1'">
+                                                                                               Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Schrott und anderen recycelten Materialien
+                                                                                               <br />
+                                                                                               <i>inversione contabile – cessione di rottami e altri materiali di recupero </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N6.2'">
+                                                                                               Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von reinem Gold und Silber
+                                                                                               <br />
+                                                                                               <i>inversione contabile – cessione di oro e argento puro </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N6.3'">
+                                                                                               Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Unteraufträge im Bausektor
+                                                                                               <br />
+                                                                                               <i>inversione contabile – subappalto nel settore edile </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N6.4'">
+                                                                                               Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Gebäuden
+                                                                                               <br />
+                                                                                               <i>inversione contabile – cessione di fabbricati </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N6.5'">
+                                                                                               Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Mobiltelefonen
+                                                                                               <br />
+                                                                                               <i>inversione contabile – cessione di telefoni cellulari </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N6.6'">
+                                                                                               Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von elektronischen Geräten
+                                                                                               <br />
+                                                                                               <i>inversione contabile – cessione di prodotti elettronici </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N6.7'">
+                                                                                               Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Dienstleistungen des Bausektors und damit verwandte Sektoren
+                                                                                               <br />
+                                                                                               <i>inversione contabile – prestazioni comparto edile e settori connessi </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N6.8'">
+                                                                                               Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Operationen im Energiesektor
+                                                                                               <br />
+                                                                                               <i>inversione contabile – operazioni settore energetico </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1='N6.9'">
+                                                                                               Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - andere Fälle
+                                                                                               <br />
+                                                                                               <i>inversione contabile – altri casi </i>
+                                                                                          </xsl:when>
+                                                                                          <!-- Version 1.2 -->
+                                                                                          <xsl:when test="$NAT1='N7'">
+                                                                                               MwSt.-Schuld in einem anderen EU-Land abgegolten
+                                                                                               <br />
+                                                                                               <i>IVA assolta in altro stato UE </i>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$NAT1=''" />
+                                                                                          <xsl:otherwise>
+                                                                                               <fehler>
+                                                                                                    (!!! falsche Kennung !!!)
+                                                                                                    <i>(!!! codice non previsto !!!)</i>
+                                                                                               </fehler>
+                                                                                          </xsl:otherwise>
+                                                                                     </xsl:choose>
+                                                                                </span>
+                                                                                (<xsl:value-of select="Natura" />)
                                                                            </xsl:if>
                                                                       </td>
                                                                       <td align="right">
@@ -3635,44 +3639,44 @@ http://www.gnu.org/licenses/.
                                                                                 <xsl:variable name="EI">
                                                                                      <xsl:value-of select="EsigibilitaIVA" />
                                                                                 </xsl:variable>
-                                                                                <xsl:choose>
-                                                                                     <xsl:when test="$EI='I'">
-                                                                                          <span>
-                                                                                               sofortige Fälligkeit
-                                                                                               <br />
-                                                                                               <i>
-                                                                                                    esigibilità immediata 
-                                                                                               </i>
-                                                                                               (<xsl:value-of select="EsigibilitaIVA" />)
-                                                                                          </span>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$EI='D'">
-                                                                                          <span>
-                                                                                               aufgesch. Fälligkeit
-                                                                                               <br />
-                                                                                               <i>
-                                                                                                    esigibilità differita 
-                                                                                               </i>
-                                                                                               (<xsl:value-of select="EsigibilitaIVA" />)
-                                                                                          </span>
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$EI='S'">
-                                                                                          <span>
-                                                                                               split payment
-                                                                                               <br />
-                                                                                               <i>
-                                                                                                    scissione dei pagamenti 
-                                                                                               </i>
-                                                                                               (<xsl:value-of select="EsigibilitaIVA" />)
-                                                                                          </span>
-                                                                                     </xsl:when>
-                                                                                     <xsl:otherwise>
-                                                                                          <fehler>
-                                                                                               (!!! falsche Kennung !!!)
-                                                                                               <i>(!!! codice non previsto !!!)</i>
-                                                                                          </fehler>
-                                                                                     </xsl:otherwise>
-                                                                                </xsl:choose>
+                                                                                <span>
+                                                                                     <xsl:choose>
+                                                                                          <xsl:when test="$EI='I'">
+                                                                                               <span>
+                                                                                                    sofortige Fälligkeit
+                                                                                                    <br />
+                                                                                                    <i>
+                                                                                                         esigibilità immediata 
+                                                                                                    </i>
+                                                                                               </span>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$EI='D'">
+                                                                                               <span>
+                                                                                                    aufgesch. Fälligkeit
+                                                                                                    <br />
+                                                                                                    <i>
+                                                                                                         esigibilità differita 
+                                                                                                    </i>
+                                                                                               </span>
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$EI='S'">
+                                                                                               <span>
+                                                                                                    split payment
+                                                                                                    <br />
+                                                                                                    <i>
+                                                                                                         scissione dei pagamenti 
+                                                                                                    </i>
+                                                                                               </span>
+                                                                                          </xsl:when>
+                                                                                          <xsl:otherwise>
+                                                                                               <fehler>
+                                                                                                    (!!! falsche Kennung !!!)
+                                                                                                    <i>(!!! codice non previsto !!!)</i>
+                                                                                               </fehler>
+                                                                                          </xsl:otherwise>
+                                                                                     </xsl:choose>
+                                                                                </span>
+                                                                                (<xsl:value-of select="EsigibilitaIVA" />)
                                                                            </xsl:if>
                                                                       </td>
                                                                       <td>
@@ -3709,30 +3713,33 @@ http://www.gnu.org/licenses/.
                                                                                 <xsl:variable name="CP">
                                                                                      <xsl:value-of select="CondizioniPagamento" />
                                                                                 </xsl:variable>
-                                                                                <xsl:choose>
-                                                                                     <xsl:when test="$CP='TP01'">
-                                                                                          Ratenzahlung 
-                                                                                          <i>pagamento a rate </i>
-                                                                                          (<xsl:value-of select="CondizioniPagamento" />)
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$CP='TP02'">
-                                                                                          Einmalzahlung 
-                                                                                          <i>pagamento completo </i>
-                                                                                          (<xsl:value-of select="CondizioniPagamento" />)
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$CP='TP03'">
-                                                                                          Vorauszahlung 
-                                                                                          <i>anticipo</i>
-                                                                                          (<xsl:value-of select="CondizioniPagamento" />)
-                                                                                     </xsl:when>
-                                                                                     <xsl:when test="$CP=''" />
-                                                                                     <xsl:otherwise>
-                                                                                          <fehler>
-                                                                                               (!!! falsche Kennung !!!)
-                                                                                               <i>(!!! codice non previsto !!!)</i>
-                                                                                          </fehler>
-                                                                                     </xsl:otherwise>
-                                                                                </xsl:choose>
+                                                                                <span>
+                                                                                     <xsl:choose>
+                                                                                          <xsl:when test="$CP='TP01'">
+                                                                                               Ratenzahlung 
+                                                                                               <i>pagamento a rate </i>
+                                                                                               <xsl:value-of select="CondizioniPagamento" />
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$CP='TP02'">
+                                                                                               Einmalzahlung 
+                                                                                               <i>pagamento completo </i>
+                                                                                               <xsl:value-of select="CondizioniPagamento" />
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$CP='TP03'">
+                                                                                               Vorauszahlung 
+                                                                                               <i>anticipo </i>
+                                                                                               <xsl:value-of select="CondizioniPagamento" />
+                                                                                          </xsl:when>
+                                                                                          <xsl:when test="$CP=''" />
+                                                                                          <xsl:otherwise>
+                                                                                               <fehler>
+                                                                                                    (!!! falsche Kennung !!!)
+                                                                                                    <i>(!!! codice non previsto !!!)</i>
+                                                                                               </fehler>
+                                                                                          </xsl:otherwise>
+                                                                                     </xsl:choose>
+                                                                                </span>
+                                                                                (<xsl:value-of select="CondizioniPagamento" />)
                                                                            </td>
                                                                       </tr>
                                                                  </table>
@@ -3779,121 +3786,102 @@ http://www.gnu.org/licenses/.
                                                                                           <xsl:variable name="MP">
                                                                                                <xsl:value-of select="ModalitaPagamento" />
                                                                                           </xsl:variable>
-                                                                                          <xsl:choose>
-                                                                                               <xsl:when test="$MP='MP01'">
-                                                                                                    bar
-                                                                                                    <i>contanti </i>
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP02'">
-                                                                                                    Scheck
-                                                                                                    <i>assegno </i>
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP03'">
-                                                                                                    Zirkularscheck
-                                                                                                    <i>assegno circolare </i>
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP04'">
-                                                                                                    über Schatzamt
-                                                                                                    <i>contanti presso Tesoreria </i>
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP05'">
-                                                                                                    Überweisung
-                                                                                                    <i>bonifico </i>
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP06'">
-                                                                                                    Wechsel
-                                                                                                    <i>vaglia cambiario </i>
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP07'">
-                                                                                                    Bankmitteilung
-                                                                                                    <i>bollettino bancario </i>
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP08'">
-                                                                                                    Zahlkarte
-                                                                                                    <i>carta di pagamento </i>
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP09'"> (RID)</xsl:when>
-                                                                                               <xsl:when test="$MP='MP10'">
-                                                                                                    RID normal
-                                                                                                    <i>RID utenze </i>
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP11'">
-                                                                                                    RID Schnell
-                                                                                                    <i>RID veloce </i>
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP12'"> 
-                                                                                                    RIBA 
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP13'"> 
-                                                                                                    MAV 
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP14'"> 
-                                                                                                    quietanza erario 
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP15'"> 
-                                                                                                    giroconto su conti di contabilità speciale 
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP16'">
-                                                                                                    Bankdauerauftrag
-                                                                                                    <i>domiciliazione bancaria </i>
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP17'">
-                                                                                                    Postdauerauftrag
-                                                                                                    <i>domiciliazione postale </i>
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP18'">
-                                                                                                    Postüberweisung
-                                                                                                    <i>bollettino di c/c postale </i>
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP19'"> 
-                                                                                                    SEPA Direct Debit 
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP20'"> 
-                                                                                                    SEPA Direct Debit CORE 
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP='MP21'"> 
-                                                                                                    SEPA Direct Debit B2B 
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <!-- Version 1.2 -->
-                                                                                               <xsl:when test="$MP='MP22'">
-                                                                                                    Einbehalt auf bereits bezahlte Summe
-                                                                                                    <i>Trattenuta su somme già riscosse </i>
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <!-- Version 1.2.1 -->
-                                                                                               <xsl:when test="$MP='MP23'">
-                                                                                                    pagoPA
-                                                                                                    <i>pagoPA </i>
-                                                                                                    (<xsl:value-of select="ModalitaPagamento" />)
-                                                                                               </xsl:when>
-                                                                                               <xsl:when test="$MP=''" />
-                                                                                               <xsl:otherwise>
-                                                                                                    <fehler>
-                                                                                                         (!!! falsche Kennung !!!)
-                                                                                                         <i>(!!! codice non previsto !!!)</i>
-                                                                                                    </fehler>
-                                                                                               </xsl:otherwise>
-                                                                                          </xsl:choose>
+                                                                                          <span>
+                                                                                               <xsl:choose>
+                                                                                                    <xsl:when test="$MP='MP01'">
+                                                                                                         bar
+                                                                                                         <i>contanti </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP02'">
+                                                                                                         Scheck
+                                                                                                         <i>assegno </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP03'">
+                                                                                                         Zirkularscheck
+                                                                                                         <i>assegno circolare </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP04'">
+                                                                                                         über Schatzamt
+                                                                                                         <i>contanti presso Tesoreria </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP05'">
+                                                                                                         Überweisung
+                                                                                                         <i>bonifico </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP06'">
+                                                                                                         Wechsel
+                                                                                                         <i>vaglia cambiario </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP07'">
+                                                                                                         Bankmitteilung
+                                                                                                         <i>bollettino bancario </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP08'">
+                                                                                                         Zahlkarte
+                                                                                                         <i>carta di pagamento </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP09'"> (RID)</xsl:when>
+                                                                                                    <xsl:when test="$MP='MP10'">
+                                                                                                         RID normal
+                                                                                                         <i>RID utenze </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP11'">
+                                                                                                         RID Schnell
+                                                                                                         <i>RID veloce </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP12'"> 
+                                                                                                         RIBA 
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP13'"> 
+                                                                                                         MAV 
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP14'"> 
+                                                                                                         quietanza erario 
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP15'"> 
+                                                                                                         giroconto su conti di contabilità speciale 
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP16'">
+                                                                                                         Bankdauerauftrag
+                                                                                                         <i>domiciliazione bancaria </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP17'">
+                                                                                                         Postdauerauftrag
+                                                                                                         <i>domiciliazione postale </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP18'">
+                                                                                                         Postüberweisung
+                                                                                                         <i>bollettino di c/c postale </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP19'"> 
+                                                                                                         SEPA Direct Debit 
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP20'"> 
+                                                                                                         SEPA Direct Debit CORE 
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP='MP21'"> 
+                                                                                                         SEPA Direct Debit B2B 
+                                                                                                    </xsl:when>
+                                                                                                    <!-- Version 1.2 -->
+                                                                                                    <xsl:when test="$MP='MP22'">
+                                                                                                         Einbehalt auf bereits bezahlte Summe
+                                                                                                         <i>Trattenuta su somme già riscosse </i>
+                                                                                                    </xsl:when>
+                                                                                                    <!-- Version 1.2.1 -->
+                                                                                                    <xsl:when test="$MP='MP23'">
+                                                                                                         pagoPA
+                                                                                                         <i>pagoPA </i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$MP=''" />
+                                                                                                    <xsl:otherwise>
+                                                                                                         <fehler>
+                                                                                                              (!!! falsche Kennung !!!)
+                                                                                                              <i>(!!! codice non previsto !!!)</i>
+                                                                                                         </fehler>
+                                                                                                    </xsl:otherwise>
+                                                                                               </xsl:choose>
+                                                                                          </span>
+                                                                                          (<xsl:value-of select="ModalitaPagamento" />)
                                                                                      </td>
                                                                                 </tr>
                                                                            </xsl:if>
