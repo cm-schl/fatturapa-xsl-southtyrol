@@ -253,9 +253,10 @@ http://www.gnu.org/licenses/.
                               clear: both;
                          }
 
-                         #dati-dettaglio-linee {
+                         #dati-dettaglio-linee, #riepilogo-aliquote-nature {
                               margin-top: 12px;
                               margin-bottom: 12px;
+                              clear: both;
                          }
 
 			     </style>
@@ -272,7 +273,8 @@ http://www.gnu.org/licenses/.
                                                   <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore">
                                                        <div id="cedente" class="roundedCorners">
                                                             <h3>
-                                                                 Daten zum Lieferanten/Freiberufler -
+                                                                 Daten zum Lieferanten/Freiberufler
+                                                                 <br />
                                                                  <i>Dati del cedente/prestatore</i>
                                                             </h3>
                                                             <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore/DatiAnagrafici">
@@ -762,7 +764,8 @@ http://www.gnu.org/licenses/.
                                                   <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente">
                                                        <div id="cessionario" class="roundedCorners">
                                                             <h3>
-                                                                 Daten des Rechnungsempfängers -
+                                                                 Daten des Rechnungsempfängers
+                                                                 <br />
                                                                  <i>Dati del cessionario / committente</i>
                                                             </h3>
                                                             <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici">
@@ -3913,7 +3916,7 @@ http://www.gnu.org/licenses/.
                                                                            <xsl:if test="DataScadenzaPagamento">
                                                                                 <tr>
                                                                                      <td>
-                                                                                          Ende Zahlungsziel
+                                                                                          Datum Zahlungsziel
                                                                                           <br />
                                                                                           <i>Data scadenza pagamento</i>
                                                                                      </td>
@@ -4163,6 +4166,10 @@ http://www.gnu.org/licenses/.
                                                   </div>
                                              </xsl:if>
                                              <!--FINE DATI PAGAMENTO-->
+
+                                             <!-- INIZIO BLOCCO INFO PER CONTABILITÀ -->
+
+                                             <!-- FINE BLOCCO INFO PER CONTABILITÀ -->
 
                                              <!--INIZIO ALLEGATI-->
                                              <xsl:if test="Allegati">
