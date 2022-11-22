@@ -34,149 +34,6 @@ http://www.gnu.org/licenses/.
      <xsl:template name="CodiceUnivocoUfficio">
           <xsl:param name="kode" />
           <xsl:choose>
-               <xsl:when test="$kode = 'U9CVVQ'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    Generaldirektion
-                    <br />
-                    <i>DIREZIONE GENERALE</i>
-               </xsl:when>
-               <xsl:when test="$kode = '9G9VCD'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    Rechtsamt
-                    <br />
-                    <i>UFFICIO AFFARI LEGALI</i>
-               </xsl:when>
-               <xsl:when test="$kode = 'D31MSA'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    EDV-Amt
-                    <br />
-                    <i>UFFICIO EDP</i>
-               </xsl:when>
-               <xsl:when test="$kode = '0COHRW'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    Personal- und Organisationsamt
-                    <br />
-                    <i>UFFICIO PERSONALE ED ORGANIZZAZIONE</i>
-               </xsl:when>
-               <xsl:when test="$kode = 'LSXW8L'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    Wohnungszuweisung und Mieterangelegenheiten
-                    <br />
-                    <i>RIPARTIZIONE ALLOGGI ED INQUILINATO</i>
-               </xsl:when>
-               <xsl:when test="$kode = 'RW81BN'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    Mieterservicestelle Bozen
-                    <br />
-                    <i>CENTRO SERVIZI ALL'INQUILINATO DI BOLZANO</i>
-               </xsl:when>
-               <xsl:when test="$kode = 'GNXLXD'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    Mieterservicestelle Meran
-                    <br />
-                    <i>CENTRO SERVIZI ALL'INQUILINATO DI MERANO</i>
-               </xsl:when>
-               <xsl:when test="$kode = 'GSRA1J'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    Mieterservicestelle Brixen
-                    <br />
-                    <i>CENTRO SERVIZI ALL'INQUILINATO DI BRESSANONE</i>
-               </xsl:when>
-               <xsl:when test="$kode = '80WPE5'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    Technisches Dienste
-                    <br />
-                    <i>RIPARTIZIONE SERVIZI TECNICI</i>
-               </xsl:when>
-               <xsl:when test="$kode = 'NP7VMX'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    Technisches Amt Mitte Süd
-                    <br />
-                    <i>UFFICIO TECNICO CENTRO SUD</i>
-               </xsl:when>
-               <xsl:when test="$kode = 'KOJPJL'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    Technisches Amt Ost
-                    <br />
-                    <i>UFFICIO TECNICO EST</i>
-               </xsl:when>
-               <xsl:when test="$kode = '6ACTCE'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    Technisches Amt West
-                    <br />
-                    <i>UFFICIO TECNICO OVEST</i>
-               </xsl:when>
-               <xsl:when test="$kode = 'UAQVHQ'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    Amt für Buchhaltung, Bilanzen, Versicherung und Zahlungen
-                    <br />
-                    <i>UFFICIO CONTABILITA, BILANCI, ASSICURAZIONI E PAGAMENTI</i>
-               </xsl:when>
-               <xsl:when test="$kode = '3PZ58V'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    Arbeitsgruppe für Vergabe, Verträge und Vermögen
-                    <br />
-                    <i>GRUPPO DI LAVORO APPALTI, CONTRATTI E PATRIMONIO</i>
-               </xsl:when>
-               <xsl:when test="$kode = '00ROQ2'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    Technisches Amt Instandhaltung
-                    <br />
-                    <i>UFFICIO TECNICO MANUTENZIONE</i>
-               </xsl:when>
-               <xsl:when test="$kode = 'UFQKV2'">
-                    <span>
-                         <xsl:value-of select="$kode" />
-                    </span>
-                    <br />
-                    Uff_eFatturaPA
-               </xsl:when>
-
                <xsl:when test="$kode = '0000000'">
                     <span>
                          <xsl:value-of select="$kode" />
@@ -195,14 +52,12 @@ http://www.gnu.org/licenses/.
                     <br />
                     <i>Destinatario non residenti</i>
                </xsl:when>
-
                <xsl:otherwise>
                     <span>
                          <xsl:value-of select="$kode" />
                     </span>
                </xsl:otherwise>
           </xsl:choose>
-          <xsl:variable name="kodeSel" select="''" />
      </xsl:template>
 
      <xsl:template name="FormatDate">
@@ -256,49 +111,55 @@ http://www.gnu.org/licenses/.
                <head>
                     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                     <style type="text/css">
-				#fattura-container { width: 100%; position: relative; }
+                         #fattura-container { width: 100%; position: relative; }
 
-				#fattura-elettronica { font-family: sans-serif; font-size: 10px; margin-left: auto; margin-right: auto; max-width: 840px; min-width: 600px; padding: 0; }
-				#fattura-elettronica .version{ font-size: 9px; float:right; color: #777777; }
-				#fattura-elettronica h1 { padding: 5px 0 0 0; margin: 0; font-size: 22px; }
-				#fattura-elettronica h2 { padding: 5px 0 0 0; margin: 0; font-size: 18px; }
-				#fattura-elettronica h3 { padding: 5px 0 0 0; margin: 0; font-size: 15px; }
-				#fattura-elettronica h4 { padding: 5px 0 0 0; margin: 0; font-size: 12px; }
-				#fattura-elettronica h5 { padding: 3px 0 0 0; margin: 0; font-size: 10px; font-style: italic; }
-				#fattura-elettronica ul { list-style-type: none; margin: 0 !important; padding: 10px 0 0 40px !important; }
-				#fattura-elettronica ul li {}
-				#fattura-elettronica span { font-weight: bold; font-size: 10pt;}
-     				#fattura-elettronica fehler {color: red; text-decoration:blink; }
-				#fattura-elettronica div { padding: 0; margin: 0; }
-				#fattura-elettronica
-				
-				div.page {
-				background-color: #fff !important;
-				position: relative;
+                         #fattura-elettronica { font-family: sans-serif; font-size: 10px; margin-left: auto; margin-right: auto; max-width: 840px; min-width: 600px; padding: 0; }
+                         #fattura-elettronica .version{ font-size: 9px; float:right; color: #777777; }
+                         #fattura-elettronica h1 { padding: 5px 0 0 0; margin: 0; font-size: 22px; }
+                         #fattura-elettronica h2 { padding: 5px 0 0 0; margin: 0; font-size: 18px; }
+                         #fattura-elettronica h3 { padding: 5px 0 0 0; margin: 0; font-size: 15px; }
+                         #fattura-elettronica h4 { padding: 5px 0 0 0; margin: 0; font-size: 12px; }
+                         #fattura-elettronica h5 { padding: 3px 0 0 0; margin: 0; font-size: 10px; font-style: italic; }
+                         #fattura-elettronica ul { list-style-type: none; margin: 0 !important; padding: 10px 0 0 40px !important; }
+                         #fattura-elettronica ul li {}
+                         #fattura-elettronica span { font-weight: bold; }
+                         #fattura-elettronica .smalltext { font-size: 10px; }
+                         #fattura-elettronica fehler {color: red; text-decoration:blink; }
+                         #fattura-elettronica div { padding: 0; margin: 0; }
+                         #fattura-elettronica 
 
-				margin: 10px 0 5px 0; padding: 5px;
+                         div.page {
+                         background-color: #fff !important;
+                         position: relative;
 
-				background: -moz-linear-gradient(0% 0 360deg, #FFFFFF, #F2F2F2 20%, #FFFFFF) repeat scroll 0 0 transparent;
-				border: 1px solid #CCCCCC;
-				-webkitbox-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-				-mozbox-shadow: 0
-				0 10px rgba(0, 0, 0, 0.3);
-				box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                         margin: 10px 0 5px 0; padding: 5px;
 
-				background: url('logo_sdi_trasparente.jpg') 98% 50px no-repeat;
-				}
-				table {table-layout: auto; width: 99%; font-size: 12px;}
-				table td {overflow: hidden;}
-				table, td, th { border: 1px solid black; border-collapse: collapse;}
-				#t1 td, #t1 th { border: none; }
-				#ti td { color: #000000; background-color: #EAF2D3;}
-				th { padding: 2px;}
-				td { padding: 2px; word-wrap:break-word;}
-				div.footer { padding: 10px 0 0 0; margin: 0; font-size: 10px; text-align: center; color: #777777; }
-				tr:nth-of-type(even){background-color: #F3F3F3;}
-				tr:nth-of-type(odd) {background-color:#d0d0d0;}
-				th {background-color:#808080; color: #ffffff;}
-			</style>
+                         background: -moz-linear-gradient(0% 0 360deg, #FFFFFF, #F2F2F2 20%, #FFFFFF) repeat scroll 0 0 transparent;
+                         border: 1px solid #CCCCCC;
+                         -webkitbox-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                         -mozbox-shadow: 0
+                         0 10px rgba(0, 0, 0, 0.3);
+                         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+                         }
+                         table {table-layout: auto; width: 99%; font-size: 12px;}
+                         table td {overflow: hidden;}
+                         table, td, th { border: 1px solid black; border-collapse: collapse;}
+                         #t1 td, #t1 th { border: none; }
+                         #ti td { color: #000000; background-color: #EAF2D3;}
+                         th { padding: 2px;}
+                         td { padding: 2px; word-wrap:break-word;}
+                         div.footer { padding: 10px 0 0 0; margin: 0; font-size: 10px; text-align: center; color: #777777; clear:both; }
+                         tr:nth-of-type(even){background-color: #F3F3F3;}
+                         tr:nth-of-type(odd) {background-color:#d0d0d0;}
+                         th {background-color:#808080; color: #ffffff;}
+                         
+                         #cedente { float:left; width: 50%; clear: right; }
+                         #cessionario { float:left; width: 50%; }
+                         #dati-trasmissione { float:left; width: 33%; clear:both; }
+                         #terzointermediario { float:left; width: 33%; }
+                         #soggetto-emittente { float:left; width: 33%; }
+			     </style>
                </head>
                <body>
                     <div id="fattura-container">
@@ -317,102 +178,6 @@ http://www.gnu.org/licenses/.
                                                   <i>versione </i>
                                                   <xsl:value-of select="a:FatturaElettronica/@versione" />
                                              </div>
-                                             <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/DatiTrasmissione">
-                                                  <!--INIZIO DATI DELLA TRASMISSIONE-->
-                                                  <div id="dati-trasmissione">
-                                                       <h3>
-                                                            Daten zur Übertragung -
-                                                            <i>Dati relativi alla trasmissione</i>
-                                                       </h3>
-                                                       <table id="t1">
-                                                            <xsl:for-each select="a:FatturaElettronica/FatturaElettronicaHeader/DatiTrasmissione">
-                                                                 <xsl:if test="IdTrasmittente or ProgressivoInvio or FormatoTrasmissione">
-                                                                      <tr>
-                                                                           <td width="200px">
-                                                                                Übertragungskennung
-                                                                                <br />
-                                                                                <i>Ident. di trasmissione</i>
-                                                                           </td>
-                                                                           <td width="500px">
-                                                                                <span>
-                                                                                     <xsl:if test="FormatoTrasmissione">
-                                                                                          <xsl:value-of select="FormatoTrasmissione" />
-                                                                                          :
-                                                                                     </xsl:if>
-                                                                                     <xsl:if test="IdTrasmittente">
-                                                                                          <xsl:value-of select="IdTrasmittente/IdPaese" />
-                                                                                          <xsl:value-of select="IdTrasmittente/IdCodice" />
-                                                                                          _
-                                                                                     </xsl:if>
-                                                                                     <xsl:if test="ProgressivoInvio">
-                                                                                          <xsl:value-of select="ProgressivoInvio" />
-                                                                                     </xsl:if>
-                                                                                </span>
-                                                                           </td>
-                                                                      </tr>
-                                                                 </xsl:if>
-                                                                 <xsl:if test="CodiceDestinatario">
-                                                                      <tr>
-                                                                           <td>
-                                                                                Kennung Rechnungsempfänger
-                                                                                <br />
-                                                                                <i>Codice destinatario</i>
-                                                                           </td>
-                                                                           <td>
-                                                                                <xsl:call-template name="CodiceUnivocoUfficio">
-                                                                                     <xsl:with-param name="kode" select="CodiceDestinatario" />
-                                                                                </xsl:call-template>
-                                                                           </td>
-                                                                      </tr>
-                                                                 </xsl:if>
-                                                                 <xsl:if test="ContattiTrasmittente/Telefono">
-                                                                      <tr>
-                                                                           <td>
-                                                                                Telefonnummer Sender
-                                                                                <br />
-                                                                                <i>Telefono del trasmittente</i>
-                                                                           </td>
-                                                                           <td>
-                                                                                <span>
-                                                                                     <xsl:value-of select="ContattiTrasmittente/Telefono" />
-                                                                                </span>
-                                                                           </td>
-                                                                      </tr>
-                                                                 </xsl:if>
-                                                                 <xsl:if test="ContattiTrasmittente/Email">
-                                                                      <tr>
-                                                                           <td>
-                                                                                E-Mail des Senders
-                                                                                <br />
-                                                                                <i>E-mail del trasmittente</i>
-                                                                           </td>
-                                                                           <td>
-                                                                                <span>
-                                                                                     <xsl:value-of select="ContattiTrasmittente/Email" />
-                                                                                </span>
-                                                                           </td>
-                                                                      </tr>
-                                                                 </xsl:if>
-                                                                 <!-- Version 1.2 -->
-                                                                 <xsl:if test="PECDestinatario">
-                                                                      <tr>
-                                                                           <td>
-                                                                                zertifizierte E-Mail des Empfängers
-                                                                                <br />
-                                                                                <i>E-mail certificata del destinatario</i>
-                                                                           </td>
-                                                                           <td>
-                                                                                <span>
-                                                                                     <xsl:value-of select="PECDestinatario" />
-                                                                                </span>
-                                                                           </td>
-                                                                      </tr>
-                                                                 </xsl:if>
-                                                            </xsl:for-each>
-                                                       </table>
-                                                  </div>
-                                             </xsl:if>
-                                             <!--FINE DATI DELLA TRASMISSIONE-->
 
                                              <!--INIZIO DATI CEDENTE PRESTATORE-->
                                              <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore">
@@ -1111,22 +876,115 @@ http://www.gnu.org/licenses/.
                                              </xsl:if>
                                              <!--FINE DATI CESSIONARIO COMMITTENTE-->
 
+                                             <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/DatiTrasmissione">
+                                             <!--INIZIO DATI DELLA TRASMISSIONE-->
+                                             <div id="dati-trasmissione">
+                                                  <h4>
+                                                       Daten zur Übertragung -
+                                                       <i>Dati relativi alla trasmissione</i>
+                                                  </h4>
+                                                  <table id="t1" class="smalltext">
+                                                       <xsl:for-each select="a:FatturaElettronica/FatturaElettronicaHeader/DatiTrasmissione">
+                                                            <xsl:if test="IdTrasmittente or ProgressivoInvio or FormatoTrasmissione">
+                                                                 <tr>
+                                                                      <td width="200px">
+                                                                           Übertragungskennung
+                                                                           <br />
+                                                                           <i>Ident. di trasmissione</i>
+                                                                      </td>
+                                                                      <td width="500px">
+                                                                           <span>
+                                                                                <xsl:if test="FormatoTrasmissione">
+                                                                                     <xsl:value-of select="FormatoTrasmissione" />
+                                                                                     :
+                                                                                </xsl:if>
+                                                                                <xsl:if test="IdTrasmittente">
+                                                                                     <xsl:value-of select="IdTrasmittente/IdPaese" />
+                                                                                     <xsl:value-of select="IdTrasmittente/IdCodice" />
+                                                                                     _
+                                                                                </xsl:if>
+                                                                                <xsl:if test="ProgressivoInvio">
+                                                                                     <xsl:value-of select="ProgressivoInvio" />
+                                                                                </xsl:if>
+                                                                           </span>
+                                                                      </td>
+                                                                 </tr>
+                                                            </xsl:if>
+                                                            <xsl:if test="CodiceDestinatario">
+                                                                 <tr>
+                                                                      <td>
+                                                                           Kennung Rechnungsempfänger
+                                                                           <br />
+                                                                           <i>Codice destinatario</i>
+                                                                      </td>
+                                                                      <td>
+                                                                           <xsl:call-template name="CodiceUnivocoUfficio">
+                                                                                <xsl:with-param name="kode" select="CodiceDestinatario" />
+                                                                           </xsl:call-template>
+                                                                      </td>
+                                                                 </tr>
+                                                            </xsl:if>
+                                                            <xsl:if test="ContattiTrasmittente/Telefono">
+                                                                 <tr>
+                                                                      <td>
+                                                                           Telefonnummer Sender
+                                                                           <br />
+                                                                           <i>Telefono del trasmittente</i>
+                                                                      </td>
+                                                                      <td>
+                                                                           <span>
+                                                                                <xsl:value-of select="ContattiTrasmittente/Telefono" />
+                                                                           </span>
+                                                                      </td>
+                                                                 </tr>
+                                                            </xsl:if>
+                                                            <xsl:if test="ContattiTrasmittente/Email">
+                                                                 <tr>
+                                                                      <td>
+                                                                           E-Mail des Senders
+                                                                           <br />
+                                                                           <i>E-mail del trasmittente</i>
+                                                                      </td>
+                                                                      <td>
+                                                                           <span>
+                                                                                <xsl:value-of select="ContattiTrasmittente/Email" />
+                                                                           </span>
+                                                                      </td>
+                                                                 </tr>
+                                                            </xsl:if>
+                                                            <!-- Version 1.2 -->
+                                                            <xsl:if test="PECDestinatario">
+                                                                 <tr>
+                                                                      <td>
+                                                                           zertifizierte E-Mail des Empfängers
+                                                                           <br />
+                                                                           <i>E-mail certificata del destinatario</i>
+                                                                      </td>
+                                                                      <td>
+                                                                           <span>
+                                                                                <xsl:value-of select="PECDestinatario" />
+                                                                           </span>
+                                                                      </td>
+                                                                 </tr>
+                                                            </xsl:if>
+                                                       </xsl:for-each>
+                                                  </table>
+                                             </div>
+                                        </xsl:if>
+                                        <!--FINE DATI DELLA TRASMISSIONE-->
+
                                              <!--INIZIO DATI TERZO INTERMEDIARIO SOGGETTO EMITTENTE-->
                                              <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/TerzoIntermediarioOSoggettoEmittente">
                                                   <div id="terzointermediario">
 
                                                        <xsl:for-each select="a:FatturaElettronica/FatturaElettronicaHeader/TerzoIntermediarioOSoggettoEmittente">
-                                                            <h3>
+                                                            <h4>
                                                                  Daten des Vermittlers des Emittenten -
                                                                  <i>Dati del terzo intermediario soggetto emittente</i>
-                                                            </h3>
+                                                            </h4>
 
                                                             <xsl:if test="DatiAnagrafici">
-                                                                 <h4>
-                                                                      Anagrafische Daten -
-                                                                      <i>Dati anagrafici</i>
-                                                                 </h4>
-                                                                 <table id="t1">
+                                                                 <table id="t1" class="smalltext">
                                                                       <xsl:if test="DatiAnagrafici/Anagrafica/Denominazione or DatiAnagrafici/Anagrafica/Titolo or DatiAnagrafici/Anagrafica/Nome or DatiAnagrafici/Anagrafica/Cognome">
                                                                            <tr>
                                                                                 <td width="200px">
@@ -1202,11 +1060,11 @@ http://www.gnu.org/licenses/.
                                              <!--INIZIO DATI SOGGETTO EMITTENTE-->
                                              <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/SoggettoEmittente">
                                                   <div id="soggetto-emittente">
-                                                       <h3>
+                                                       <h4>
                                                             Rechnungsersteller -
                                                             <i>Soggetto emittente la fattura</i>
-                                                       </h3>
-                                                       <table id="t1">
+                                                       </h4>
+                                                       <table id="t1" class="smalltext">
                                                             <tr>
                                                                  <td width="200px">
                                                                       Austeller
