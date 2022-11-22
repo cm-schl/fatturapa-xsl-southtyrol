@@ -495,7 +495,7 @@ http://www.gnu.org/licenses/.
                                                                       Handelsregistereintragung -
                                                                       <i>Dati di iscrizione nel registro delle imprese</i>
                                                                  </div>
-                                                                 <table id="t1">
+                                                                 <table id="t1" class="smalltext">
                                                                       <xsl:for-each select="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore/IscrizioneREA">
                                                                            <xsl:if test="Ufficio">
                                                                                 <tr>
