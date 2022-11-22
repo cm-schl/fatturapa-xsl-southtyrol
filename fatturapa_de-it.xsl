@@ -25,10 +25,8 @@ http://www.gnu.org/licenses/.
      <xsl:output method="html" />
 
      <xsl:variable name="VersionFT">
-          <p>
-               Stylesheet FatturaPA. Contributors and license:
-               https://github.com/provbz/fatturapa-xsl-southtyrol / https://github.com/cm-schl/fatturapa-xsl-southtyrol
-          </p>
+               Contributors and license: https://github.com/provbz/fatturapa-xsl-southtyrol / https://github.com/cm-schl/fatturapa-xsl-southtyrol
+               <br />
      </xsl:variable>
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="." />
 
@@ -113,7 +111,7 @@ http://www.gnu.org/licenses/.
                     <style type="text/css">
                          #fattura-container { width: 100%; position: relative; }
 
-                         #fattura-elettronica { font-family: sans-serif; font-size: 10px; margin-left: auto; margin-right: auto; max-width: 840px; min-width: 600px; padding: 0; }                         
+                         #fattura-elettronica { font-family: sans-serif; font-size: 10px; margin-left: auto; margin-right: auto; max-width: 900px; min-width: 600px; padding: 0; }                         
                          #fattura-elettronica h1 { padding: 5px 0 0 0; margin: 0; font-size: 22px; }
                          #fattura-elettronica h2 { padding: 5px 0 0 0; margin: 0; font-size: 18px; }
                          #fattura-elettronica h3 { padding: 5px 0 0 0; margin: 0; font-size: 15px; }
@@ -2889,9 +2887,9 @@ http://www.gnu.org/licenses/.
                                                                       <xsl:if test="NumeroDDT or DataDDT or RiferimentoNumeroLinea">
                                                                            <tr>
                                                                                 <td width="200px">
-                                                                                     Nummer, Datum WBS
+                                                                                     Nr., Datum WBS
                                                                                      <br />
-                                                                                     <i>Numero data DDT</i>
+                                                                                     <i>n., data DDT</i>
                                                                                 </td>
                                                                                 <td width="500px">
                                                                                      <xsl:if test="NumeroDDT">
@@ -2900,7 +2898,7 @@ http://www.gnu.org/licenses/.
                                                                                           </span>
                                                                                      </xsl:if>
                                                                                      <xsl:if test="DataDDT">
-                                                                                          vom/
+                                                                                          vom /
                                                                                           <i>del</i>
                                                                                            
                                                                                           <span>
@@ -2911,7 +2909,7 @@ http://www.gnu.org/licenses/.
                                                                                      </xsl:if>
                                                                                      <xsl:if test="RiferimentoNumeroLinea">
                                                                                           <br />
-                                                                                          Betrifft Zeile/
+                                                                                          Betrifft Zeile /
                                                                                           <i>Rif.linea</i>
                                                                                            
                                                                                           <xsl:for-each select="RiferimentoNumeroLinea">
@@ -4382,9 +4380,6 @@ http://www.gnu.org/licenses/.
                                              <!--FINE ALLEGATI-->
                                              <div class="footer">
                                                   <xsl:copy-of select="$VersionFT" />
-                                                  FatturaPA Version/
-                                                  <i>versione </i>
-                                                  <xsl:value-of select="/a:FatturaElettronica/@versione" />
                                              </div>
                                         </div>
                                    </xsl:for-each>
