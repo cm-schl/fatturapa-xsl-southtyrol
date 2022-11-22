@@ -1,15 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
-fatturapa_v1.2.1_de-it.xsl
+fatturapa_de-it.xsl
 Copyright (C) 2020 Ferdinand Tavernini WOBI-IPES Bozen/Bolzano
 and contributors.
 
-The XSL-stylesheet fatturapa_v1.2.1_de-it.xsl is free software:
+Compatibility: FatturaPA v1.2.2
+
+The XSL-stylesheet fatturapa_de-it.xsl is free software:
 you can redistribute it and/or modify it under the terms of the
 GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or any later version.
 
-fatturapa_v1.2.1_de-it.xsl is distributed in the hope that it will
+fatturapa_de-it.xsl is distributed in the hope that it will
 be useful, but WITHOUT ANY WARRANTY; without even the implied
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 See the GNU General Public License for more details.
@@ -1285,14 +1287,14 @@ http://www.gnu.org/licenses/.
                                                                                 <i>Estrazione beni da Deposito IVA con versamento dell'IVA </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD24'">
-                                                                                Aufgeschobene Rechnung gemäß Artikel 21, Absatz 4, Buchstabe a)
+                                                                                Aufgeschobene Rechnung gemäß Artikel 21, Absatz 4, Dritter Satz Buchstabe a) (DPR 633/72)
                                                                                 <br />
-                                                                                <i>Fattura differita di cui all'art. 21, comma 4, lett. a) </i>
+                                                                                <i>Fattura differita di cui all'art.21, comma 4, terzo periodo lett. a) DPR 633/72 </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD25'">
-                                                                                Aufgeschobene Rechnung gemäß Artikel 21, Absatz 4, Dritter Satz Buchstabe b)
+                                                                                Aufgeschobene Rechnung gemäß Artikel 21, Absatz 4, Dritter Satz Buchstabe b) (DPR 633/72)
                                                                                 <br />
-                                                                                <i>Fattura differita di cui all'art. 21, comma 4, terzo periodo lett. b) </i>
+                                                                                <i>Fattura differita di cui all'art.21, comma 4, terzo periodo lett. b) DPR 633/72 </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD26'">
                                                                                 Übertragung von abschreibungsfähigen Gütern und für interner Transaktionen (Art. 36 DPR 633/72)
@@ -1303,6 +1305,12 @@ http://www.gnu.org/licenses/.
                                                                                 Rechnung für Eigenverbrauch oder für kostenlose Abtretungen ohne Entschädigung
                                                                                 <br />
                                                                                 <i>Fattura per autoconsumo o per cessioni gratuite senza rivalsa </i>
+                                                                           </xsl:when>
+                                                                           <!-- Version 1.2.2 -->
+                                                                           <xsl:when test="$TD='TD28'">
+                                                                                Ankäufe aus San Marino mit MwSt. (Rechnung in Papierform)
+                                                                                <br />
+                                                                                <i>Acquisti da San Marino con IVA (fattura cartacea) </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD=''" />
                                                                            <xsl:otherwise>
@@ -1682,9 +1690,9 @@ http://www.gnu.org/licenses/.
                                                                                                          <xsl:choose>
                                                                                                               <!-- Version 1.2.1 -->
                                                                                                               <xsl:when test="$NT='N1'">
-                                                                                                                   ausgenommener Geschäftsvorg. ex Art. 15
+                                                                                                                   ausgenommener Geschäftsvorg. ex Art. 15 (DPR 633/1972)
                                                                                                                    <br />
-                                                                                                                   <i>escluse ex art. 15 </i>
+                                                                                                                   <i>Escluse ex. art. 15 del D.P.R. 633/1972 </i>
                                                                                                               </xsl:when>
                                                                                                               <xsl:when test="$NT='N2'">
                                                                                                                    nicht unterworfener Geschäftsvorg. (darf nach dem 31.12.2020 nicht mehr verwendet werden)
@@ -1757,9 +1765,9 @@ http://www.gnu.org/licenses/.
                                                                                                                    <i>inversione contabile – cessione di rottami e altri materiali di recupero </i>
                                                                                                               </xsl:when>
                                                                                                               <xsl:when test="$NT='N6.2'">
-                                                                                                                   Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von reinem Gold und Silber
+                                                                                                                   Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Gold und Silber laut Gesetz 7/2000 sowie gebrauchter Goldschmiedekunst durch zugelassene Händler (OPO)
                                                                                                                    <br />
-                                                                                                                   <i>inversione contabile – cessione di oro e argento puro </i>
+                                                                                                                   <i>Inversione contabile - cessione di oro e argento ai sensi della legge 7/2000 nonché di oreficeria usata ad OPO </i>
                                                                                                               </xsl:when>
                                                                                                               <xsl:when test="$NT='N6.3'">
                                                                                                                    Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Unteraufträge im Bausektor
@@ -1798,11 +1806,9 @@ http://www.gnu.org/licenses/.
                                                                                                               </xsl:when>
                                                                                                               <!-- Version 1.2 -->
                                                                                                               <xsl:when test="$NT='N7'">
-                                                                                                                   MwSt.-Schuld in einem anderen EU-Land abgegolten
+                                                                                                                   MwSt.-Schuld in einem anderen EU-Land abgegolten (Dienstleistung im Bereich Telekommunikation, Rundfunk und Elektronik ex Art. 7-octies Buchstabe a, b, Art. 74-sexies DPR 633/72)
                                                                                                                    <br />
-                                                                                                                   <i>
-                                                                                                                        IVA assolta in altro stato UE 
-                                                                                                                   </i>
+                                                                                                                   <i>IVA assolta in altro stato UE (prestazione di servizi di telecomunicazioni, tele-radiodiffusione ed elettronici ex art. 7-octies lett. a, b, art. 74-sexies DPR 633/72) </i>
                                                                                                               </xsl:when>
                                                                                                               <xsl:when test="$NT=''" />
                                                                                                               <xsl:otherwise>
@@ -3470,9 +3476,9 @@ http://www.gnu.org/licenses/.
                                                                                      <xsl:choose>
                                                                                           <!-- Version 1.2.1 -->
                                                                                           <xsl:when test="$NAT1='N1'">
-                                                                                               ausgenommener Geschäftsvorg. ex Art. 15
+                                                                                               ausgenommener Geschäftsvorg. ex Art. 15 (DPR 633/1972)
                                                                                                <br />
-                                                                                               <i>escluse ex art. 15 </i>
+                                                                                               <i>Escluse ex. art. 15 del D.P.R. 633/1972 </i>
                                                                                           </xsl:when>
                                                                                           <xsl:when test="$NAT1='N2'">
                                                                                                nicht unterworfener Geschäftsvorg. (darf nach dem 31.12.2020 nicht mehr verwendet werden)
@@ -3545,9 +3551,9 @@ http://www.gnu.org/licenses/.
                                                                                                <i>inversione contabile – cessione di rottami e altri materiali di recupero </i>
                                                                                           </xsl:when>
                                                                                           <xsl:when test="$NAT1='N6.2'">
-                                                                                               Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von reinem Gold und Silber
+                                                                                               Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Gold und Silber laut Gesetz 7/2000 sowie gebrauchter Goldschmiedekunst durch zugelassene Händler (OPO)
                                                                                                <br />
-                                                                                               <i>inversione contabile – cessione di oro e argento puro </i>
+                                                                                               <i>Inversione contabile - cessione di oro e argento ai sensi della legge 7/2000 nonché di oreficeria usata ad OPO </i>
                                                                                           </xsl:when>
                                                                                           <xsl:when test="$NAT1='N6.3'">
                                                                                                Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Unteraufträge im Bausektor
@@ -3586,9 +3592,9 @@ http://www.gnu.org/licenses/.
                                                                                           </xsl:when>
                                                                                           <!-- Version 1.2 -->
                                                                                           <xsl:when test="$NAT1='N7'">
-                                                                                               MwSt.-Schuld in einem anderen EU-Land abgegolten
+                                                                                               MwSt.-Schuld in einem anderen EU-Land abgegolten (Dienstleistung im Bereich Telekommunikation, Rundfunk und Elektronik ex Art. 7-octies Buchstabe a, b, Art. 74-sexies DPR 633/72)
                                                                                                <br />
-                                                                                               <i>IVA assolta in altro stato UE </i>
+                                                                                               <i>IVA assolta in altro stato UE (prestazione di servizi di telecomunicazioni, tele-radiodiffusione ed elettronici ex art. 7-octies lett. a, b, art. 74-sexies DPR 633/72) </i>
                                                                                           </xsl:when>
                                                                                           <xsl:when test="$NAT1=''" />
                                                                                           <xsl:otherwise>
@@ -4256,6 +4262,26 @@ http://www.gnu.org/licenses/.
                                                        </h3>
                                                        <xsl:for-each select="Allegati">
                                                             <table id="t1">
+                                                                 <!-- generate a clickable link when the attachment is a pdf file -->
+                                                                 <!-- TO TEST
+                                                                      <xsl:if test="lower-case(FormatoAttachment)='pdf'">
+                                                                           <tr>
+                                                                                <td width="200px">
+                                                                                     PDF-Datei
+                                                                                     <br />
+                                                                                     <i>File pdf</i>
+                                                                                </td>
+                                                                                <td>
+                                                                                     <a>
+                                                                                          <xsl:attribute name="href">
+                                                                                               <xsl:value-of select="concat('data:application/pdf;base64,',Attachment)" />
+                                                                                          </xsl:attribute>
+                                                                                          Anlage öffnen / apri allegato
+                                                                                     </a>
+                                                                                </td>
+                                                                           </tr>
+                                                                      </xsl:if>
+                                                                 -->
                                                                  <xsl:if test="NomeAttachment">
                                                                       <tr>
                                                                            <td width="200px">
