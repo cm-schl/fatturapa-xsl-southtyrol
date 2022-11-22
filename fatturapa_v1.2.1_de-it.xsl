@@ -112,8 +112,7 @@ http://www.gnu.org/licenses/.
                     <style type="text/css">
                          #fattura-container { width: 100%; position: relative; }
 
-                         #fattura-elettronica { font-family: sans-serif; font-size: 10px; margin-left: auto; margin-right: auto; max-width: 840px; min-width: 600px; padding: 0; }
-                         #fattura-elettronica .version{ font-size: 9px; float:right; color: #777777; }
+                         #fattura-elettronica { font-family: sans-serif; font-size: 10px; margin-left: auto; margin-right: auto; max-width: 840px; min-width: 600px; padding: 0; }                         
                          #fattura-elettronica h1 { padding: 5px 0 0 0; margin: 0; font-size: 22px; }
                          #fattura-elettronica h2 { padding: 5px 0 0 0; margin: 0; font-size: 18px; }
                          #fattura-elettronica h3 { padding: 5px 0 0 0; margin: 0; font-size: 15px; }
@@ -125,7 +124,7 @@ http://www.gnu.org/licenses/.
                          #fattura-elettronica .smalltext { font-size: 10px; }
                          #fattura-elettronica fehler {color: red; text-decoration:blink; }
                          #fattura-elettronica div {
-                              padding: 2; 
+                              padding: 1; 
                          }
                          #fattura-elettronica div.page {
                          background-color: #fff !important;
@@ -140,13 +139,35 @@ http://www.gnu.org/licenses/.
                          0 10px rgba(0, 0, 0, 0.3);
                          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
                          }
-                         table {table-layout: auto; width: 99%; font-size: 12px; border:none; }
-                         table td {overflow: hidden;}
+
+                         table {
+                              table-layout: auto; 
+                              width: 99%; 
+                              font-size: 12px; 
+                              border: none; 
+                         }
+
+                         table td {
+                              overflow: hidden;
+                         }
+
                          table, td, th { 
                               border-collapse: collapse;
                          }
-                         #t1 td, #t1 th { border: none; }
-                         #ti td { color: #000000; background-color: #EAF2D3;}
+
+                         #t1 td, #t1 th {
+                               border: none; 
+                         }
+
+                         #ti td {
+                              color: #000000; 
+                              background-color: #EAF2D3;
+                         }
+
+                         #t2 td, #t2 th {
+                              border: 1px solid #a6a5a5;
+                         }
+                         
                          th { padding: 2px;}
                          td { padding: 2px; word-wrap: break-word;}
                          div.footer { padding: 10px 0 0 0; margin: 0; font-size: 10px; text-align: center; color: #777777; clear:both; }
@@ -154,25 +175,40 @@ http://www.gnu.org/licenses/.
                          tr:nth-of-type(odd) {background-color:#FFFFFF;}
                          th {background-color:#808080; color: #ffffff;}
                          
-                         #cedente { float:left; width: 49%; clear: right; }
-                         #cessionario { float:right; width: 49%; } 
+                         #cedente,
+                         #cessionario, 
+                         #dati-ordine-acquisto, 
+                         #dati-contratto, 
+                         #dati-convenzione, 
+                         #dati-ricezione, 
+                         #dati-fatture-collegate, 
+                         #dati-sal, 
+                         #dati-ddt, 
+                         #dati-trasporto, 
+                         #fattura-principale { 
+                              float: left; 
+                              width: 48%; 
+                              clear: right; 
+                              margin: 0.5px;
+                         }
+
                          #dati-trasmissione { 
                               float:left; 
                               clear:both;
                               margin-top: 2px;
-                              margin-right: 0px;
+                              margin-right: 1px;
                               margin-bottom: 0px;
                               margin-left: 0px;
-                              width: 33%;
+                              width: 32%;
                               
                          }
                          #terzointermediario { 
                               float:left; 
                               margin-top: 2px;
-                              margin-right: 0px;
+                              margin-right: 1px;
                               margin-bottom: 0px;
                               margin-left: 0px;
-                              width: 32%;
+                              width: 31%;
                          }
                          #soggetto-emittente { 
                               float:left; 
@@ -180,7 +216,7 @@ http://www.gnu.org/licenses/.
                               margin-right: 0px;
                               margin-bottom: 0px;
                               margin-left: 0px;
-                              width: 32%;
+                              width: 31%;
                          }
 
                          /* Used to break words that are to long - like mail adresses etc. */
@@ -188,16 +224,17 @@ http://www.gnu.org/licenses/.
                               word-break: break-all;
                          }
 
-                         /* Border settings for div's */
-                         .with-border {
-                              border: 1px solid #c6c3c3;
-                         }
-
                          #sub-heading {
                               font-size: 13px;
                               font-weight: bold;
                               text-decoration-line: underline;
                               text-decoration-style: solid;
+                         }
+
+                         .highlighted {
+                              font-size: 16px;
+                              font-weight: bold;
+                              color: darkblue;
                          }
 
                          /* use flexboxes to align the items in this container (same height for example) */
@@ -209,6 +246,12 @@ http://www.gnu.org/licenses/.
                               width: 100%;
                            }
 
+                           .roundedCorners {
+                              border-radius: 10px;
+                              border: 2px solid #cccccc;
+                              padding: 5px !important;
+                              clear: both;
+                         }
 
 			     </style>
                </head>
@@ -219,15 +262,10 @@ http://www.gnu.org/licenses/.
                               <div id="fattura-elettronica">
                                    <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader">
                                         <div class="page">
-                                             <div class="version">
-                                                  FatturaPA Version/
-                                                  <i>versione </i>
-                                                  <xsl:value-of select="a:FatturaElettronica/@versione" />
-                                             </div>
                                              <div id="flex-container">
                                                   <!--INIZIO DATI CEDENTE PRESTATORE-->
                                                   <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore">
-                                                       <div id="cedente" class="with-border">
+                                                       <div id="cedente" class="roundedCorners">
                                                             <h3>
                                                                  Daten zum Lieferanten/Freiberufler -
                                                                  <i>Dati del cedente/prestatore</i>
@@ -718,7 +756,7 @@ http://www.gnu.org/licenses/.
 
                                                   <!--INIZIO DATI CESSIONARIO COMMITTENTE-->
                                                   <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente">
-                                                       <div id="cessionario" class="with-border">
+                                                       <div id="cessionario" class="roundedCorners">
                                                             <h3>
                                                                  Daten des Rechnungsempfängers -
                                                                  <i>Dati del cessionario / committente</i>
@@ -911,7 +949,7 @@ http://www.gnu.org/licenses/.
                                              <div id="flex-container">                                             
                                                   <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/DatiTrasmissione">
                                                   <!--INIZIO DATI DELLA TRASMISSIONE-->
-                                                  <div id="dati-trasmissione" class="with-border">
+                                                  <div id="dati-trasmissione" class="roundedCorners">
                                                        <div id="sub-heading">
                                                             Daten zur Übertragung
                                                             <br />
@@ -1009,7 +1047,7 @@ http://www.gnu.org/licenses/.
 
                                                   <!--INIZIO DATI TERZO INTERMEDIARIO SOGGETTO EMITTENTE-->
                                                   <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/TerzoIntermediarioOSoggettoEmittente">
-                                                       <div id="terzointermediario" class="with-border">
+                                                       <div id="terzointermediario" class="roundedCorners">
 
                                                             <xsl:for-each select="a:FatturaElettronica/FatturaElettronicaHeader/TerzoIntermediarioOSoggettoEmittente">
                                                                  <div id="sub-heading">
@@ -1094,7 +1132,7 @@ http://www.gnu.org/licenses/.
 
                                                   <!--INIZIO DATI SOGGETTO EMITTENTE-->
                                                   <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/SoggettoEmittente">
-                                                       <div id="soggetto-emittente" class="with-border">
+                                                       <div id="soggetto-emittente" class="roundedCorners">
                                                             <div id="sub-heading">
                                                                  Rechnungsersteller
                                                                  <br />
@@ -1140,6 +1178,9 @@ http://www.gnu.org/licenses/.
                                              </div>
                                              <div class="footer">
                                                   <xsl:copy-of select="$VersionFT" />
+                                                  FatturaPA Version/
+                                                  <i>versione </i>
+                                                  <xsl:value-of select="a:FatturaElettronica/@versione" />
                                              </div>
                                         </div>
                                    </xsl:if>
@@ -1162,11 +1203,6 @@ http://www.gnu.org/licenses/.
                                         </xsl:if>
 
                                         <div class="page">
-                                             <div class="version">
-                                                  FatturaPA Version/
-                                                  <i>versione </i>
-                                                  <xsl:value-of select="../@versione" />
-                                             </div>
 
                                              <xsl:variable name="Valuta" select="DatiGenerali/DatiGeneraliDocumento/Divisa" />
 
@@ -1175,7 +1211,7 @@ http://www.gnu.org/licenses/.
                                                   <div id="dati-generali">
                                                        <xsl:if test="DatiGenerali/DatiGeneraliDocumento">
                                                             <!--INIZIO DATI GENERALI DOCUMENTO-->
-                                                            <div id="dati-generali-documento">
+                                                            <div id="dati-generali-documento" class="roundedCorners">
                                                                  <h3>
                                                                       <xsl:variable name="TD">
                                                                            <xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/TipoDocumento" />
@@ -1276,15 +1312,15 @@ http://www.gnu.org/licenses/.
                                                                  </h3>
 
                                                                  <table id="t1">
-                                                                      <xsl:if test="DatiGenerali/DatiGeneraliDocumento/Data">
-                                                                           <tr>
+                                                                      <tr>
+                                                                           <xsl:if test="DatiGenerali/DatiGeneraliDocumento/Data">
                                                                                 <td>
                                                                                      Dok.-nummer und -datum
                                                                                      <br />
                                                                                      <i>Numero e data doc.</i>
                                                                                 </td>
                                                                                 <td>
-                                                                                     <span>
+                                                                                     <span class="highlighted">
                                                                                           <xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Numero" />
                                                                                           vom / del 
                                                                                           <xsl:call-template name="FormatDate">
@@ -1292,25 +1328,23 @@ http://www.gnu.org/licenses/.
                                                                                           </xsl:call-template>
                                                                                      </span>
                                                                                 </td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="DatiGenerali/DatiGeneraliDocumento/ImportoTotaleDocumento">
-                                                                           <tr>
+                                                                           </xsl:if>
+                                                                           <xsl:if test="DatiGenerali/DatiGeneraliDocumento/ImportoTotaleDocumento">
                                                                                 <td>
                                                                                      Gesamtbetrag Dokument
                                                                                      <br />
                                                                                      <i>Importo totale documento</i>
                                                                                 </td>
                                                                                 <td>
-                                                                                     <span>
+                                                                                     <span class="highlighted">
                                                                                           <xsl:value-of select="$Valuta" />
                                                                                            
                                                                                           <xsl:variable name="ITD" select="DatiGenerali/DatiGeneraliDocumento/ImportoTotaleDocumento" />
                                                                                           <xsl:value-of select="format-number($ITD, '###.##0,00', 'euro')" />
                                                                                      </span>
                                                                                 </td>
-                                                                           </tr>
-                                                                      </xsl:if>
+                                                                           </xsl:if>
+                                                                      </tr>
                                                                       <xsl:if test="DatiGenerali/DatiGeneraliDocumento/Arrotondamento">
                                                                            <tr>
                                                                                 <td>
@@ -1332,7 +1366,7 @@ http://www.gnu.org/licenses/.
                                                                                      <br />
                                                                                      <i>Causale</i>
                                                                                 </td>
-                                                                                <td>
+                                                                                <td colspan="3">
                                                                                      <span>
                                                                                           <xsl:value-of select="current()" />
                                                                                      </span>
@@ -1882,1119 +1916,1119 @@ http://www.gnu.org/licenses/.
                                                             </div>
                                                        </xsl:if>
                                                        <!--FINE DATI GENERALI DOCUMENTO-->
-
-                                                       <!--INIZIO DATI DELL'ORDINE DI ACQUISTO-->
-                                                       <xsl:if test="DatiGenerali/DatiOrdineAcquisto">
-                                                            <div id="dati-ordine-acquisto">
-                                                                 <h3>
-                                                                      Daten zur Bestellung -
-                                                                      <i>Dati dell'ordine di acquisto</i>
-                                                                 </h3>
-                                                                 <table id="t1">
-                                                                      <xsl:for-each select="DatiGenerali/DatiOrdineAcquisto">
-                                                                           <xsl:if test="RiferimentoNumeroLinea">
-                                                                                <tr>
-                                                                                     <td width="200px">
-                                                                                          Zugehörige Zeilennummer der Rechnung
-                                                                                          <br />
-                                                                                          <i>Numero linea di fattura a cui si riferisce</i>
-                                                                                     </td>
-                                                                                     <td width="500px">
-                                                                                          <xsl:for-each select="RiferimentoNumeroLinea">
-                                                                                               <span>
-                                                                                                    <xsl:if test="(position( )) &gt; 1">, </xsl:if>
-                                                                                                    <xsl:value-of select="." />
-                                                                                               </span>
-                                                                                          </xsl:for-each>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="IdDocumento">
-                                                                                <tr>
-                                                                                     <td width="200px">
-                                                                                          Bestellkennung
-                                                                                          <br />
-                                                                                          <i>Ident. ordine di acquisto</i>
-                                                                                     </td>
-                                                                                     <td width="500px">
-                                                                                          <span>
-                                                                                               <xsl:value-of select="IdDocumento" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="Data">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Bestellungsdatum
-                                                                                          <br />
-                                                                                          <i>Data ordine di acquisto</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:call-template name="FormatDate">
-                                                                                                    <xsl:with-param name="DateTime" select="Data" />
-                                                                                               </xsl:call-template>
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="NumItem">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Zeilennummer der Bestellung
-                                                                                          <br />
-                                                                                          <i>Numero linea ordine di acquisto</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="NumItem" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodiceCommessaConvenzione">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Verkaufs-/Konventionskodex
-                                                                                          <br />
-                                                                                          <i>Codice commessa/convenzione</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodiceCommessaConvenzione" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodiceCUP">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Staatlicher Projektkodex
-                                                                                          <br />
-                                                                                          <i>Codice Unitario Progetto (CUP)</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodiceCUP" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodiceCIG">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Ausschreibungskode
-                                                                                          <br />
-                                                                                          <i>Codice Ident. Gara (CIG)</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodiceCIG" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                      </xsl:for-each>
-                                                                 </table>
-                                                            </div>
-                                                       </xsl:if>
-                                                       <!--FINE DATI DELL'ORDINE DI ACQUISTO-->
-
-                                                       <!--INIZIO DATI DEL CONTRATTO-->
-                                                       <xsl:if test="DatiGenerali/DatiContratto">
-                                                            <div id="dati-contratto">
-                                                                 <h3>
-                                                                      Vertragsdaten -
-                                                                      <i>Dati del contratto</i>
-                                                                 </h3>
-                                                                 <table id="t1">
-                                                                      <xsl:for-each select="DatiGenerali/DatiContratto">
-                                                                           <xsl:if test="RiferimentoNumeroLinea">
-                                                                                <tr>
-                                                                                     <td width="200px">
-                                                                                          Zugehörige Zeilennummer der Rechnung
-                                                                                          <br />
-                                                                                          <i>Numero linea di fattura a cui si riferisce</i>
-                                                                                     </td>
-                                                                                     <td width="500px">
-                                                                                          <xsl:for-each select="RiferimentoNumeroLinea">
-                                                                                               <span>
-                                                                                                    <xsl:if test="(position( )) &gt; 1">, </xsl:if>
-                                                                                                    <xsl:value-of select="." />
-                                                                                               </span>
-                                                                                          </xsl:for-each>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="IdDocumento">
-                                                                                <tr>
-                                                                                     <td width="200px">
-                                                                                          Vertragskenndaten
-                                                                                          <br />
-                                                                                          <i>Ident. contratto</i>
-                                                                                     </td>
-                                                                                     <td width="500px">
-                                                                                          <span>
-                                                                                               <xsl:value-of select="IdDocumento" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="Data">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Vertagsdatum
-                                                                                          <br />
-                                                                                          <i>Data contratto</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:call-template name="FormatDate">
-                                                                                                    <xsl:with-param name="DateTime" select="Data" />
-                                                                                               </xsl:call-template>
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="NumItem">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Zeilennummer Vertrag
-                                                                                          <br />
-                                                                                          <i>Numero linea contratto</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="NumItem" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodiceCommessaConvenzione">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Verk.-/Konv.-kodex
-                                                                                          <br />
-                                                                                          <i>Codice comm./conv.</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodiceCommessaConvenzione" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodiceCUP">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Staatlicher Projektkodex
-                                                                                          <br />
-                                                                                          <i>Codice Unitario Progetto</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodiceCUP" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodiceCIG">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Ausschreibungskode
-                                                                                          <br />
-                                                                                          <i>Codice Ident. Gara (CIG)</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodiceCIG" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                      </xsl:for-each>
-                                                                 </table>
-                                                            </div>
-                                                       </xsl:if>
-                                                       <!--FINE DATI DEL CONTRATTO-->
-
-                                                       <!--INIZIO DATI CONVENZIONE-->
-                                                       <xsl:if test="DatiGenerali/DatiConvenzione">
-                                                            <div id="dati-convenzione">
-                                                                 <h3>
-                                                                      Daten der Konvention -
-                                                                      <i>Dati della convenzione</i>
-                                                                 </h3>
-                                                                 <table id="t1">
-                                                                      <xsl:for-each select="DatiGenerali/DatiConvenzione">
-                                                                           <xsl:if test="RiferimentoNumeroLinea">
-                                                                                <tr>
-                                                                                     <td width="200px">
-                                                                                          Zugehörige Zeilennummer der Rechnung
-                                                                                          <br />
-                                                                                          <i>Numero linea di fattura a cui si riferisce</i>
-                                                                                     </td>
-                                                                                     <td width="500px">
-                                                                                          <xsl:for-each select="RiferimentoNumeroLinea">
-                                                                                               <span>
-                                                                                                    <xsl:if test="(position( )) &gt; 1">, </xsl:if>
-                                                                                                    <xsl:value-of select="." />
-                                                                                               </span>
-                                                                                          </xsl:for-each>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="IdDocumento">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Konventionskennung
-                                                                                          <br />
-                                                                                          <i>Ident. convenzione</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="IdDocumento" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="Data">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Datum Konvention
-                                                                                          <br />
-                                                                                          <i>Data convenzione</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:call-template name="FormatDate">
-                                                                                                    <xsl:with-param name="DateTime" select="Data" />
-                                                                                               </xsl:call-template>
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="NumItem">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Zeilennummer Konvention
-                                                                                          <br />
-                                                                                          <i>Numero linea convenzione</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="NumItem" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodiceCommessaConvenzione">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Verkaufs- / Konventionskodex
-                                                                                          <br />
-                                                                                          <i>Codice commessa/convenzione</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodiceCommessaConvenzione" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodiceCUP">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Staatlicher Projektkodex
-                                                                                          <br />
-                                                                                          <i>Codice Unitario Progetto (CUP)</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodiceCUP" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodiceCIG">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Ausschreibungskode
-                                                                                          <br />
-                                                                                          <i>Codice Ident. Gara (CIG)</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodiceCIG" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                      </xsl:for-each>
-                                                                 </table>
-                                                            </div>
-                                                       </xsl:if>
-                                                       <!--FINE DATI CONVENZIONE-->
-
-                                                       <!--INIZIO DATI RICEZIONE-->
-                                                       <xsl:if test="DatiGenerali/DatiRicezione">
-                                                            <div id="dati-ricezione">
-                                                                 <h3>
-                                                                      Daten zum Erhalt der Leistung -
-                                                                      <i>Dati della ricezione</i>
-                                                                 </h3>
-                                                                 <table id="t1">
-                                                                      <xsl:for-each select="DatiGenerali/DatiRicezione">
-                                                                           <xsl:if test="RiferimentoNumeroLinea">
-                                                                                <tr>
-                                                                                     <td width="200px">
-                                                                                          Zugehörige Zeilennummer der Rechnung
-                                                                                          <br />
-                                                                                          <i>Numero linea di fattura a cui si riferisce</i>
-                                                                                     </td>
-                                                                                     <td width="500px">
-                                                                                          <xsl:for-each select="RiferimentoNumeroLinea">
-                                                                                               <span>
-                                                                                                    <xsl:if test="(position( )) &gt; 1">, </xsl:if>
-                                                                                                    <xsl:value-of select="." />
-                                                                                               </span>
-                                                                                          </xsl:for-each>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="IdDocumento">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Kennzeichen des Empfangs
-                                                                                          <br />
-                                                                                          <i>Ident. ricezione</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="IdDocumento" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="Data">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Empfangsdatum
-                                                                                          <br />
-                                                                                          <i>Data ricezione</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:call-template name="FormatDate">
-                                                                                                    <xsl:with-param name="DateTime" select="Data" />
-                                                                                               </xsl:call-template>
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="NumItem">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Zeilennummer des Empfangs
-                                                                                          <br />
-                                                                                          <i>Numero linea ricezione</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="NumItem" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodiceCommessaConvenzione">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Verkaufs- / Konventionskennung
-                                                                                          <br />
-                                                                                          <i>Codice commessa/convenzione</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodiceCommessaConvenzione" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodiceCUP">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Staatlicher Projektkodex
-                                                                                          <br />
-                                                                                          <i>Codice Unitario Progetto (CUP)</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodiceCUP" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodiceCIG">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Ausschreibungskennung
-                                                                                          <br />
-                                                                                          <i>Codice Ident. Gara (CIG)</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodiceCIG" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                      </xsl:for-each>
-                                                                 </table>
-                                                            </div>
-                                                       </xsl:if>
-                                                       <!--FINE DATI RICEZIONE-->
-
-                                                       <!--INIZIO DATI FATTURE COLLEGATE-->
-                                                       <xsl:if test="DatiGenerali/DatiFattureCollegate">
-                                                            <div id="dati-fatture-collegate">
-                                                                 <h3>
-                                                                      Daten zu verbundenen Rechnungen -
-                                                                      <i>Dati della fattura collegata</i>
-                                                                 </h3>
-                                                                 <table id="t1">
-                                                                      <xsl:for-each select="DatiGenerali/DatiFattureCollegate">
-                                                                           <xsl:if test="RiferimentoNumeroLinea">
-                                                                                <tr>
-                                                                                     <td width="200px">
-                                                                                          Zugehörige Zeilennummer der Rechnung
-                                                                                          <br />
-                                                                                          <i>Numero linea di fattura a cui si riferisce</i>
-                                                                                     </td>
-                                                                                     <td width="500px">
-                                                                                          <xsl:for-each select="RiferimentoNumeroLinea">
-                                                                                               <span>
-                                                                                                    <xsl:if test="(position( )) &gt; 1">, </xsl:if>
-                                                                                                    <xsl:value-of select="." />
-                                                                                               </span>
-                                                                                          </xsl:for-each>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="IdDocumento">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Kennzeichen der dazugehörenden Rechnung
-                                                                                          <br />
-                                                                                          <i>Ident. fattura collegata</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="IdDocumento" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="Data">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Datum der dazugehörenden Rechnung
-                                                                                          <br />
-                                                                                          <i>Data fattura collegata</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:call-template name="FormatDate">
-                                                                                                    <xsl:with-param name="DateTime" select="Data" />
-                                                                                               </xsl:call-template>
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="NumItem">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Zeilennummer bei der dazugehörenden Rechnung
-                                                                                          <br />
-                                                                                          <i>Numero linea fattura collegata</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="NumItem" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodiceCommessaConvenzione">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Verkaufs- / Konventionskodex
-                                                                                          <br />
-                                                                                          <i>Codice commessa/convenzione</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodiceCommessaConvenzione" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodiceCUP">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Staatlicher Projektkodex
-                                                                                          <br />
-                                                                                          <i>Codice Unitario Progetto (CUP)</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodiceCUP" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="CodiceCIG">
-                                                                                <tr>
-                                                                                     <td>
-                                                                                          Ausschreibungskennung
-                                                                                          <br />
-                                                                                          <i>Codice Ident. Gara (CIG)</i>
-                                                                                     </td>
-                                                                                     <td>
-                                                                                          <span>
-                                                                                               <xsl:value-of select="CodiceCIG" />
-                                                                                          </span>
-                                                                                     </td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                      </xsl:for-each>
-                                                                 </table>
-                                                            </div>
-                                                       </xsl:if>
-                                                       <!--FINE DATI FATTURE COLLEGATE-->
-
-                                                       <!--INIZIO DATI RIFERIMENTO SAL-->
-                                                       <xsl:if test="DatiGenerali/DatiSAL">
-                                                            <div id="dati-sal">
-                                                                 <h3>
-                                                                      Baufortschritt -
-                                                                      <i>Stato avanzamento lavori</i>
-                                                                 </h3>
-                                                                 <table id="t1">
-                                                                      <xsl:if test="DatiGenerali/DatiSAL/RiferimentoFase">
-                                                                           <tr>
-                                                                                <td width="200px">
-                                                                                     Nummer Baufortschritt
-                                                                                     <br />
-                                                                                     <i>Numero fase avanzamento</i>
-                                                                                </td>
-                                                                                <td width="500px">
-                                                                                     <xsl:for-each select="DatiGenerali/DatiSAL/RiferimentoFase">
-                                                                                          <span>
-                                                                                               <xsl:if test="(position( )) &gt; 1">, </xsl:if>
-                                                                                               <xsl:value-of select="." />
-                                                                                          </span>
-                                                                                     </xsl:for-each>
-                                                                                </td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                 </table>
-                                                            </div>
-                                                       </xsl:if>
-                                                       <!--FINE DATI RIFERIMENTO SAL-->
-
-                                                       <!--INIZIO DATI  DDT-->
-                                                       <xsl:if test="DatiGenerali/DatiDDT">
-                                                            <div id="dati-ddt">
-                                                                 <h3>
-                                                                      Daten zum Warenbegleitschein (WBS) -
-                                                                      <i>Dati del documento di trasporto (DDT)</i>
-                                                                 </h3>
-                                                                 <table id="t1">
-                                                                      <xsl:for-each select="DatiGenerali/DatiDDT">
-                                                                           <xsl:if test="NumeroDDT or DataDDT or RiferimentoNumeroLinea">
-                                                                                <tr>
-                                                                                     <td width="200px">
-                                                                                          Nummer, Datum WBS
-                                                                                          <br />
-                                                                                          <i>Numero data DDT</i>
-                                                                                     </td>
-                                                                                     <td width="500px">
-                                                                                          <xsl:if test="NumeroDDT">
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="NumeroDDT" />
-                                                                                               </span>
-                                                                                          </xsl:if>
-                                                                                          <xsl:if test="DataDDT">
-                                                                                               vom/
-                                                                                               <i>del</i>
-                                                                                                
-                                                                                               <span>
-                                                                                                    <xsl:call-template name="FormatDate">
-                                                                                                         <xsl:with-param name="DateTime" select="DataDDT" />
-                                                                                                    </xsl:call-template>
-                                                                                               </span>
-                                                                                          </xsl:if>
-                                                                                          <xsl:if test="RiferimentoNumeroLinea">
+                                                       <div id="flex-container">
+                                                            <!--INIZIO DATI DELL'ORDINE DI ACQUISTO-->
+                                                            <xsl:if test="DatiGenerali/DatiOrdineAcquisto">
+                                                                 <div id="dati-ordine-acquisto"  class="roundedCorners">
+                                                                      <h3>
+                                                                           Daten zur Bestellung -
+                                                                           <i>Dati dell'ordine di acquisto</i>
+                                                                      </h3>
+                                                                      <table id="t1">
+                                                                           <xsl:for-each select="DatiGenerali/DatiOrdineAcquisto">
+                                                                                <xsl:if test="RiferimentoNumeroLinea">
+                                                                                     <tr>
+                                                                                          <td width="200px">
+                                                                                               Zugehörige Zeilennummer der Rechnung
                                                                                                <br />
-                                                                                               Betrifft Zeile/
-                                                                                               <i>Rif.linea</i>
-                                                                                                
+                                                                                               <i>Numero linea di fattura a cui si riferisce</i>
+                                                                                          </td>
+                                                                                          <td width="500px">
                                                                                                <xsl:for-each select="RiferimentoNumeroLinea">
                                                                                                     <span>
                                                                                                          <xsl:if test="(position( )) &gt; 1">, </xsl:if>
                                                                                                          <xsl:value-of select="." />
                                                                                                     </span>
                                                                                                </xsl:for-each>
-                                                                                          </xsl:if>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="IdDocumento">
+                                                                                     <tr>
+                                                                                          <td width="200px">
+                                                                                               Bestellkennung
+                                                                                               <br />
+                                                                                               <i>Ident. ordine di acquisto</i>
+                                                                                          </td>
+                                                                                          <td width="500px">
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="IdDocumento" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="Data">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Bestellungsdatum
+                                                                                               <br />
+                                                                                               <i>Data ordine di acquisto</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="Data" />
+                                                                                                    </xsl:call-template>
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="NumItem">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Zeilennummer der Bestellung
+                                                                                               <br />
+                                                                                               <i>Numero linea ordine di acquisto</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="NumItem" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodiceCommessaConvenzione">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Verkaufs-/Konventionskodex
+                                                                                               <br />
+                                                                                               <i>Codice commessa/convenzione</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodiceCommessaConvenzione" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodiceCUP">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Staatlicher Projektkodex
+                                                                                               <br />
+                                                                                               <i>Codice Unitario Progetto (CUP)</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodiceCUP" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodiceCIG">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Ausschreibungskode
+                                                                                               <br />
+                                                                                               <i>Codice Ident. Gara (CIG)</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodiceCIG" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                           </xsl:for-each>
+                                                                      </table>
+                                                                 </div>
+                                                            </xsl:if>
+                                                            <!--FINE DATI DELL'ORDINE DI ACQUISTO-->
+
+                                                            <!--INIZIO DATI DEL CONTRATTO-->
+                                                            <xsl:if test="DatiGenerali/DatiContratto">
+                                                                 <div id="dati-contratto" class="roundedCorners">
+                                                                      <h3>
+                                                                           Vertragsdaten -
+                                                                           <i>Dati del contratto</i>
+                                                                      </h3>
+                                                                      <table id="t1">
+                                                                           <xsl:for-each select="DatiGenerali/DatiContratto">
+                                                                                <xsl:if test="RiferimentoNumeroLinea">
+                                                                                     <tr>
+                                                                                          <td width="200px">
+                                                                                               Zugehörige Zeilennummer der Rechnung
+                                                                                               <br />
+                                                                                               <i>Numero linea di fattura a cui si riferisce</i>
+                                                                                          </td>
+                                                                                          <td width="500px">
+                                                                                               <xsl:for-each select="RiferimentoNumeroLinea">
+                                                                                                    <span>
+                                                                                                         <xsl:if test="(position( )) &gt; 1">, </xsl:if>
+                                                                                                         <xsl:value-of select="." />
+                                                                                                    </span>
+                                                                                               </xsl:for-each>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="IdDocumento">
+                                                                                     <tr>
+                                                                                          <td width="200px">
+                                                                                               Vertragskenndaten
+                                                                                               <br />
+                                                                                               <i>Ident. contratto</i>
+                                                                                          </td>
+                                                                                          <td width="500px">
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="IdDocumento" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="Data">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Vertagsdatum
+                                                                                               <br />
+                                                                                               <i>Data contratto</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="Data" />
+                                                                                                    </xsl:call-template>
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="NumItem">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Zeilennummer Vertrag
+                                                                                               <br />
+                                                                                               <i>Numero linea contratto</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="NumItem" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodiceCommessaConvenzione">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Verk.-/Konv.-kodex
+                                                                                               <br />
+                                                                                               <i>Codice comm./conv.</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodiceCommessaConvenzione" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodiceCUP">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Staatlicher Projektkodex
+                                                                                               <br />
+                                                                                               <i>Codice Unitario Progetto</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodiceCUP" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodiceCIG">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Ausschreibungskode
+                                                                                               <br />
+                                                                                               <i>Codice Ident. Gara (CIG)</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodiceCIG" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                           </xsl:for-each>
+                                                                      </table>
+                                                                 </div>
+                                                            </xsl:if>
+                                                            <!--FINE DATI DEL CONTRATTO-->
+
+                                                            <!--INIZIO DATI CONVENZIONE-->
+                                                            <xsl:if test="DatiGenerali/DatiConvenzione">
+                                                                 <div id="dati-convenzione" class="roundedCorners">
+                                                                      <h3>
+                                                                           Daten der Konvention -
+                                                                           <i>Dati della convenzione</i>
+                                                                      </h3>
+                                                                      <table id="t1">
+                                                                           <xsl:for-each select="DatiGenerali/DatiConvenzione">
+                                                                                <xsl:if test="RiferimentoNumeroLinea">
+                                                                                     <tr>
+                                                                                          <td width="200px">
+                                                                                               Zugehörige Zeilennummer der Rechnung
+                                                                                               <br />
+                                                                                               <i>Numero linea di fattura a cui si riferisce</i>
+                                                                                          </td>
+                                                                                          <td width="500px">
+                                                                                               <xsl:for-each select="RiferimentoNumeroLinea">
+                                                                                                    <span>
+                                                                                                         <xsl:if test="(position( )) &gt; 1">, </xsl:if>
+                                                                                                         <xsl:value-of select="." />
+                                                                                                    </span>
+                                                                                               </xsl:for-each>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="IdDocumento">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Konventionskennung
+                                                                                               <br />
+                                                                                               <i>Ident. convenzione</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="IdDocumento" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="Data">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Datum Konvention
+                                                                                               <br />
+                                                                                               <i>Data convenzione</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="Data" />
+                                                                                                    </xsl:call-template>
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="NumItem">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Zeilennummer Konvention
+                                                                                               <br />
+                                                                                               <i>Numero linea convenzione</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="NumItem" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodiceCommessaConvenzione">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Verkaufs- / Konventionskodex
+                                                                                               <br />
+                                                                                               <i>Codice commessa/convenzione</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodiceCommessaConvenzione" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodiceCUP">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Staatlicher Projektkodex
+                                                                                               <br />
+                                                                                               <i>Codice Unitario Progetto (CUP)</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodiceCUP" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodiceCIG">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Ausschreibungskode
+                                                                                               <br />
+                                                                                               <i>Codice Ident. Gara (CIG)</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodiceCIG" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                           </xsl:for-each>
+                                                                      </table>
+                                                                 </div>
+                                                            </xsl:if>
+                                                            <!--FINE DATI CONVENZIONE-->
+
+                                                            <!--INIZIO DATI RICEZIONE-->
+                                                            <xsl:if test="DatiGenerali/DatiRicezione">
+                                                                 <div id="dati-ricezione" class="roundedCorners">
+                                                                      <h3>
+                                                                           Daten zum Erhalt der Leistung -
+                                                                           <i>Dati della ricezione</i>
+                                                                      </h3>
+                                                                      <table id="t1">
+                                                                           <xsl:for-each select="DatiGenerali/DatiRicezione">
+                                                                                <xsl:if test="RiferimentoNumeroLinea">
+                                                                                     <tr>
+                                                                                          <td width="200px">
+                                                                                               Zugehörige Zeilennummer der Rechnung
+                                                                                               <br />
+                                                                                               <i>Numero linea di fattura a cui si riferisce</i>
+                                                                                          </td>
+                                                                                          <td width="500px">
+                                                                                               <xsl:for-each select="RiferimentoNumeroLinea">
+                                                                                                    <span>
+                                                                                                         <xsl:if test="(position( )) &gt; 1">, </xsl:if>
+                                                                                                         <xsl:value-of select="." />
+                                                                                                    </span>
+                                                                                               </xsl:for-each>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="IdDocumento">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Kennzeichen des Empfangs
+                                                                                               <br />
+                                                                                               <i>Ident. ricezione</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="IdDocumento" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="Data">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Empfangsdatum
+                                                                                               <br />
+                                                                                               <i>Data ricezione</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="Data" />
+                                                                                                    </xsl:call-template>
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="NumItem">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Zeilennummer des Empfangs
+                                                                                               <br />
+                                                                                               <i>Numero linea ricezione</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="NumItem" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodiceCommessaConvenzione">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Verkaufs- / Konventionskennung
+                                                                                               <br />
+                                                                                               <i>Codice commessa/convenzione</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodiceCommessaConvenzione" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodiceCUP">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Staatlicher Projektkodex
+                                                                                               <br />
+                                                                                               <i>Codice Unitario Progetto (CUP)</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodiceCUP" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodiceCIG">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Ausschreibungskennung
+                                                                                               <br />
+                                                                                               <i>Codice Ident. Gara (CIG)</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodiceCIG" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                           </xsl:for-each>
+                                                                      </table>
+                                                                 </div>
+                                                            </xsl:if>
+                                                            <!--FINE DATI RICEZIONE-->
+
+                                                            <!--INIZIO DATI FATTURE COLLEGATE-->
+                                                            <xsl:if test="DatiGenerali/DatiFattureCollegate">
+                                                                 <div id="dati-fatture-collegate" class="roundedCorners">
+                                                                      <h3>
+                                                                           Daten zu verbundenen Rechnungen -
+                                                                           <i>Dati della fattura collegata</i>
+                                                                      </h3>
+                                                                      <table id="t1">
+                                                                           <xsl:for-each select="DatiGenerali/DatiFattureCollegate">
+                                                                                <xsl:if test="RiferimentoNumeroLinea">
+                                                                                     <tr>
+                                                                                          <td width="200px">
+                                                                                               Zugehörige Zeilennummer der Rechnung
+                                                                                               <br />
+                                                                                               <i>Numero linea di fattura a cui si riferisce</i>
+                                                                                          </td>
+                                                                                          <td width="500px">
+                                                                                               <xsl:for-each select="RiferimentoNumeroLinea">
+                                                                                                    <span>
+                                                                                                         <xsl:if test="(position( )) &gt; 1">, </xsl:if>
+                                                                                                         <xsl:value-of select="." />
+                                                                                                    </span>
+                                                                                               </xsl:for-each>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="IdDocumento">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Kennzeichen der dazugehörenden Rechnung
+                                                                                               <br />
+                                                                                               <i>Ident. fattura collegata</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="IdDocumento" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="Data">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Datum der dazugehörenden Rechnung
+                                                                                               <br />
+                                                                                               <i>Data fattura collegata</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:call-template name="FormatDate">
+                                                                                                         <xsl:with-param name="DateTime" select="Data" />
+                                                                                                    </xsl:call-template>
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="NumItem">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Zeilennummer bei der dazugehörenden Rechnung
+                                                                                               <br />
+                                                                                               <i>Numero linea fattura collegata</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="NumItem" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodiceCommessaConvenzione">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Verkaufs- / Konventionskodex
+                                                                                               <br />
+                                                                                               <i>Codice commessa/convenzione</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodiceCommessaConvenzione" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodiceCUP">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Staatlicher Projektkodex
+                                                                                               <br />
+                                                                                               <i>Codice Unitario Progetto (CUP)</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodiceCUP" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                                <xsl:if test="CodiceCIG">
+                                                                                     <tr>
+                                                                                          <td>
+                                                                                               Ausschreibungskennung
+                                                                                               <br />
+                                                                                               <i>Codice Ident. Gara (CIG)</i>
+                                                                                          </td>
+                                                                                          <td>
+                                                                                               <span>
+                                                                                                    <xsl:value-of select="CodiceCIG" />
+                                                                                               </span>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                           </xsl:for-each>
+                                                                      </table>
+                                                                 </div>
+                                                            </xsl:if>
+                                                            <!--FINE DATI FATTURE COLLEGATE-->
+
+                                                            <!--INIZIO DATI RIFERIMENTO SAL-->
+                                                            <xsl:if test="DatiGenerali/DatiSAL">
+                                                                 <div id="dati-sal" class="roundedCorners">
+                                                                      <h3>
+                                                                           Baufortschritt -
+                                                                           <i>Stato avanzamento lavori</i>
+                                                                      </h3>
+                                                                      <table id="t1">
+                                                                           <xsl:if test="DatiGenerali/DatiSAL/RiferimentoFase">
+                                                                                <tr>
+                                                                                     <td width="200px">
+                                                                                          Nummer Baufortschritt
+                                                                                          <br />
+                                                                                          <i>Numero fase avanzamento</i>
+                                                                                     </td>
+                                                                                     <td width="500px">
+                                                                                          <xsl:for-each select="DatiGenerali/DatiSAL/RiferimentoFase">
+                                                                                               <span>
+                                                                                                    <xsl:if test="(position( )) &gt; 1">, </xsl:if>
+                                                                                                    <xsl:value-of select="." />
+                                                                                               </span>
+                                                                                          </xsl:for-each>
                                                                                      </td>
                                                                                 </tr>
                                                                            </xsl:if>
-                                                                      </xsl:for-each>
-                                                                 </table>
-                                                            </div>
-                                                       </xsl:if>
-                                                       <!--FINE DATI DDT-->
+                                                                      </table>
+                                                                 </div>
+                                                            </xsl:if>
+                                                            <!--FINE DATI RIFERIMENTO SAL-->
 
-                                                       <!--INIZIO DATI  TRASPORTO-->
-                                                       <xsl:if test="DatiGenerali/DatiTrasporto">
-                                                            <div id="dati-trasporto">
-                                                                 <h3>
-                                                                      Daten zum Warentransport -
-                                                                      <i>Dati relativi al trasporto</i>
-                                                                 </h3>
-                                                                 <xsl:if test="DatiGenerali/DatiTrasporto/DatiAnagraficiVettore">
-                                                                      <div id="sub-heading">
-                                                                           Daten des Frächters -
-                                                                           <i>Dati del vettore</i>
-                                                                      </div>
-                                                                 </xsl:if>
-                                                                 <table id="t1">
+                                                            <!--INIZIO DATI  DDT-->
+                                                            <xsl:if test="DatiGenerali/DatiDDT">
+                                                                 <div id="dati-ddt" class="roundedCorners">
+                                                                      <h3>
+                                                                           Daten zum Warenbegleitschein (WBS) -
+                                                                           <i>Dati del documento di trasporto (DDT)</i>
+                                                                      </h3>
+                                                                      <table id="t1">
+                                                                           <xsl:for-each select="DatiGenerali/DatiDDT">
+                                                                                <xsl:if test="NumeroDDT or DataDDT or RiferimentoNumeroLinea">
+                                                                                     <tr>
+                                                                                          <td width="200px">
+                                                                                               Nummer, Datum WBS
+                                                                                               <br />
+                                                                                               <i>Numero data DDT</i>
+                                                                                          </td>
+                                                                                          <td width="500px">
+                                                                                               <xsl:if test="NumeroDDT">
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="NumeroDDT" />
+                                                                                                    </span>
+                                                                                               </xsl:if>
+                                                                                               <xsl:if test="DataDDT">
+                                                                                                    vom/
+                                                                                                    <i>del</i>
+                                                                                                     
+                                                                                                    <span>
+                                                                                                         <xsl:call-template name="FormatDate">
+                                                                                                              <xsl:with-param name="DateTime" select="DataDDT" />
+                                                                                                         </xsl:call-template>
+                                                                                                    </span>
+                                                                                               </xsl:if>
+                                                                                               <xsl:if test="RiferimentoNumeroLinea">
+                                                                                                    <br />
+                                                                                                    Betrifft Zeile/
+                                                                                                    <i>Rif.linea</i>
+                                                                                                     
+                                                                                                    <xsl:for-each select="RiferimentoNumeroLinea">
+                                                                                                         <span>
+                                                                                                              <xsl:if test="(position( )) &gt; 1">, </xsl:if>
+                                                                                                              <xsl:value-of select="." />
+                                                                                                         </span>
+                                                                                                    </xsl:for-each>
+                                                                                               </xsl:if>
+                                                                                          </td>
+                                                                                     </tr>
+                                                                                </xsl:if>
+                                                                           </xsl:for-each>
+                                                                      </table>
+                                                                 </div>
+                                                            </xsl:if>
+                                                            <!--FINE DATI DDT-->
+
+                                                            <!--INIZIO DATI  TRASPORTO-->
+                                                            <xsl:if test="DatiGenerali/DatiTrasporto">
+                                                                 <div id="dati-trasporto" class="roundedCorners">
+                                                                      <h3>
+                                                                           Daten zum Warentransport -
+                                                                           <i>Dati relativi al trasporto</i>
+                                                                      </h3>
                                                                       <xsl:if test="DatiGenerali/DatiTrasporto/DatiAnagraficiVettore">
-                                                                           <xsl:for-each select="DatiGenerali/DatiTrasporto/DatiAnagraficiVettore">
-                                                                                <xsl:if test="Anagrafica/Denominazione">
-                                                                                     <tr>
-                                                                                          <td width="200px">
-                                                                                               Benennung
-                                                                                               <br />
-                                                                                               <i>Denominazione</i>
-                                                                                          </td>
-                                                                                          <td width="500px">
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="Anagrafica/Denominazione" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="Anagrafica/Titolo">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Honorartitel
-                                                                                               <br />
-                                                                                               <i>Titolo onorifico</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="Anagrafica/Titolo" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="Anagrafica/Nome">
-                                                                                     <tr>
-                                                                                          <td width="200px">
-                                                                                               Name
-                                                                                               <br />
-                                                                                               <i>Nome</i>
-                                                                                          </td>
-                                                                                          <td width="500px">
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="Anagrafica/Nome" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="Anagrafica/Cognome">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Nachname
-                                                                                               <br />
-                                                                                               <i>Cognome</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="Anagrafica/Cognome" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="IdFiscaleIVA/IdPaese">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Mehrwertsteuernummer
-                                                                                               <br />
-                                                                                               <i>Ident. fiscale ai fini IVA</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="IdFiscaleIVA/IdPaese" />
-                                                                                                    <xsl:value-of select="IdFiscaleIVA/IdCodice" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="CodiceFiscale">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Steuernummer
-                                                                                               <br />
-                                                                                               <i>Codice Fiscale</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="CodiceFiscale" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="Anagrafica/CodEORI">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               EORI-Kennung
-                                                                                               <br />
-                                                                                               <i>Codice EORI</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="Anagrafica/CodEORI" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="NumeroLicenzaGuida">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Führerscheinnummer
-                                                                                               <br />
-                                                                                               <i>Numero licenza di guida</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="NumeroLicenzaGuida" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                           </xsl:for-each>
+                                                                           <div id="sub-heading">
+                                                                                Daten des Frächters -
+                                                                                <i>Dati del vettore</i>
+                                                                           </div>
                                                                       </xsl:if>
+                                                                      <table id="t1">
+                                                                           <xsl:if test="DatiGenerali/DatiTrasporto/DatiAnagraficiVettore">
+                                                                                <xsl:for-each select="DatiGenerali/DatiTrasporto/DatiAnagraficiVettore">
+                                                                                     <xsl:if test="Anagrafica/Denominazione">
+                                                                                          <tr>
+                                                                                               <td width="200px">
+                                                                                                    Benennung
+                                                                                                    <br />
+                                                                                                    <i>Denominazione</i>
+                                                                                               </td>
+                                                                                               <td width="500px">
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="Anagrafica/Denominazione" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="Anagrafica/Titolo">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Honorartitel
+                                                                                                    <br />
+                                                                                                    <i>Titolo onorifico</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="Anagrafica/Titolo" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="Anagrafica/Nome">
+                                                                                          <tr>
+                                                                                               <td width="200px">
+                                                                                                    Name
+                                                                                                    <br />
+                                                                                                    <i>Nome</i>
+                                                                                               </td>
+                                                                                               <td width="500px">
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="Anagrafica/Nome" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="Anagrafica/Cognome">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Nachname
+                                                                                                    <br />
+                                                                                                    <i>Cognome</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="Anagrafica/Cognome" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="IdFiscaleIVA/IdPaese">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Mehrwertsteuernummer
+                                                                                                    <br />
+                                                                                                    <i>Ident. fiscale ai fini IVA</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="IdFiscaleIVA/IdPaese" />
+                                                                                                         <xsl:value-of select="IdFiscaleIVA/IdCodice" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="CodiceFiscale">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Steuernummer
+                                                                                                    <br />
+                                                                                                    <i>Codice Fiscale</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="CodiceFiscale" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="Anagrafica/CodEORI">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    EORI-Kennung
+                                                                                                    <br />
+                                                                                                    <i>Codice EORI</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="Anagrafica/CodEORI" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="NumeroLicenzaGuida">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Führerscheinnummer
+                                                                                                    <br />
+                                                                                                    <i>Numero licenza di guida</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="NumeroLicenzaGuida" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                </xsl:for-each>
+                                                                           </xsl:if>
 
-                                                                      <xsl:if test="DatiGenerali/DatiTrasporto/MezzoTrasporto or DatiGenerali/DatiTrasporto/CausaleTrasporto or DatiGenerali/DatiTrasporto/NumeroColli or DatiGenerali/DatiTrasporto/Descrizione or DatiGenerali/DatiTrasporto/UnitaMisuraPeso or DatiGenerali/DatiTrasporto/PesoLordo or DatiGenerali/DatiTrasporto/PesoNetto or DatiGenerali/DatiTrasporto/DataOraRitiro or DatiGenerali/DatiTrasporto/DataInizioTrasporto or DatiGenerali/DatiTrasporto/TipoResa or DatiGenerali/DatiTrasporto/IndirizzoResa or DatiGenerali/DatiTrasporto/DataOraConsegna">
-                                                                           <tr>
-                                                                                <td colspan="3">
-                                                                                     <div id="sub-heading">
-                                                                                          Weitere Daten -
-                                                                                          <i>Altri dati</i>
-                                                                                     </div>
-                                                                                </td>
-                                                                           </tr>
-                                                                           <xsl:for-each select="DatiGenerali/DatiTrasporto">
-                                                                                <xsl:if test="MezzoTrasporto">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Transortmittel
-                                                                                               <br />
-                                                                                               <i>Mezzo di trasporto</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="MezzoTrasporto" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="CausaleTrasporto">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Transportgrund
-                                                                                               <br />
-                                                                                               <i>Causale trasporto</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="CausaleTrasporto" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="NumeroColli">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Anzahl der Frachtstücke
-                                                                                               <br />
-                                                                                               <i>Numero colli trasportati</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="NumeroColli" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="Descrizione">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Beschreibung der transportierten Güter
-                                                                                               <br />
-                                                                                               <i>Descrizione beni trasportati</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="Descrizione" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="UnitaMisuraPeso">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Messeinheit der Ware
-                                                                                               <br />
-                                                                                               <i>Unità di misura del peso merce</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="UnitaMisuraPeso" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="PesoLordo">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Bruttogewicht
-                                                                                               <br />
-                                                                                               <i>Peso lordo</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="PesoLordo" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="PesoNetto">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Nettogewicht
-                                                                                               <br />
-                                                                                               <i>Peso netto</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="PesoNetto" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="DataOraRitiro">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Datum und Zeit der Abholung
-                                                                                               <br />
-                                                                                               <i>Data e ora ritiro merce</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:call-template name="FormatDate">
-                                                                                                         <xsl:with-param name="DateTime" select="DataOraRitiro" />
-                                                                                                    </xsl:call-template>
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="DataInizioTrasporto">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Datum Transportbeginn
-                                                                                               <br />
-                                                                                               <i>Data inizio trasporto</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:call-template name="FormatDate">
-                                                                                                         <xsl:with-param name="DateTime" select="DataInizioTrasporto" />
-                                                                                                    </xsl:call-template>
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="TipoResa">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Typologie der Abgabe
-                                                                                               <br />
-                                                                                               <i>Tipologia di resa</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="TipoResa" />
-                                                                                               </span>
-                                                                                               (Kodifizierung nach ICC-Standard)
-                                                                                               <br />
-                                                                                               <i>(codifica secondo standard ICC)</i>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="IndirizzoResa/Indirizzo">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Adresse der Abgabe
-                                                                                               <br />
-                                                                                               <i>Indirizzo di resa</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="IndirizzoResa/Indirizzo" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="IndirizzoResa/NumeroCivico">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Hausnummer Abgabeadresse
-                                                                                               <br />
-                                                                                               <i>Numero civico indirizzo di resa</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="IndirizzoResa/NumeroCivico" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="IndirizzoResa/CAP">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               PLZ Adresse Abgabe
-                                                                                               <br />
-                                                                                               <i>CAP indirizzo di resa</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="IndirizzoResa/CAP" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="IndirizzoResa/Comune">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Gemeinde Abgabe
-                                                                                               <br />
-                                                                                               <i>Comune di resa</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="IndirizzoResa/Comune" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="IndirizzoResa/Provincia">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Provinz Abgabe
-                                                                                               <br />
-                                                                                               <i>Provincia di resa</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="IndirizzoResa/Provincia" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="IndirizzoResa/Nazione">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Land der Abgabe
-                                                                                               <br />
-                                                                                               <i>Nazione di resa</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="IndirizzoResa/Nazione" />
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                                <xsl:if test="DataOraConsegna">
-                                                                                     <tr>
-                                                                                          <td>
-                                                                                               Datum und Uhrzeit der Lieferung
-                                                                                               <br />
-                                                                                               <i>Data e ora della consegna</i>
-                                                                                          </td>
-                                                                                          <td>
-                                                                                               <span>
-                                                                                                    <xsl:call-template name="FormatDate">
-                                                                                                         <xsl:with-param name="DateTime" select="DataOraConsegna" />
-                                                                                                    </xsl:call-template>
-                                                                                               </span>
-                                                                                          </td>
-                                                                                     </tr>
-                                                                                </xsl:if>
-                                                                           </xsl:for-each>
-                                                                      </xsl:if>
-                                                                 </table>
-                                                            </div>
-                                                       </xsl:if>
-                                                       <!--FINE DATI TRASPORTO-->
+                                                                           <xsl:if test="DatiGenerali/DatiTrasporto/MezzoTrasporto or DatiGenerali/DatiTrasporto/CausaleTrasporto or DatiGenerali/DatiTrasporto/NumeroColli or DatiGenerali/DatiTrasporto/Descrizione or DatiGenerali/DatiTrasporto/UnitaMisuraPeso or DatiGenerali/DatiTrasporto/PesoLordo or DatiGenerali/DatiTrasporto/PesoNetto or DatiGenerali/DatiTrasporto/DataOraRitiro or DatiGenerali/DatiTrasporto/DataInizioTrasporto or DatiGenerali/DatiTrasporto/TipoResa or DatiGenerali/DatiTrasporto/IndirizzoResa or DatiGenerali/DatiTrasporto/DataOraConsegna">
+                                                                                <tr>
+                                                                                     <td colspan="3">
+                                                                                          <div id="sub-heading">
+                                                                                               Weitere Daten -
+                                                                                               <i>Altri dati</i>
+                                                                                          </div>
+                                                                                     </td>
+                                                                                </tr>
+                                                                                <xsl:for-each select="DatiGenerali/DatiTrasporto">
+                                                                                     <xsl:if test="MezzoTrasporto">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Transortmittel
+                                                                                                    <br />
+                                                                                                    <i>Mezzo di trasporto</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="MezzoTrasporto" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="CausaleTrasporto">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Transportgrund
+                                                                                                    <br />
+                                                                                                    <i>Causale trasporto</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="CausaleTrasporto" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="NumeroColli">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Anzahl der Frachtstücke
+                                                                                                    <br />
+                                                                                                    <i>Numero colli trasportati</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="NumeroColli" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="Descrizione">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Beschreibung der transportierten Güter
+                                                                                                    <br />
+                                                                                                    <i>Descrizione beni trasportati</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="Descrizione" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="UnitaMisuraPeso">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Messeinheit der Ware
+                                                                                                    <br />
+                                                                                                    <i>Unità di misura del peso merce</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="UnitaMisuraPeso" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="PesoLordo">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Bruttogewicht
+                                                                                                    <br />
+                                                                                                    <i>Peso lordo</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="PesoLordo" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="PesoNetto">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Nettogewicht
+                                                                                                    <br />
+                                                                                                    <i>Peso netto</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="PesoNetto" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="DataOraRitiro">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Datum und Zeit der Abholung
+                                                                                                    <br />
+                                                                                                    <i>Data e ora ritiro merce</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:call-template name="FormatDate">
+                                                                                                              <xsl:with-param name="DateTime" select="DataOraRitiro" />
+                                                                                                         </xsl:call-template>
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="DataInizioTrasporto">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Datum Transportbeginn
+                                                                                                    <br />
+                                                                                                    <i>Data inizio trasporto</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:call-template name="FormatDate">
+                                                                                                              <xsl:with-param name="DateTime" select="DataInizioTrasporto" />
+                                                                                                         </xsl:call-template>
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="TipoResa">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Typologie der Abgabe
+                                                                                                    <br />
+                                                                                                    <i>Tipologia di resa</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="TipoResa" />
+                                                                                                    </span>
+                                                                                                    (Kodifizierung nach ICC-Standard)
+                                                                                                    <br />
+                                                                                                    <i>(codifica secondo standard ICC)</i>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="IndirizzoResa/Indirizzo">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Adresse der Abgabe
+                                                                                                    <br />
+                                                                                                    <i>Indirizzo di resa</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="IndirizzoResa/Indirizzo" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="IndirizzoResa/NumeroCivico">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Hausnummer Abgabeadresse
+                                                                                                    <br />
+                                                                                                    <i>Numero civico indirizzo di resa</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="IndirizzoResa/NumeroCivico" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="IndirizzoResa/CAP">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    PLZ Adresse Abgabe
+                                                                                                    <br />
+                                                                                                    <i>CAP indirizzo di resa</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="IndirizzoResa/CAP" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="IndirizzoResa/Comune">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Gemeinde Abgabe
+                                                                                                    <br />
+                                                                                                    <i>Comune di resa</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="IndirizzoResa/Comune" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="IndirizzoResa/Provincia">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Provinz Abgabe
+                                                                                                    <br />
+                                                                                                    <i>Provincia di resa</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="IndirizzoResa/Provincia" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="IndirizzoResa/Nazione">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Land der Abgabe
+                                                                                                    <br />
+                                                                                                    <i>Nazione di resa</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:value-of select="IndirizzoResa/Nazione" />
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                     <xsl:if test="DataOraConsegna">
+                                                                                          <tr>
+                                                                                               <td>
+                                                                                                    Datum und Uhrzeit der Lieferung
+                                                                                                    <br />
+                                                                                                    <i>Data e ora della consegna</i>
+                                                                                               </td>
+                                                                                               <td>
+                                                                                                    <span>
+                                                                                                         <xsl:call-template name="FormatDate">
+                                                                                                              <xsl:with-param name="DateTime" select="DataOraConsegna" />
+                                                                                                         </xsl:call-template>
+                                                                                                    </span>
+                                                                                               </td>
+                                                                                          </tr>
+                                                                                     </xsl:if>
+                                                                                </xsl:for-each>
+                                                                           </xsl:if>
+                                                                      </table>
+                                                                 </div>
+                                                            </xsl:if>
+                                                            <!--FINE DATI TRASPORTO-->
 
-                                                       <!--INIZIO FATTURA PRINCIPALE-->
-                                                       <xsl:if test="DatiGenerali/FatturaPrincipale/NumeroFatturaPrincipale">
-                                                            <div id="fattura-principale">
-                                                                 <h3>
-                                                                      Daten zur Hauptrechnung -
-                                                                      <i>Dati relativi alla fattura principale</i>
-                                                                 </h3>
-                                                                 <table id="t1">
-                                                                      <xsl:if test="DatiGenerali/FatturaPrincipale/NumeroFatturaPrincipale">
-                                                                           <tr>
-                                                                                <td width="200px">
-                                                                                     Nummer der Hauptrechnung
-                                                                                     <br />
-                                                                                     <i>Numero fattura principale</i>
-                                                                                </td>
-                                                                                <td width="500px">
-                                                                                     <span>
-                                                                                          <xsl:value-of select="DatiGenerali/FatturaPrincipale/NumeroFatturaPrincipale" />
-                                                                                     </span>
-                                                                                </td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="DatiGenerali/FatturaPrincipale/DataFatturaPrincipale">
-                                                                           <tr>
-                                                                                <td width="200px">
-                                                                                     Datum Hauptrechnung
-                                                                                     <br />
-                                                                                     <i>Data fattura principale</i>
-                                                                                </td>
-                                                                                <td width="500px">
-                                                                                     <span>
-                                                                                          <xsl:call-template name="FormatDate">
-                                                                                               <xsl:with-param name="DateTime" select="DatiGenerali/FatturaPrincipale/DataFatturaPrincipale" />
-                                                                                          </xsl:call-template>
-                                                                                     </span>
-                                                                                </td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                 </table>
-                                                            </div>
-                                                       </xsl:if>
-                                                       <!--FINE FATTURA PRINCIPALE-->
-
+                                                            <!--INIZIO FATTURA PRINCIPALE-->
+                                                            <xsl:if test="DatiGenerali/FatturaPrincipale/NumeroFatturaPrincipale">
+                                                                 <div id="fattura-principale" class="roundedCorners">
+                                                                      <h3>
+                                                                           Daten zur Hauptrechnung -
+                                                                           <i>Dati relativi alla fattura principale</i>
+                                                                      </h3>
+                                                                      <table id="t1">
+                                                                           <xsl:if test="DatiGenerali/FatturaPrincipale/NumeroFatturaPrincipale">
+                                                                                <tr>
+                                                                                     <td width="200px">
+                                                                                          Nummer der Hauptrechnung
+                                                                                          <br />
+                                                                                          <i>Numero fattura principale</i>
+                                                                                     </td>
+                                                                                     <td width="500px">
+                                                                                          <span>
+                                                                                               <xsl:value-of select="DatiGenerali/FatturaPrincipale/NumeroFatturaPrincipale" />
+                                                                                          </span>
+                                                                                     </td>
+                                                                                </tr>
+                                                                           </xsl:if>
+                                                                           <xsl:if test="DatiGenerali/FatturaPrincipale/DataFatturaPrincipale">
+                                                                                <tr>
+                                                                                     <td width="200px">
+                                                                                          Datum Hauptrechnung
+                                                                                          <br />
+                                                                                          <i>Data fattura principale</i>
+                                                                                     </td>
+                                                                                     <td width="500px">
+                                                                                          <span>
+                                                                                               <xsl:call-template name="FormatDate">
+                                                                                                    <xsl:with-param name="DateTime" select="DatiGenerali/FatturaPrincipale/DataFatturaPrincipale" />
+                                                                                               </xsl:call-template>
+                                                                                          </span>
+                                                                                     </td>
+                                                                                </tr>
+                                                                           </xsl:if>
+                                                                      </table>
+                                                                 </div>
+                                                            </xsl:if>
+                                                            <!--FINE FATTURA PRINCIPALE-->
+                                                       </div>
                                                   </div>
                                              </xsl:if>
                                              <!--FINE DATI GENERALI-->
@@ -3012,43 +3046,51 @@ http://www.gnu.org/licenses/.
                                                                  </h3>
                                                                  <table id="t2">
                                                                       <tr bgcolor="#808080">
-                                                                           <th align="center" width="25">Nr</th>
-                                                                           <th width="175">
+                                                                           <th align="center" width="5%">Nr</th>
+                                                                           <th width="41%">
                                                                                 Beschreibung
                                                                                 <br />
-                                                                                Descrizione cessione/prestazione
+                                                                                <i>
+                                                                                     Descrizione cessione/prestazione
+                                                                                </i>
                                                                            </th>
-                                                                           <th width="60">
+                                                                           <th width="8%">
                                                                                 Menge
                                                                                 <br />
-                                                                                Quantità
+                                                                                <i>
+                                                                                     Quantità
+                                                                                </i>
                                                                            </th>
-                                                                           <th width="25">
+                                                                           <th width="8%">
                                                                                 ME
                                                                                 <br />
-                                                                                UM
+                                                                                <i>
+                                                                                     UM
+                                                                                </i>
                                                                            </th>
-                                                                           <th width="85">
+                                                                           <th width="10%">
                                                                                 Preis
                                                                                 <br />
-                                                                                Prezzo
+                                                                                <i>
+                                                                                     Prezzo
+                                                                                </i>
                                                                            </th>
-                                                                           <th width="80">
-                                                                                Skonto
-                                                                                <br />
-                                                                                Sconto
+                                                                           <th width="10%">
+                                                                                + / -
                                                                            </th>
-                                                                           <th width="85">
+                                                                           <th width="10%">
                                                                                 Preis gesamt
                                                                                 <br />
-                                                                                Prezzo totale
+                                                                                <i>
+                                                                                     Prezzo totale
+                                                                                </i>
                                                                            </th>
-                                                                           <th width="40">
+                                                                           <th width="8%">
                                                                                 MwSt
                                                                                 <br />
-                                                                                IVA
-                                                                                <br />
-                                                                                (%)
+                                                                                <i>
+                                                                                     IVA
+                                                                                </i>
                                                                            </th>
                                                                       </tr>
                                                                       <xsl:for-each select="DatiBeniServizi/DettaglioLinee">
@@ -3180,34 +3222,6 @@ http://www.gnu.org/licenses/.
                                                                                                </span>
                                                                                           </xsl:if>
                                                                                      </xsl:if>
-                                                                                     <xsl:if test="ScontoMaggiorazione/Tipo">
-                                                                                          <xsl:for-each select="ScontoMaggiorazione">
-                                                                                               <br />
-                                                                                               <!-- <span><xsl:value-of select="Percentuale"/> % </span>-->
-                                                                                               <span>
-                                                                                                    <xsl:value-of select="Tipo" />
-                                                                                               </span>
-                                                                                               <xsl:variable name="TSCM">
-                                                                                                    <xsl:value-of select="Tipo" />
-                                                                                               </xsl:variable>
-                                                                                               <xsl:choose>
-                                                                                                    <xsl:when test="$TSCM='SC'">
-                                                                                                         (Skonto)
-                                                                                                         <i>(sconto)</i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:when test="$TSCM='MG'">
-                                                                                                         (Aufpreis)
-                                                                                                         <i>(maggiorazione)</i>
-                                                                                                    </xsl:when>
-                                                                                                    <xsl:otherwise>
-                                                                                                         <fehler>
-                                                                                                              (!!! falsche Kennung !!!)
-                                                                                                              <i>(!!! codice non previsto !!!)</i>
-                                                                                                         </fehler>
-                                                                                                    </xsl:otherwise>
-                                                                                               </xsl:choose>
-                                                                                          </xsl:for-each>
-                                                                                     </xsl:if>
                                                                                 </td>
                                                                                 <td align="right">
                                                                                      <xsl:if test="Quantita">
@@ -3257,7 +3271,24 @@ http://www.gnu.org/licenses/.
                                                                                                     </span>
                                                                                                     <br />
                                                                                                </xsl:if>
-                                                                                               <br />
+                                                                                               <xsl:choose>
+                                                                                                    <xsl:when test="$TSCM='SC'">
+                                                                                                         Rabatt
+                                                                                                         <br /> 
+                                                                                                         <i>sconto</i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:when test="$TSCM='MG'">
+                                                                                                         Aufpreis
+                                                                                                         <br />
+                                                                                                         <i>maggior.</i>
+                                                                                                    </xsl:when>
+                                                                                                    <xsl:otherwise>
+                                                                                                         <fehler>
+                                                                                                              (!!! falsche Kennung !!!)
+                                                                                                              <i>(!!! codice non previsto !!!)</i>
+                                                                                                         </fehler>
+                                                                                                    </xsl:otherwise>
+                                                                                               </xsl:choose>
                                                                                           </xsl:for-each>
                                                                                      </xsl:if>
                                                                                 </td>
@@ -3301,47 +3332,63 @@ http://www.gnu.org/licenses/.
                                                                       Daten zur MwSt. nach Satz und Art -
                                                                       <i>Dati di riepilogo per aliquota IVA e natura</i>
                                                                  </h3>
-                                                                 <table border="1" width="610px">
+                                                                 <table id="t2">
                                                                       <tr bgcolor="#808080">
                                                                            <th width="45">
                                                                                 MwSt
                                                                                 <br />
-                                                                                Aliq.
+                                                                                <i>
+                                                                                     Aliq.
+                                                                                </i>
                                                                            </th>
                                                                            <th width="70">
                                                                                 Art
                                                                                 <br />
-                                                                                Natura
+                                                                                <i>
+                                                                                     Natura
+                                                                                </i>
                                                                            </th>
                                                                            <th width="75">
                                                                                 Spesen
                                                                                 <br />
-                                                                                Spese
+                                                                                <i>                                                                                
+                                                                                     Spese
+                                                                                </i>
                                                                            </th>
                                                                            <th width="75">
                                                                                 Rundung
                                                                                 <br />
-                                                                                Arroton.
+                                                                                <i>                                                                             
+                                                                                     Arroton.
+                                                                                </i>
                                                                            </th>
                                                                            <th width="75">
                                                                                 Grundlage
                                                                                 <br />
-                                                                                Imponibile
+                                                                                <i>
+                                                                                     Imponibile
+                                                                                </i>
                                                                            </th>
                                                                            <th width="75">
                                                                                 Steuer
                                                                                 <br />
-                                                                                Imposta
+                                                                                <i>
+                                                                                     Imposta
+                                                                                </i>
                                                                            </th>
                                                                            <th width="75">
                                                                                 Fälligkeit
                                                                                 <br />
-                                                                                Esigibilita
+                                                                                <i>
+                                                                                     Esigibilita
+                                                                                </i>
                                                                            </th>
                                                                            <th width="85">
                                                                                 Ges.Bezug
                                                                                 <br />
-                                                                                Rif.Norma
+                                                                                <i>
+                                                                                     Rif.Norma
+                                                                                </i>
                                                                            </th>
                                                                       </tr>
                                                                       <xsl:for-each select="DatiBeniServizi/DatiRiepilogo">
@@ -3374,125 +3421,125 @@ http://www.gnu.org/licenses/.
                                                                                           <xsl:choose>
                                                                                                <!-- Version 1.2.1 -->
                                                                                                <xsl:when test="$NAT1='N1'">
-                                                                                                    (ausgenommener Geschäftsvorg. ex Art. 15)
+                                                                                                    ausgenommener Geschäftsvorg. ex Art. 15
                                                                                                     <br />
-                                                                                                    <i>(escluse ex art. 15)</i>
+                                                                                                    <i>escluse ex art. 15</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N2'">
-                                                                                                    (nicht unterworfener Geschäftsvorg.(darf nach dem 31.12.2020 nicht mehr verwendet werden))
+                                                                                                    nicht unterworfener Geschäftsvorg. (darf nach dem 31.12.2020 nicht mehr verwendet werden)
                                                                                                     <br />
-                                                                                                    <i>(non soggette (non più utilizabile dopo il 31.12.2020))</i>
+                                                                                                    <i>non soggette (non più utilizabile dopo il 31.12.2020)</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N2.1'">
-                                                                                                    (nicht unterworfener Geschäftsvorg. im Sinne der Artikel von 7 bis 7-septies des DPR 633/72)
+                                                                                                    nicht unterworfener Geschäftsvorg. im Sinne der Artikel von 7 bis 7-septies des DPR 633/72
                                                                                                     <br />
-                                                                                                    <i>(Non soggette ad IVA ai sensi degli artt. da 7 a 7- septies del DPR 633/72)</i>
+                                                                                                    <i>Non soggette ad IVA ai sensi degli artt. da 7 a 7- septies del DPR 633/72</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N2.2'">
-                                                                                                    (nicht unterworfener Geschäftsvorg. – andere Fälle)
+                                                                                                    nicht unterworfener Geschäftsvorg. – andere Fälle
                                                                                                     <br />
-                                                                                                    <i>(non soggette – altri casi)</i>
+                                                                                                    <i>non soggette – altri casi</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N3'">
-                                                                                                    (nicht Mehrwertsteuerpflichtig-(darf nach dem 31.12.2020 nicht mehr verwendet werden))
+                                                                                                    nicht Mehrwertsteuerpflichtig (darf nach dem 31.12.2020 nicht mehr verwendet werden)
                                                                                                     <br />
-                                                                                                    <i>(non imponibili (non più utilizabile dopo il 31.12.2020))</i>
+                                                                                                    <i>non imponibili (non più utilizabile dopo il 31.12.2020)</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N3.1'">
-                                                                                                    (nicht Mehrwertsteuerpflichtig--Export)
+                                                                                                    nicht Mehrwertsteuerpflichtig - Export
                                                                                                     <br />
-                                                                                                    <i>(non imponibili – esportazioni)</i>
+                                                                                                    <i>non imponibili – esportazioni</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N3.2'">
-                                                                                                    (nicht Mehrwertsteuerpflichtig--innergemeinschaftliche Verkäufe)
+                                                                                                    nicht Mehrwertsteuerpflichtig--innergemeinschaftliche Verkäufe
                                                                                                     <br />
-                                                                                                    <i>(non imponibili – cessioni intracomunitarie)</i>
+                                                                                                    <i>non imponibili – cessioni intracomunitarie</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N3.3'">
-                                                                                                    (nicht Mehrwertsteuerpflichtig--Verkäufe nach San Marino)
+                                                                                                    nicht Mehrwertsteuerpflichtig--Verkäufe nach San Marino
                                                                                                     <br />
-                                                                                                    <i>(non imponibili – cessioni verso San Marino)</i>
+                                                                                                    <i>non imponibili – cessioni verso San Marino</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N3.4'">
-                                                                                                    (nicht Mehrwertsteuerpflichtig--als Exporte behandelte Transaktionen)
+                                                                                                    nicht Mehrwertsteuerpflichtig--als Exporte behandelte Transaktionen
                                                                                                     <br />
-                                                                                                    <i>(non imponibili – operazioni assimilate alle cessioni all’esportazione)</i>
+                                                                                                    <i>non imponibili – operazioni assimilate alle cessioni all’esportazione</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N3.5'">
-                                                                                                    (nicht Mehrwertsteuerpflichtig--nach einer Absichtserklärung)
+                                                                                                    nicht Mehrwertsteuerpflichtig--nach einer Absichtserklärung
                                                                                                     <br />
                                                                                                     <i>(non imponibili – a seguito di dichiarazioni d’intento)</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N3.6'">
-                                                                                                    (nicht Mehrwertsteuerpflichtig--andere Operationen, die nicht zur Bildung des Plafonds beitragen)
+                                                                                                    nicht Mehrwertsteuerpflichtig--andere Operationen, die nicht zur Bildung des Plafonds beitragen
                                                                                                     <br />
-                                                                                                    <i>(non imponibili – altre operazioni che non concorrono alla formazione del plafond)</i>
+                                                                                                    <i>non imponibili – altre operazioni che non concorrono alla formazione del plafond</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N4'">
-                                                                                                    (befreit)
+                                                                                                    befreit
                                                                                                     <br />
-                                                                                                    <i>(esenti)</i>
+                                                                                                    <i>esenti</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N5'">
-                                                                                                    (im Rahmen der Differenzbesteuerung)
+                                                                                                    im Rahmen der Differenzbesteuerung
                                                                                                     <br />
-                                                                                                    <i>(regime del margine)</i>
+                                                                                                    <i>regime del margine</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N6'">
-                                                                                                    (Umkehrung derSteuerschuldnerschaft(darf nach dem 31.12.2020 nicht mehr verwendet werden))
+                                                                                                    Umkehrung derSteuerschuldnerschaft (darf nach dem 31.12.2020 nicht mehr verwendet werden)
                                                                                                     <br />
-                                                                                                    <i>(inversione contabile (non più utilizabile dopo il 31.12.2020))</i>
+                                                                                                    <i>inversione contabile (non più utilizabile dopo il 31.12.2020)</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N6.1'">
-                                                                                                    (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Schrott und anderen recycelten Materialien)
+                                                                                                    Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Schrott und anderen recycelten Materialien
                                                                                                     <br />
-                                                                                                    <i>(inversione contabile – cessione di rottami e altri materiali di recupero)</i>
+                                                                                                    <i>inversione contabile – cessione di rottami e altri materiali di recupero</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N6.2'">
-                                                                                                    (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von reinem Gold und Silber)
+                                                                                                    Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von reinem Gold und Silber
                                                                                                     <br />
-                                                                                                    <i>(inversione contabile – cessione di oro e argento puro)</i>
+                                                                                                    <i>inversione contabile – cessione di oro e argento puro</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N6.3'">
-                                                                                                    (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Unteraufträge im Bausektor)
+                                                                                                    Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Unteraufträge im Bausektor
                                                                                                     <br />
-                                                                                                    <i>(inversione contabile – subappalto nel settore edile)</i>
+                                                                                                    <i>inversione contabile – subappalto nel settore edile</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N6.4'">
-                                                                                                    (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Gebäuden)
+                                                                                                    Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Gebäuden
                                                                                                     <br />
-                                                                                                    <i>(inversione contabile – cessione di fabbricati)</i>
+                                                                                                    <i>inversione contabile – cessione di fabbricati</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N6.5'">
-                                                                                                    (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Mobiltelefonen)
+                                                                                                    Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Mobiltelefonen
                                                                                                     <br />
-                                                                                                    <i>(inversione contabile – cessione di telefoni cellulari)</i>
+                                                                                                    <i>inversione contabile – cessione di telefoni cellulari</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N6.6'">
-                                                                                                    (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von elektronischen Geräten)
+                                                                                                    Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von elektronischen Geräten
                                                                                                     <br />
-                                                                                                    <i>(inversione contabile – cessione di prodotti elettronici)</i>
+                                                                                                    <i>inversione contabile – cessione di prodotti elettronici</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N6.7'">
-                                                                                                    (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Dienstleistungen des Bausektors und damit verwandte Sektoren)
+                                                                                                    Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Dienstleistungen des Bausektors und damit verwandte Sektoren
                                                                                                     <br />
-                                                                                                    <i>(inversione contabile – prestazioni comparto edile e settori connessi)</i>
+                                                                                                    <i>inversione contabile – prestazioni comparto edile e settori connessi</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N6.8'">
-                                                                                                    (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Operationen im Energiesektor)
+                                                                                                    Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Operationen im Energiesektor
                                                                                                     <br />
-                                                                                                    <i>(inversione contabile – operazioni settore energetico)</i>
+                                                                                                    <i>inversione contabile – operazioni settore energetico</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1='N6.9'">
-                                                                                                    (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - andere Fälle)
+                                                                                                    Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - andere Fälle
                                                                                                     <br />
-                                                                                                    <i>(inversione contabile – altri casi)</i>
+                                                                                                    <i>inversione contabile – altri casi</i>
                                                                                                </xsl:when>
                                                                                                <!-- Version 1.2 -->
                                                                                                <xsl:when test="$NAT1='N7'">
-                                                                                                    (MwSt.-Schuld in einem anderen EU-Land abgegolten)
+                                                                                                    MwSt.-Schuld in einem anderen EU-Land abgegolten
                                                                                                     <br />
-                                                                                                    <i>(IVA assolta in altro stato UE)</i>
+                                                                                                    <i>IVA assolta in altro stato UE</i>
                                                                                                </xsl:when>
                                                                                                <xsl:when test="$NAT1=''" />
                                                                                                <xsl:otherwise>
@@ -4146,10 +4193,6 @@ http://www.gnu.org/licenses/.
                                                   </div>
                                              </xsl:if>
                                              <!--FINE ALLEGATI-->
-
-                                             <div class="footer">
-                                                  <xsl:copy-of select="$VersionFT" />
-                                             </div>
                                         </div>
                                    </xsl:for-each>
                                    <!--FINE BODY-->
