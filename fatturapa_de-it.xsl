@@ -237,7 +237,7 @@ http://www.gnu.org/licenses/.
                          .highlighted {
                               font-size: 16px;
                               font-weight: bold;
-                              color: darkblue;
+                              color: #b00000;
                          }
 
                          /* use flexboxes to align the items in this container (same height for example) */
@@ -4194,7 +4194,7 @@ http://www.gnu.org/licenses/.
                                                                                 </span>
                                                                            </xsl:when>
                                                                            <xsl:otherwise>
-                                                                                <span style="color: red">
+                                                                                <span style="color: #b00000">
                                                                                      nicht vorhanden 
                                                                                      <i>non presente</i>
                                                                                 </span>
@@ -4217,7 +4217,7 @@ http://www.gnu.org/licenses/.
                                                                                 </span>
                                                                            </xsl:when>
                                                                            <xsl:otherwise>
-                                                                                <span style="color: red">
+                                                                                <span style="color: #b00000">
                                                                                      nicht vorhanden 
                                                                                      <i>non presente</i>
                                                                                 </span>
@@ -4240,7 +4240,7 @@ http://www.gnu.org/licenses/.
                                                                                 </span>
                                                                            </xsl:when>
                                                                            <xsl:otherwise>
-                                                                                <span style="color: red">
+                                                                                <span style="color: #b00000">
                                                                                      nicht vorhanden 
                                                                                      <i>non presente</i>
                                                                                 </span>
