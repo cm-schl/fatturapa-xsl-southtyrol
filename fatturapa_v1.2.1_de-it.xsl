@@ -67,20 +67,20 @@ http://www.gnu.org/licenses/.
           <xsl:variable name="month" select="substring($DateTime,6,2)" />
           <xsl:variable name="day" select="substring($DateTime,9,2)" />
 
-          <xsl:variable name="month_text">
+          <xsl:variable name="month_substitution">
                <xsl:choose>
-                    <xsl:when test="$month = '1' or $month = '01'"><xsl:value-of select="'Jan./Gen.'" /></xsl:when>
-                    <xsl:when test="$month = '2' or $month = '02'"><xsl:value-of select="'Feb.'" /></xsl:when>
-                    <xsl:when test="$month = '3' or $month = '03'"><xsl:value-of select="'Mar.'" /></xsl:when>
-                    <xsl:when test="$month = '4' or $month = '04'"><xsl:value-of select="'Apr.'" /></xsl:when>
-                    <xsl:when test="$month = '5' or $month = '05'"><xsl:value-of select="'Mai/Mag.'" /></xsl:when>
-                    <xsl:when test="$month = '6' or $month = '06'"><xsl:value-of select="'Jun./Giu.'" /></xsl:when>
-                    <xsl:when test="$month = '7' or $month = '07'"><xsl:value-of select="'Jul./Lug.'" /></xsl:when>
-                    <xsl:when test="$month = '8' or $month = '08'"><xsl:value-of select="'Aug./Ago.'" /></xsl:when>
-                    <xsl:when test="$month = '9' or $month = '09'"><xsl:value-of select="'Sep./Set.'" /></xsl:when>
-                    <xsl:when test="$month = '10'"><xsl:value-of select="'Okt./Ott.'" /></xsl:when>
-                    <xsl:when test="$month = '11'"><xsl:value-of select="'Nov.'" /></xsl:when>
-                    <xsl:when test="$month = '12'"><xsl:value-of select="'Dez./Dic.'" /></xsl:when>
+                    <xsl:when test="$month = '1' or $month = '01'"><xsl:value-of select="'01'" /></xsl:when>
+                    <xsl:when test="$month = '2' or $month = '02'"><xsl:value-of select="'02'" /></xsl:when>
+                    <xsl:when test="$month = '3' or $month = '03'"><xsl:value-of select="'03'" /></xsl:when>
+                    <xsl:when test="$month = '4' or $month = '04'"><xsl:value-of select="'04'" /></xsl:when>
+                    <xsl:when test="$month = '5' or $month = '05'"><xsl:value-of select="'05'" /></xsl:when>
+                    <xsl:when test="$month = '6' or $month = '06'"><xsl:value-of select="'06'" /></xsl:when>
+                    <xsl:when test="$month = '7' or $month = '07'"><xsl:value-of select="'07'" /></xsl:when>
+                    <xsl:when test="$month = '8' or $month = '08'"><xsl:value-of select="'08'" /></xsl:when>
+                    <xsl:when test="$month = '9' or $month = '09'"><xsl:value-of select="'09'" /></xsl:when>
+                    <xsl:when test="$month = '10'"><xsl:value-of select="'10'" /></xsl:when>
+                    <xsl:when test="$month = '11'"><xsl:value-of select="'11'" /></xsl:when>
+                    <xsl:when test="$month = '12'"><xsl:value-of select="'12'" /></xsl:when>
                     <xsl:otherwise>
                          <xsl:value-of select="'unbekannter Monat-mese non riconosciuto'" />
                     </xsl:otherwise>
@@ -102,7 +102,7 @@ http://www.gnu.org/licenses/.
                </xsl:if>
           </xsl:variable>
 
-          <xsl:value-of select="concat($day, '. ', $month_text, ' ', $year, ' ', $time_text)" />
+          <xsl:value-of select="concat($day, '.', $month_substitution, '.', $year, ' ', $time_text)" />
      </xsl:template>
 
      <xsl:template match="/">
