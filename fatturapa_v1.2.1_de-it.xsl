@@ -4179,11 +4179,14 @@ http://www.gnu.org/licenses/.
                                                                  </td>
                                                                  <td>
                                                                       <xsl:choose>   
-                                                                           <xsl:when test="/a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici/CodiceFiscale">
+                                                                           <xsl:when test="/a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici/IdFiscaleIVA/IdCodice">
                                                                                 <span style="color: green">
                                                                                      vorhanden 
                                                                                      <i>presente </i>
-                                                                                     (<xsl:value-of select="/a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici/CodiceFiscale" />)
+                                                                                     (
+                                                                                          <xsl:value-of select="/a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici/IdFiscaleIVA/IdPaese" />
+                                                                                          <xsl:value-of select="/a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici/IdFiscaleIVA/IdCodice" />
+                                                                                     )
                                                                                 </span>
                                                                            </xsl:when>
                                                                            <xsl:otherwise>
