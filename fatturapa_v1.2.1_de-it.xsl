@@ -3424,7 +3424,7 @@ http://www.gnu.org/licenses/.
                                                                            Imposta
                                                                       </i>
                                                                  </th>
-                                                                 <th width="20%">
+                                                                 <th width="10%">
                                                                       Fälligkeit
                                                                       <br />
                                                                       <i>
