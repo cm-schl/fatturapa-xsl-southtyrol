@@ -4263,23 +4263,25 @@ http://www.gnu.org/licenses/.
                                                        <xsl:for-each select="Allegati">
                                                             <table id="t1">
                                                                  <!-- generate a clickable link when the attachment is a pdf file -->
-                                                                 <xsl:if test="lower-case(FormatoAttachment)='pdf'">
-                                                                      <tr>
-                                                                           <td width="200px">
-                                                                                PDF-Datei
-                                                                                <br />
-                                                                                <i>File pdf</i>
-                                                                           </td>
-                                                                           <td>
-                                                                                <a>
-                                                                                <xsl:attribute name="href">
-                                                                                     <xsl:value-of select="concat('data:application/pdf;base64,',Attachment)" />
-                                                                                </xsl:attribute>
-                                                                                Anlage öffnen / apri allegato
-                                                                                </a>
-                                                                           </td>
-                                                                      </tr>
-                                                                 </xsl:if>
+                                                                 <!-- TO TEST
+                                                                      <xsl:if test="lower-case(FormatoAttachment)='pdf'">
+                                                                           <tr>
+                                                                                <td width="200px">
+                                                                                     PDF-Datei
+                                                                                     <br />
+                                                                                     <i>File pdf</i>
+                                                                                </td>
+                                                                                <td>
+                                                                                     <a>
+                                                                                          <xsl:attribute name="href">
+                                                                                               <xsl:value-of select="concat('data:application/pdf;base64,',Attachment)" />
+                                                                                          </xsl:attribute>
+                                                                                          Anlage öffnen / apri allegato
+                                                                                     </a>
+                                                                                </td>
+                                                                           </tr>
+                                                                      </xsl:if>
+                                                                 -->
                                                                  <xsl:if test="NomeAttachment">
                                                                       <tr>
                                                                            <td width="200px">
