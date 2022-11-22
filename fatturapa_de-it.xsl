@@ -1235,8 +1235,10 @@ http://www.gnu.org/licenses/.
                                                                                 <i>acconto/anticipo su parcella </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD04'">
-                                                                                Gutschrift
-                                                                                <i>nota di credito </i>
+                                                                                <span style="color: #b00000">
+                                                                                     Gutschrift
+                                                                                     <i>nota di credito </i>
+                                                                                </span>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD05'">
                                                                                 Lastschrift
@@ -1248,7 +1250,7 @@ http://www.gnu.org/licenses/.
                                                                            </xsl:when>
                                                                            <!-- Version 1.2.1 -->
                                                                            <xsl:when test="$TD='TD16'">
-                                                                                Integration der internenen reverse charge Rechnungen
+                                                                                Integration der internen reverse charge Rechnungen
                                                                                 <br />
                                                                                 <i>Integrazione fattura reverse charge interno </i>
                                                                            </xsl:when>
@@ -3434,7 +3436,7 @@ http://www.gnu.org/licenses/.
                                                                       Fälligkeit
                                                                       <br />
                                                                       <i>
-                                                                           Esigibilita
+                                                                           Esigibilità
                                                                       </i>
                                                                  </th>
                                                                  <th width="20%">
@@ -4247,7 +4249,7 @@ http://www.gnu.org/licenses/.
                                                                            </xsl:otherwise>
                                                                       </xsl:choose>
                                                                  </td>
-                                                            </tr>                                                                                                                    
+                                                            </tr>                                                                                                                 
                                                        </table>
                                                   </div>
                                                   <!-- FINE BLOCCO CONTROLLI PER CONTABILITÀ PA -->
