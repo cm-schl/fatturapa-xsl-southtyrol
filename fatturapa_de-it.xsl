@@ -385,25 +385,25 @@ http://www.gnu.org/licenses/.
                                                                                           </xsl:variable>
                                                                                           <span>
                                                                                                <xsl:choose>
-                                                                                                    <xsl:when test="$RF='RF01'">ordinario </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF02'">contribuenti minimi </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF03'">nuove iniziative produttive </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF04'">agricoltura e attività connesse e pesca </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF05'">vendita sali e tabacchi </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF06'">commercio fiammiferi </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF07'">editoria </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF08'">gestione servizi telefonia pubblica </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF09'">rivendita documenti di trasporto pubblico e di sosta </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF10'">intrattenimenti, giochi e altre attività di cui alla tariffa allegata al DPR 640/72 </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF11'">agenzie viaggi e turismo </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF12'">agriturismo </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF13'">vendite a domicilio </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF14'">rivendita beni usati, oggetti d’arte, d’antiquariato o da collezione </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF15'">agenzie di vendite all’asta di oggetti d’arte, antiquariato o da collezione </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF16'">IVA per cassa P.A. </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF01'">Ordinario </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF02'">Contribuenti minimi - art.1, c.96-117, L. 244/07 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF03'">Nuove iniziative produttive </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF04'">Agricoltura e attività connesse e pesca - artt.34 e 34-bis, DPR 633/72 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF05'">Vendita sali e tabacchi - art.74, c.1, DPR. 633/72 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF06'">Commercio fiammiferi - art.74, c.1, DPR 633/72 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF07'">Editoria - art.74, c.1, DPR 633/72 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF08'">Gestione servizi telefonia pubblica - art.74, c.1, DPR 633/72 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF09'">Rivendita documenti di trasporto pubblico e di sosta - art.74, c.1, DPR 633/72 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF10'">Intrattenimenti, giochi e altre attività di cui alla tariffa allegata al DPR 640/72 - art.74, c.6, DPR 633/72 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF11'">Agenzie viaggi e turismo - art.74-ter, DPR 633/72 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF12'">Agriturismo -art.5, c.2, L. 413/91 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF13'">Vendite a domicilio - art.25-bis, c.6, DPR 600/73 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF14'">Rivendita beni usati, oggetti d’arte, d’antiquariato o da collezione - art.36, DL 41/95 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF15'">Agenzie di vendite all’asta di oggetti d’arte, antiquariato o da collezione - art.40-bis, DL 41/95 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF16'">IVA per cassa P.A. - art.6, c.5, DPR 633/72 </xsl:when>
                                                                                                     <xsl:when test="$RF='RF17'">IVA per cassa - art. 32-bis, D.L. 83/2012 </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF19'">Regime forfettario </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF18'">altro </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF19'">Regime forfettario - art.1, c.54-89, L. 190/2014 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF18'">Altro </xsl:when>
                                                                                                     <xsl:when test="$RF=''" />
                                                                                                     <xsl:otherwise>
                                                                                                          <fehler>
