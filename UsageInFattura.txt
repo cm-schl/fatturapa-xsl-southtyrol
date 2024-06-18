@@ -11,11 +11,11 @@ After adding the StyleSheet:
 
 <?xml version="1.0" encoding="utf-8"?>
 
-<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/cm-schl/fatturapa-xsl-southtyrol/master/fatturapa_v1.2.1_de-it.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/cm-schl/fatturapa-xsl-southtyrol/master/fatturapa_de-it.xsl"?>
 
 <p:FatturaElettronica version="1.2" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" ...
 
 
-You can find the Raw File at: https://raw.githubusercontent.com/cm-schl/fatturapa-xsl-southtyrol/master/fatturapa_v1.2.1_de-it.xsl
+You can find the Raw File at: https://raw.githubusercontent.com/cm-schl/fatturapa-xsl-southtyrol/master/fatturapa_de-it.xsl
 The Stylesheet was tested by myself With: Firefox.
 Firefox is suggested to avoid problems with cross-domain-policy.
