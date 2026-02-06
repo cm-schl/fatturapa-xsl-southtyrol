@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 fatturapa_de-it.xsl
 Copyright (C) 2020 Ferdinand Tavernini WOBI-IPES Bozen/Bolzano
 and contributors.
 
-Compatibility: FatturaPA v1.2.2
+Compatibility: FatturaPA v1.2.3
 
 The XSL-stylesheet fatturapa_de-it.xsl is free software:
 you can redistribute it and/or modify it under the terms of the
@@ -103,6 +103,9 @@ http://www.gnu.org/licenses/.
 
           <xsl:value-of select="concat($day, '.', $month_substitution, '.', $year, ' ', $time_text)" />
      </xsl:template>
+
+     <!-- create a key entry with all values found under 'EsigibilitaIVA'-->
+     <xsl:key name="EsigibilitaKey" match="EsigibilitaIVA" use="."/>
 
      <xsl:template match="/">
           <html>
@@ -402,8 +405,9 @@ http://www.gnu.org/licenses/.
                                                                                                     <xsl:when test="$RF='RF15'">Agenzie di vendite all’asta di oggetti d’arte, antiquariato o da collezione - art.40-bis, DL 41/95 </xsl:when>
                                                                                                     <xsl:when test="$RF='RF16'">IVA per cassa P.A. - art.6, c.5, DPR 633/72 </xsl:when>
                                                                                                     <xsl:when test="$RF='RF17'">IVA per cassa - art. 32-bis, D.L. 83/2012 </xsl:when>
-                                                                                                    <xsl:when test="$RF='RF19'">Regime forfettario - art.1, c.54-89, L. 190/2014 </xsl:when>
                                                                                                     <xsl:when test="$RF='RF18'">Altro </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF19'">Regime forfettario - art.1, c.54-89, L. 190/2014 </xsl:when>
+                                                                                                    <xsl:when test="$RF='RF20'">Regime transfrontaliero di Franchigia IVA (Direttiva UE 2020/285) </xsl:when>
                                                                                                     <xsl:when test="$RF=''" />
                                                                                                     <xsl:otherwise>
                                                                                                          <fehler>
@@ -1268,9 +1272,9 @@ http://www.gnu.org/licenses/.
                                                                                 <i>Integrazione/autofattura per acquisto di beni ex art.17 c.2 DPR 633/72 </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD20'">
-                                                                                Selbstfakturierung Anzeige (Art.6c, Komma 8 Dekret 471/97)
+                                                                                Selbstfakturierung zur Regulierung und Ergänzung von Rechnungen (ex Art. 6 Abs. 9-bis d.lgs. 471/97 oder Art. 46 Abs. 5 D.L. 331/93)
                                                                                 <br />
-                                                                                <i>Autofattura denuncia (art.6c .8 d.lgs. 471/97) </i>
+                                                                                <i>Autofattura regolarizzazione e integrazione fatture (ex art. 6 c.9-bis d.lgs. 471/97 o art.46 c.5 D.L. 331/93) </i>
                                                                            </xsl:when>
                                                                            <xsl:when test="$TD='TD21'">
                                                                                 Selbstfakturierung bei Überschreiten des Plafonds
@@ -1312,6 +1316,12 @@ http://www.gnu.org/licenses/.
                                                                                 <br />
                                                                                 <i>Acquisti da San Marino con IVA (fattura cartacea) </i>
                                                                            </xsl:when>
+                                                                           <!-- Version 1.2.3 -->
+                                                                           <xsl:when test="$TD='TD29'">
+                                                                                Mitteilung wegen unterlassener oder unregelmäßiger Rechnungsstellung durch den italienischen Veräußerer/Dienstleister (Art. 6, Absatz 8, D.Lgs. 471/97)
+                                                                                <br />
+                                                                                <i>Comunicazione per omessa o irregolare fatturazione da parte del cedente/prestatore italiano (art. 6, comma 8, D.Lgs. 471/97) </i>
+                                                                           </xsl:when>                                                                           
                                                                            <xsl:when test="$TD=''" />
                                                                            <xsl:otherwise>
                                                                                 <fehler>
@@ -4282,7 +4292,42 @@ http://www.gnu.org/licenses/.
                                                                            </xsl:otherwise>
                                                                       </xsl:choose>
                                                                  </td>
-                                                            </tr>                                                                                                                 
+                                                            </tr>   
+                                                            <tr>
+                                                                 <td>
+                                                                      angegebene Fälligkeit MwSt.
+                                                                      <br />
+                                                                      <i>Esigibilità IVA indicata</i>
+                                                                 </td>
+                                                                    
+                                                                 <td>
+                                                                      <xsl:variable name="countImmediata" select="count(key('EsigibilitaKey', 'I'))"/>  
+                                                                      <xsl:variable name="countDifferita" select="count(key('EsigibilitaKey', 'D'))"/>
+                                                                      <xsl:variable name="countScissione" select="count(key('EsigibilitaKey', 'S'))"/>
+
+                                                                      <xsl:if test="$countImmediata>0">
+                                                                           <span style="color: #b00000">
+                                                                                sofortige 
+                                                                                <i>immediata </i>
+                                                                                <br />
+                                                                           </span>
+                                                                      </xsl:if>
+                                                                      <xsl:if test="$countDifferita>0">
+                                                                           <span style="color: #b00000">
+                                                                                aufgeschobene 
+                                                                                <i>differita </i>
+                                                                                <br />
+                                                                           </span>
+                                                                      </xsl:if>
+                                                                      <xsl:if test="$countScissione>0">
+                                                                           <span style="color: green">
+                                                                                split payment 
+                                                                                <br />
+                                                                           </span>
+                                                                      </xsl:if> 
+                                                                 </td>
+
+                                                            </tr>                                                                                                                                                                           
                                                        </table>
                                                   </div>
                                                   <!-- FINE BLOCCO CONTROLLI PER CONTABILITÀ PA -->
